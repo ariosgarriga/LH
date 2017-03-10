@@ -1,0 +1,76 @@
+main{
+  padding-top: 30px;
+}
+
+/*NAV-BAR
+====================*/
+
+.navbar-custom-internal a {
+  color: #fff;
+}
+
+.navbar-inverse{
+  background-color: #131f28;
+}
+
+.navbar-inverse .navbar-logo {
+  width: 140px;
+  margin-top: 7px;
+}
+.navbar-brand {
+  float: left;
+  padding: 0 15px;
+  font-size: 18px;
+  line-height: 20px;
+  height: 50px;
+}
+
+
+/*HEADER
+=====================*/
+header .navbar{
+  border-radius: 0;
+}
+
+/*NgANIMATE
+=====================*/
+
+/*show and hide*/
+.show-hide-message.ng-hide-remove{
+  -webkit-animation:zoomIn 0.3s both ease;
+  -moz-animation:zoomIn 0.3s both ease;
+  animation: zommIn 0.3s both ease;
+}
+
+/*ANIMATION
+=====================*/
+.spinner{
+  -webkit-animation:spin 1s infinite;
+  -moz-animation:spin 1s infinite;
+  animation:spin 1s infinite;
+}
+
+@keyframes spin{
+  from { transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+@-webkit-keyframes spin{
+  from { transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+@-moz-keyframes spin{
+  from { transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+/*HOME-PAGE
+==================*/
+
+#home-text{
+  background-color: #131f28;
+  color: white;
+  padding: 25px;
+  margin: 20px 0px;
+}

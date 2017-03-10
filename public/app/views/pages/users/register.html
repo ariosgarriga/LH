@@ -1,0 +1,67 @@
+<div class="page-header">
+  <h1>Registro de Usuario</h1>
+</div>
+<div class="row show-hide-message" ng-show="register.successMsg">
+  <br>
+  <div class="alert alert-success ">{{ register.successMsg }}</div>
+</div>
+
+<div class="row show-hide-message" ng-show="register.errorMsg">
+  <br>
+  <div class="alert alert-danger">{{ register.errorMsg }}</div>
+</div>
+
+<form name="regForm" ng-submit="register.regUser(regData)">
+  <!-- Name -->
+  <label>Nombre</label>
+  <input class="form-control" type="text" name="name" placeholder="Ej: Andres" ng-model="register.regData.name" required>
+  <br>
+
+  <!-- Lastname -->
+  <label>Apellido</label>
+  <input class="form-control" type="text" name="lastname" placeholder="Ej: Galleta" ng-model="register.regData.lastname" required>
+  <br>
+  <!-- Date -->
+  <label>Fecha de Nacimiento</label>
+  <input class="form-control" type="date" name="name" ng-model="register.regData.birth" required>
+  <br>
+  <!-- Gender -->
+  <div class="form-group">
+  <label>Genero</label>
+    <select class="form-control" ng-model="register.regData.gender">
+      <option>Hombre</option>
+      <option>Mujer</option>
+    </select>
+  </div>
+  <br>
+  <!-- City -->
+  <div class="form-group">
+  <label>Ciudad en la que recide</label>
+    <select class="form-control" ng-model="register.regData.city">
+      <option>Caracas</option>
+      <option>Valencia</option>
+      <option>Barcelona</option>
+      <option>Maracaibo</option>
+    </select>
+  </div>
+  <br>
+  <!-- Phone -->
+  <label>Telefono</label>
+  <input class="form-control" type="text" name="name" maxlength="11" placeholder="04122551616" ng-model="register.regData.phone" required>
+  <br>
+  <!-- Email -->
+  <label>Email</label>
+  <input class="form-control" type="email" name="name" placeholder="Ej: alguien@correo.com" ng-model="register.regData.email" required>
+  <br>
+  <!-- Password -->
+  <label>Contraseña</label>
+  <input class="form-control" type="password" name="name" ng-model="register.regData.password" required>
+  <br>
+
+  <button class="btn btn-primary" type="submit">Registrarse</button>
+</form>
+
+<div class="jumbotron text-center" ng-show="register.loading">
+  <span class="glyphicon glyphicon-repeat spinner"></span>
+  <p>Cargando...</p>
+</div>

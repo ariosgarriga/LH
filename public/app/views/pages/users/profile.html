@@ -1,0 +1,50 @@
+<div class="container ">
+  <div class="row ">
+    <div class="col-xs-12 col-sm-6" style="text-align:center;">
+      <h1>Perfil de {{ main.user.name }}</h1>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading" style="text-align: center;">
+      <strong>Perfil del Usuario</strong>
+    </div>
+    <table class="table">
+      <tr>
+        <td><strong>Nombre</strong></td>
+        <td>{{ main.user.name }}</td>
+      </tr>
+      <tr>
+        <td><strong>Apellido</strong></td>
+        <td>{{ main.user.lastname }}</td>
+      </tr>
+      <tr>
+        <td><strong>Fecha de Nacimiento</strong></td>
+        <td>{{ main.user.birth | date:'dd/MM/yyyy' }}</td>
+      </tr>
+      <tr>
+        <td><strong>Genero</strong></td>
+        <td>{{ main.user.gender }}</td>
+      </tr>
+      <tr>
+        <td><strong>Ciudad</strong></td>
+        <td>{{ main.user.city }}</td>
+      </tr>
+      <tr>
+        <td><strong>Telefono</strong></td>
+        <td>{{ main.user.phone }}</td>
+      </tr>
+      <tr>
+        <td><strong>Email</strong></td>
+        <td>{{ main.user.email }}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="row pull-right">
+    <div class="col-xs-12">
+      <a href="/edit/{{ main.user._id }}">
+          <button type="button" class="btn btn-primary ">Editar Perfil</button>
+      </a>
+    </div>
+  </div>
+</div>

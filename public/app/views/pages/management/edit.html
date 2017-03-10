@@ -1,0 +1,72 @@
+<div class="page-header">
+  <h1>Editar Usuario</h1>
+</div>
+
+<br>
+
+<div class="row show-hide-message" ng-show="edit.successMsg">
+  <br>
+  <div class="alert alert-success ">{{ edit.successMsg }}</div>
+</div>
+
+<div class="row show-hide-message" ng-show="edit.errorMsg">
+  <br>
+  <div class="alert alert-danger">{{ edit.errorMsg }}</div>
+</div>
+
+<form name="edit.editForm" ng-submit="edit.editUser(editData)" novalidate>
+  <!-- Name -->
+  <label>Nombre</label>
+  <input class="form-control" type="text" name="name" placeholder="Ej: Andres" ng-model="editData.name" required>
+  <br>
+
+  <!-- Lastname -->
+  <label>Apellido</label>
+  <input class="form-control" type="text" name="lastname" placeholder="Ej: Galleta" ng-model="editData.lastname" required>
+  <br>
+  <!-- Date -->
+  <label>Fecha de Nacimiento</label>
+  <input class="form-control" type="date" name="name" ng-model="editData.birth" required>
+  <br>
+  <!-- Gender -->
+  <div class="form-group">
+  <label>Genero</label>
+    <select class="form-control" ng-model="editData.gender">
+      <option>Hombre</option>
+      <option>Mujer</option>
+    </select>
+  </div>
+  <br>
+  <!-- City -->
+  <div class="form-group">
+  <label>Ciudad en la que recide</label>
+    <select class="form-control" ng-model="editData.city">
+      <option>Caracas</option>
+      <option>Valencia</option>
+      <option>Barcelona</option>
+      <option>Maracaibo</option>
+    </select>
+  </div>
+  <br>
+  <!-- Phone -->
+  <label>Telefono</label>
+  <input class="form-control" type="text" name="name" maxlength="11" placeholder="04122551616" ng-model="editData.phone" required>
+  <br>
+  <!-- Email -->
+  <label>Email</label>
+  <input class="form-control" type="email" name="name" placeholder="Ej: alguien@correo.com" ng-model="editData.email" required>
+  <br>
+  <!-- Rol -->
+  <div class="form-group">
+  <label>Role</label>
+    <select class="form-control" ng-model="editData.permission">
+      <option>admin</option>
+      <option>user</option>
+      <option>moderator</option>
+    </select>
+  </div>
+  <br>
+
+  <button class="btn btn-primary" type="submit">Editar</button>
+</form>
+<br><br>
