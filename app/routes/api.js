@@ -50,7 +50,7 @@ module.exports = function(router){
         }
 
         if (!validPassword) {
-          res.json({ success: false, message: 'Contraseña Incorrecta'}); 
+          res.json({ success: false, message: 'Contraseña Incorrecta'});
         } else {
           var token = jwt.sign({email: user.email, name: user.name, _id: user._id }, secret, { expiresIn:'24h'});
           res.json({ success: true, message: 'Exito!', token: token });
@@ -156,19 +156,22 @@ module.exports = function(router){
       if (!mainUser) {
         res.json({ success: false, message: 'No encontro usuario'})
       } else {
-        if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
-          User.findOne({ _id: editUser }, function(err, user){
-            if(err) throw err;
-            if (!user) {
-              res.json({ success: false, message: 'Usuarios no encontrados'})
-            } else {
-              res.json({ success: true, user: user });
-            }
-          });
 
+      User.findOne({ _id: editUser }, function(err, user){
+        console.log(mainUser);
+        console.log(user);
+        if(err) throw err;
+        if (!user) {
+          res.json({ success: false, message: 'Usuarios no encontrados'})
         } else {
-          res.json({success: false, message: 'No posee permiso para realizar esta accion'});
+          if (mainUser.permission === 'admin' || mainUser.permission === 'moderator' || mainUser.email === user.email ) {
+            res.json({ success: true, user: user });
+          } else {
+            res.json({success: false, message: 'No posee permiso para realizar esta accion :('});
+          }
         }
+      });
+
       }
     });
   });
@@ -181,35 +184,35 @@ module.exports = function(router){
       if (!mainUser) {
         res.json({ success: false, message: 'No encontro usuario'})
       } else {
-        if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
+
           User.findOne({ _id: editUser }, function(err, user){
             if(err) throw err;
             if (!user) {
               res.json({ success: false, message: 'Usuario no encontrado'})
             } else {
-              user.name = req.body.name;
-              user.lastname = req.body.lastname;
-              user.birth = req.body.birth;
-              user.gender = req.body.gender;
-              user.city = req.body.city;
-              user.phone = req.body.phone;
-              user.email = req.body.email;
-              user.permission = req.body.permission;
-              console.log(user);
-              user.save(function(err){
-                if (err) {
-                  console.log(err);
-                } else {
-                  res.json({ success: true, message: 'El usuario ha sido actualizado' });
-                }
-              });
-
+              if (mainUser.permission === 'admin' || mainUser.permission === 'moderator' || mainUser.email === user.email) {
+                user.name = req.body.name;
+                user.lastname = req.body.lastname;
+                user.birth = req.body.birth;
+                user.gender = req.body.gender;
+                user.city = req.body.city;
+                user.phone = req.body.phone;
+                user.email = req.body.email;
+                user.permission = req.body.permission;
+                console.log(user);
+                user.save(function(err){
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    res.json({ success: true, message: 'El usuario ha sido actualizado' });
+                  }
+                });
+              } else {
+                res.json({success: false, message: 'No posee permiso para realizar esta accion'});
+              }
             }
           });
 
-        } else {
-          res.json({success: false, message: 'No posee permiso para realizar esta accion'});
-        }
       }
     });
   });

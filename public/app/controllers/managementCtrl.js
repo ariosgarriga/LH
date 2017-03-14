@@ -6,6 +6,7 @@ angular.module('managementController',[])
   app.accessDenied = true;
   app.editAccess = false;
   app.deleteAccess = false;
+
   app.limit = 5;
 
 
@@ -93,12 +94,16 @@ angular.module('managementController',[])
   var app = this;
   $scope.nameTab = "active";
   app.phase1 = true;
+  app.roleEdit = true;
 
 
   User.getUser($routeParams.id).then(function(data){
     if (data.data.success) {
       $scope.editData = data.data.user;
       $scope.editData.birth = new Date(data.data.user.birth);
+      if (data.data.user.permission === 'admin') {
+        app.roleEdit = false;
+      }
     } else {
       $scope.errorMsg = data.data.message;
     }

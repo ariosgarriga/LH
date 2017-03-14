@@ -119,7 +119,7 @@ angular.module('mainController',['authServices', 'userServices'])
             app.loadme = true;
           }
         });
-        User.getUser(data.data.id).then(function(data){
+        User.getUser(data.data._id).then(function(data){
           console.log(data.data);
           app.user = data.data.user;
         });
@@ -146,7 +146,7 @@ angular.module('mainController',['authServices', 'userServices'])
         app.successMsg = data.data.message + " ...Redireccionando";
         //Redirect to home page
         $timeout(function () {
-          $location.path('/about');
+          $location.path('/');
           app.loginData = '';
           app.successMsg = false;
           app.checkSession();
