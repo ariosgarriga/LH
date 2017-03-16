@@ -107,7 +107,6 @@ angular.module('mainController',['authServices', 'userServices'])
     if (Auth.isLoggedIn()) {
       app.isLoggedIn = true;
       Auth.getUser().then(function(data){
-        console.log(data.data);
         app.name = data.data.name;
         app.email = data.data.email;
         app.id = data.data.id;
@@ -120,7 +119,6 @@ angular.module('mainController',['authServices', 'userServices'])
           }
         });
         User.getUser(data.data._id).then(function(data){
-          console.log(data.data);
           app.user = data.data.user;
         });
       });

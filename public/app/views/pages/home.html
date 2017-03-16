@@ -1,21 +1,163 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-sm-8 col-sm-offset-2">
       <input type="text" class="form-control" placeholder="Que Busca?">
     </div><!-- /.col-lg-6 -->
   </div>
   <div class="row" style="margin-top:10px;">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-sm-8 col-sm-offset-2">
       <button class="btn btn-warning" type="button"><i class="fa fa-tag" aria-hidden="true"></i> Agregar Prioridades </button>
-      <button class="btn btn-success" type="button">Agregar un hogar</button>
+      <button class="btn btn-success" type="button" ng-click="home.addHouse()">Agregar un hogar</button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid text-center" ng-show="home.regHouseForm">
+  <div class="container">
+    <div class="page-header">
+      <h1>Registro de Hogar</h1>
+    </div>
+    <div class="row show-hide-message" ng-show="home.successMsg">
+      <br>
+      <div class="alert alert-success ">{{ home.successMsg }}</div>
+    </div>
+
+    <div class="row show-hide-message" ng-show="home.errorMsg">
+      <br>
+      <div class="alert alert-danger">{{ home.errorMsg }}</div>
+    </div>
+
+    <form class="col-sm-8 col-sm-offset-2" name="regHomeForm" ng-submit="home.regHouse(regData)">
+
+      <div id="map"></div>
+
+
+      <!-- Direccion -->
+      <label>Dirección</label>
+      <input class="form-control text-center" type="text" name="name" placeholder="Ej: El cafetal, calle limon, Qta wachu" ng-model="home.regData.address" required>
+      <br>
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label>Habitaciones</label>
+          <select class="form-control text-center" ng-model="home.regData.rooms">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+          </select>
+        </div>
+
+        <!-- Bathrooms -->
+        <div class="form-group col-sm-6">
+          <label>Baños</label>
+          <select class="form-control" ng-model="home.regData.bathrooms">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <!-- Dimensiones -->
+        <div class="col-sm-12">
+          <label>Dimensiones</label>
+        </div>
+        <div class="col-sm-3">
+          <input class="form-control text-center" type="number" ng-min="0" step="0.01" placeholder="Ancho" ng-model="home.regData.dimensionsX" required>
+        </div>
+        <div class="col-sm-1 text-center">
+          <span>x</span>
+        </div>
+        <div class="col-sm-4">
+          <input class="form-control text-center" type="number" ng-min="0" step="0.001" placeholder="Largo" ng-model="home.regData.dimensionsY" required>
+        </div>
+        <div class="col-sm-1 text-center">
+          <span>x</span>
+        </div>
+        <div class=" col-sm-3">
+          <input class="form-control text-center" type="number" ng-min="0" step="0.001" placeholder="Alto" ng-model="home.regData.dimensionsZ" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label>Metros Cuadrados (m^2) </label>
+          <input class="form-control text-center" type="number" ng-min="0" step="0.01" placeholder="ej: 1,253.4" ng-model="home.regData.meters" required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label>Metros de Contrucción (m^2)</label>
+          <input class="form-control text-center" type="number" ng-min="0" step="0.01" placeholder="ej: 1,253.4" ng-model="home.regData.consmeters" required>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label>Estacionamineto</label>
+          <select class="form-control" ng-model="home.regData.parking">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-3 text-center">
+          <label>Calle Cerrada: {{ home.streetclose }}</label>
+            <md-switch ng-click="home.streetcloseText()" style="width:50px; margin: 0px auto;" class="md-primary" ng-model="home.regData.streetclose" aria-label="Switch 1"></md-switch>
+          </div>
+        <div class="form-group col-sm-3 text-center">
+          <label>Vigilante: {{ home.guard }}</label>
+            <md-switch ng-click="home.guardText()" style="width:50px; margin: 0px auto;" class="md-warn" ng-model="home.regData.guard" aria-label="Switch 2"></md-switch>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label>Edad del Inmueble (años)</label>
+          <input class="form-control text-center" type="number" placeholder="Años" ng-model="home.regData.age" required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label>Precio</label>
+          <input class="form-control text-center" type="number" placeholder="1,000,000.00Bsf" ng-model="home.regData.price" required>
+        </div>
+      </div>
+
+      <div class="row text-center">
+        <h1>{{ home.regData.price | currency:"Bsf "}}</h1>
+      </div>
+
+      <br>
+      <button class="btn btn-primary" type="submit">Agregar</button>
+
+    </form>
+
+    <div class="jumbotron text-center" ng-show="home.loading">
+      <span class="glyphicon glyphicon-repeat spinner"></span>
+      <p>Cargando...</p>
     </div>
   </div>
 </div>
 
 
 
-<div class="container-fluid" id="home-text">
-  <div class="col-xs-12 col-md-offset-2 col-md-8" style="text-align:center;">
+
+
+<div class="container-fluid home-text">
+  <div class="col-xs-12 col-md-offset-2 col-md-8">
     <p>
       Living House es una plataforma para corredores que te permitira publicar, buscar y
       comparar entre los inmuebles disponibles en la region de tu seleccion (Solo disponible

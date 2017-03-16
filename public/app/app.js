@@ -4,7 +4,9 @@ angular.module('userApp',
    'userServices',
    'ngAnimate',
    'mainController',
+   'homeController',
    'authServices',
+   'ngMaterial',
    'managementController'])
 
   .config(function($httpProvider){
