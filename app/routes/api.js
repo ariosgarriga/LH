@@ -235,7 +235,10 @@ module.exports = function(router){
     house.guard = req.body.guard;
     house.age = req.body.age;
     house.price = req.body.price;
-
+    house.lat = req.body.lat;
+    house.lng = req.body.lng;
+    house.picture = req.body.picture;
+    house.morePictures = req.body.morePictures;
     house.id_user = req.body.id_user;
 
     if(req.body.address == null || req.body.address == ''

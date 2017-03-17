@@ -18,7 +18,9 @@ var HouseSchema = new Schema({
   age: {type: Number},
   price: {type: Number},
   lat: {type: Number},
-  lon: {type: Number},
+  lng: {type: Number},
+  picture: {type: Schema.Types.Mixed, required: true},
+  morePictures: Schema.Types.Mixed,
   id_user: {type: String}
 });
 

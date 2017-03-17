@@ -7,12 +7,12 @@
   <div class="row" style="margin-top:10px;">
     <div class="col-sm-8 col-sm-offset-2">
       <button class="btn btn-warning" type="button"><i class="fa fa-tag" aria-hidden="true"></i> Agregar Prioridades </button>
-      <button class="btn btn-success" type="button" ng-click="home.addHouse()">Agregar un hogar</button>
+      <button class="btn btn-success" type="button" ng-click="home.addHouse()" >Publicar un hogar</button>
     </div>
   </div>
 </div>
 
-<div class="container-fluid text-center" ng-show="home.regHouseForm">
+<div class="container-fluid text-center" ng-show="regHouseForm">
   <div class="container">
     <div class="page-header">
       <h1>Registro de Hogar</h1>
@@ -29,7 +29,43 @@
 
     <form class="col-sm-8 col-sm-offset-2" name="regHomeForm" ng-submit="home.regHouse(regData)">
 
-      <div id="map"></div>
+      <div class="row">
+        <div class="form-group">
+            <label for="picture">Imagen Principal</label>
+            <div class="text-center">
+                <button type="button" class="btn btn-default" ng-click="upload()">
+                    Subir <span class="caret"></span>
+                </button>
+                <div style="margin-top:10px;">
+                    <!-- Show the thumbnail only when the picture is uploaded -->
+                    <a href="{{superhero.picture.url}}" class="thumbnail" ng-if="superhero.picture">
+                    <!-- the picture is rendered with width: 500 and sharpened -->
+                    <img ng-src="{{superhero.picture.url | fpConvert: {filter:'sharpen'} }}">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="picture">Mas imagenes? (Max 10, opcional!)</label>
+            <div class="text-center">
+              <button type="button" class="btn btn-default" ng-click="uploadMultiple()">
+                Subir <span class="caret"></span>
+              </button>
+              <!-- Show the thumbanil of more pictures -->
+                  <div style="margin-top:10px;" ng-repeat="picture in superhero.morePictures">     <div class="col-md-{{12 / superhero.morePictures.length}}">
+                      <a href="{{picture.url}}" class="thumbnail">
+                        <img ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
+                      </a>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div id="map"></div>
+      </div>
+
 
 
       <!-- Direccion -->
