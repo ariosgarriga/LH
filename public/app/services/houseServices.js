@@ -8,5 +8,10 @@ angular.module('houseServices',[])
     return $http.post('/api/houses', regData);
   };
 
+  // House.getHouses();
+  houseFactory.getHouses = function(){
+    return $http.get('/api2/houses');
+  }
+
   return houseFactory;
 });

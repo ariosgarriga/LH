@@ -93,3 +93,32 @@ header .navbar{
   background-size: 22px 40px; /* Since I used the HiDPI marker version this compensates for the 2x size */
   pointer-events: none; /* This disables clicks on the marker. Not fully supported by all major browsers, though */
 }
+
+.houses-home .thumbnail{
+  height: 320px;
+}
+
+.houses-home .image-div{
+  width:300px;
+  height:150px;
+  margin:20px auto 0px auto;
+  position: relative;
+}
+
+.houses-home img{
+  margin: 0px auto;
+  display:block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.houses-home .caption p{
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  width:100%;
+  display:block;
+  padding: 0px 30px;
+}

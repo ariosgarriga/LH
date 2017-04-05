@@ -9,6 +9,9 @@ angular.module('mainController',['authServices', 'userServices'])
     return viewLocation === $location.path();
   };
 
+  app.setLocation = function(url) {
+    $location.path(url)
+  };
 
   app.checkSession = function(){
     if (Auth.isLoggedIn()) {

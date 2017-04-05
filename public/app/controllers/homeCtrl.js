@@ -1,6 +1,6 @@
-angular.module('homeController', ['houseServices', 'authServices', 'userServices'])
+var app = angular.module('homeController', ['houseServices', 'authServices', 'userServices'])
 
-.controller('homeCtrl', function($http, filepickerService, $scope, $window, $rootScope, $location, $timeout, User, House, $routeParams, Auth) {
+.controller('homeCtrl', function($http, filepickerService, $interpolate, $scope, $filter, $window, $rootScope, $location, $timeout, User, House, $routeParams, Auth) {
   var app = this;
   app.regData = {};
   $scope.superhero = {};
@@ -12,6 +12,7 @@ angular.module('homeController', ['houseServices', 'authServices', 'userServices
   $scope.regHouseForm = false;
   app.streetclose = "No";
   app.guard = "No";
+  app.houses = [];
 
 
   $scope.upload = function(){
@@ -66,6 +67,7 @@ angular.module('homeController', ['houseServices', 'authServices', 'userServices
       });
     }
   }
+
   app.initMap();
 
   $scope.$watch('regHouseForm', function () {
@@ -94,12 +96,20 @@ angular.module('homeController', ['houseServices', 'authServices', 'userServices
 
 
   app.addHouse = function(){
-    if ($scope.regHouseForm) {
-      $scope.regHouseForm = false;
+    if(Auth.isLoggedIn()){
+      if ($scope.regHouseForm) {
+        $scope.regHouseForm = false;
+      } else {
+        $scope.regHouseForm = true;
+      }
     } else {
-      $scope.regHouseForm = true;
+      $("#userHouseAuth").modal({backdrop: "static"});
     }
+
   }
+  $scope.hideModal = function() {
+    $("#userHouseAuth").modal('hide');
+  };
 
 
 
@@ -145,4 +155,21 @@ angular.module('homeController', ['houseServices', 'authServices', 'userServices
       }
     });
   };
+
+  app.getHouses = function(){
+    House.getHouses().then(function(data){
+      if (data.data.success) {
+        //Redirect to home page
+        app.houses = data.data.houses;
+      } else {
+        //Create error message
+        app.loading = false;
+        app.errorMsg = data.data.message;
+      }
+    });
+
+  };
+
+  app.getHouses();
+
 });

@@ -1,16 +1,41 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
-      <input type="text" class="form-control" placeholder="Que Busca?">
+      <input type="text" class="form-control" placeholder="Que Busca?" ng-model="searchHouse" ng-change="newPagination()">
     </div><!-- /.col-lg-6 -->
   </div>
-  <div class="row" style="margin-top:10px;">
+  <div class="row" style="margin: 10px 0px">
     <div class="col-sm-8 col-sm-offset-2">
       <button class="btn btn-warning" type="button"><i class="fa fa-tag" aria-hidden="true"></i> Agregar Prioridades </button>
       <button class="btn btn-success" type="button" ng-click="home.addHouse()" >Publicar un hogar</button>
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade text-center" id="userHouseAuth" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" ng-click="hideModal()" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Necesitas haber ingresado</h4>
+      </div>
+      <div class="modal-body">
+        <p>Para poder publicar un Hogar, necesitas estar registrado</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="main.setLocation('/register')" data-dismiss="modal">Registrarse</button>
+        <button type="button" class="btn btn-danger" ng-click="main.setLocation('/login')" data-dismiss="modal">Ingresar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== REGISTRO HOGAR ============== -->
 
 <div class="container-fluid text-center" ng-show="regHouseForm">
   <div class="container">
@@ -186,6 +211,34 @@
       <p>Cargando...</p>
     </div>
   </div>
+</div>
+
+
+<!-- =========================================================== -->
+<div class="container">
+
+  <div class="row houses-home">
+    <!-- <div ng-repeat="item in filtered = ( home.houses.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter: searchHouse)"> -->
+    <div ng-repeat="item in home.houses | filter: searchHouse">
+      <div class="col-md-4 col-sm-6 col-xs-12 col-sm-offset-0">
+        <div class="thumbnail">
+          <div class="image-div">
+            <img ng-src="{{item.picture.url | fpConvert: {filter:'sharpen', w:300, h:150} }}" />
+          </div>
+
+          <div class="caption text-center">
+            <h3>{{item.price | currency:"Bsf "}}</h3>
+            <p><label>Ubicación: </label> {{item.address}}</p>
+            <div class="text-right">
+              <button type="button" class="btn btn-info" ng-click="main.setLocation('/login')">Ver</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>
 
 

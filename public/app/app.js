@@ -8,6 +8,7 @@ angular.module('userApp',
    'authServices',
    'ngMaterial',
    'angular-filepicker',
+   'ui.bootstrap',
    'managementController'])
 
 .config(function($httpProvider){

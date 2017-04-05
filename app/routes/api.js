@@ -247,7 +247,7 @@ module.exports = function(router){
       } else {
         house.save(function(err){
           if (err) {
-            res.json({ success: false, message: 'Hogar ya existente' });
+            res.json({ success: false, message: 'No se pudo crear el hogar'});
           } else {
             res.json({ success: true, message: 'Hogar Creado!' });
           }
