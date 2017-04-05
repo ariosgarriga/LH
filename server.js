@@ -17,7 +17,8 @@ app.use('/api2', appRoutes2);
 app.use('/api', appRoutes);
 
 
-mongoose.connect('mongodb://localhost:27017/lh', function(err){
+// mongoose.connect('mongodb://localhost:27017/lh', function(err){
+mongoose.connect('mongodb://admin:admin@ds149278.mlab.com:49278/livinghouse', function(err){
   if (err) {
     console.log('Not connected to de database: '+ err);
   }else {
