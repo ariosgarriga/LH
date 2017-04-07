@@ -13,5 +13,9 @@ angular.module('houseServices',[])
     return $http.get('/api2/houses');
   }
 
+  houseFactory.getHouse = function(id){
+    return $http.get('/api2/house/'+id);
+  }
+
   return houseFactory;
 });

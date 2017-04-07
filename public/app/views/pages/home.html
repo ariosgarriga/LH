@@ -220,7 +220,7 @@
   <div class="row houses-home">
     <!-- <div ng-repeat="item in filtered = ( home.houses.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter: searchHouse)"> -->
     <div ng-repeat="item in home.houses | filter: searchHouse">
-      <div class="col-md-4 col-sm-6 col-xs-12 col-sm-offset-0">
+      <div class="col-lg-4 col-sm-6 col-xs-12 col-sm-offset-0">
         <div class="thumbnail">
           <div class="image-div">
             <img ng-src="{{item.picture.url | fpConvert: {filter:'sharpen', w:300, h:150} }}" />
@@ -229,9 +229,9 @@
           <div class="caption text-center">
             <h3>{{item.price | currency:"Bsf "}}</h3>
             <p><label>Ubicación: </label> {{item.address}}</p>
-            <div class="text-right">
-              <button type="button" class="btn btn-info" ng-click="main.setLocation('/login')">Ver</button>
-            </div>
+            <a href="/house/{{ item._id }}">
+              <button type="button" class="btn btn-info ">Ver</button>
+            </a>
           </div>
         </div>
       </div>

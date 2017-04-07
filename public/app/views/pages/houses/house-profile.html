@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="text-center">
+    <h1>{{ house.data.price | currency:"Bsf " }}</h1>
+  </div>
+
+  <div style="height: 305px">
+    <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+      <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+        <img ng-src="{{slide.image  | fpConvert: {filter:'sharpen', w:610, h:305} }}" style="margin:auto;">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div id="map"></div>
+  </div>
+
+  <label>Direccion</label>
+  <h3>{{ house.data.address }}</h3>
+  <label>Edad</label>
+  <h3>{{ house.data.age }}</h3>
+  <label>Baños</label>
+  <h3>{{ house.data.bathrooms }}</h3>
+  <label>Dimensiones X</label>
+  <h3>{{ house.data.dimensionsX }}</h3>
+  <label>Dimensiones Y</label>
+  <h3>{{ house.data.dimensionsY }}</h3>
+  <label>Dimensiones Z</label>
+  <h3>{{ house.data.dimensionsZ }}</h3>
+  <label>Vigilancia</label>
+  <h3>{{ house.data.guard }}</h3>
+  <label>Latitud</label>
+  <h3>{{ house.data.lat }}</h3>
+  <label>Longitud</label>
+  <h3>{{ house.data.lng }}</h3>
+  <label>Metros Cuadrados</label>
+  <h3>{{ house.data.meters }}</h3>
+  <label>Estacionamiento</label>
+  <h3>{{ house.data.parking }}</h3>
+  <label>Habitaciones</label>
+  <h3>{{ house.data.rooms }}</h3>
+  <label>Calle Cerrada </label>
+  <h3>{{ house.data.streetclose }}</h3>
+
+
+</div>
