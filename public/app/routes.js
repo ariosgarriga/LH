@@ -49,6 +49,12 @@ var app = angular.module('appRoutes', ['ngRoute'])
     controllerAs: 'house',
     authenticated: true
   })
+  .when('/house/edit/:id', {
+    templateUrl: 'app/views/pages/houses/edit.html',
+    controller: 'houseCtrl',
+    controllerAs: 'house',
+    authenticated: true
+  })
 
 
   .otherwise({ redirectTo: '/' });

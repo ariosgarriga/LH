@@ -47,11 +47,13 @@
       </a>
     </div>
   </div>
+  <div class="col-xs-12 text-center">
+    <h1>Mis Publicaciones</h1>
+    <h3 ng-show="main.user.houses.notHouses">No ha realizado ninguna publicación :(</h3>
+  </div>
 
 
-  <div class="row houses-home">
-    <!-- <div ng-repeat="item in filtered = ( home.houses.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter: searchHouse)"> -->
-    <div ng-repeat="item in home.houses | filter: searchHouse">
+  <div class="row houses-home"><div ng-repeat="item in main.user.houses | filter: searchHouse">
       <div class="col-lg-4 col-sm-6 col-xs-12 col-sm-offset-0">
         <div class="thumbnail">
           <div class="image-div">
@@ -63,6 +65,9 @@
             <p><label>Ubicación: </label> {{item.address}}</p>
             <a href="/house/{{ item._id }}">
               <button type="button" class="btn btn-info ">Ver</button>
+            </a>
+            <a href="/house/edit/{{ item._id }}">
+              <button type="button" class="btn btn-primary ">Editar</button>
             </a>
           </div>
         </div>

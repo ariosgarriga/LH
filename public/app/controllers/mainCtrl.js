@@ -123,6 +123,13 @@ angular.module('mainController',['authServices', 'userServices'])
         });
         User.getUser(data.data._id).then(function(data){
           app.user = data.data.user;
+          app.user.houses = data.data.houses;
+          console.log(data.data);
+          if (data.data.houses.length == 0) {
+            app.user.houses.notHouses = true;
+          }else {
+            app.user.houses.notHouses = false;
+          }
         });
       });
     } else {

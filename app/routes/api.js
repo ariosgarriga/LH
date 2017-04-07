@@ -159,14 +159,21 @@ module.exports = function(router){
       } else {
 
       User.findOne({ _id: editUser }, function(err, user){
-        console.log(mainUser);
-        console.log(user);
         if(err) throw err;
         if (!user) {
           res.json({ success: false, message: 'Usuarios no encontrados'})
         } else {
           if (mainUser.permission === 'admin' || mainUser.permission === 'moderator' || mainUser.email === user.email ) {
-            res.json({ success: true, user: user });
+            House.find({ id_user: user._id }, function(err, houses){
+
+              if(err) throw err;
+              if(!houses){
+                res.json({ success: false, message: 'No posee publicaciones', user: user});
+
+              } else {
+                res.json({ success: true, user: user, houses: houses});
+              }
+            });
           } else {
             res.json({success: false, message: 'No posee permiso para realizar esta accion :('});
           }

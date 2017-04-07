@@ -17,7 +17,6 @@ module.exports = function(router){
   router.get('/house/:id', function(req, res){
     var viewHouse = req.params.id;
     House.findOne({_id : viewHouse}, function(err, house){
-      console.log(house);
       if(err) throw err;
       if (!house) {
         res.json({ success: false, message: 'No se consiguio el Hogar :('})

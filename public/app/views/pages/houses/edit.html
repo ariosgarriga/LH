@@ -1,0 +1,175 @@
+<div class="container-fluid text-center">
+  <div class="container">
+    <div class="page-header">
+      <h1>Editar el Hogar</h1>
+    </div>
+    <div class="row show-hide-message" ng-show="home.successMsg">
+      <br>
+      <div class="alert alert-success ">{{ home.successMsg }}</div>
+    </div>
+
+    <div class="row show-hide-message" ng-show="home.errorMsg">
+      <br>
+      <div class="alert alert-danger">{{ home.errorMsg }}</div>
+    </div>
+
+    <form class="col-sm-8 col-sm-offset-2" name="regHomeForm" ng-submit="home.regHouse(regData)">
+
+      <div class="row">
+        <div class="form-group">
+            <label for="picture">Imagen Principal</label>
+            <div class="text-center">
+                <button type="button" class="btn btn-default" ng-click="upload()">
+                    Subir <span class="caret"></span>
+                </button>
+                <div style="margin-top:10px;">
+                    <!-- Show the thumbnail only when the picture is uploaded -->
+                    <a href="{{superhero.picture.url}}" class="thumbnail" ng-if="superhero.picture">
+                    <!-- the picture is rendered with width: 500 and sharpened -->
+                    <img ng-src="{{superhero.picture.url | fpConvert: {filter:'sharpen'} }}">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="picture">Mas imagenes? (Max 10, opcional!)</label>
+            <div class="text-center">
+              <button type="button" class="btn btn-default" ng-click="uploadMultiple()">
+                Subir <span class="caret"></span>
+              </button>
+              <!-- Show the thumbanil of more pictures -->
+                  <div style="margin-top:10px;" ng-repeat="picture in superhero.morePictures">     <div class="col-md-{{12 / superhero.morePictures.length}}">
+                      <a href="{{picture.url}}" class="thumbnail">
+                        <img ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
+                      </a>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div id="map"></div>
+      </div>
+
+
+
+      <!-- Direccion -->
+      <label>Dirección</label>
+      <input class="form-control text-center" type="text" name="name" placeholder="Ej: El cafetal, calle limon, Qta wachu" ng-model="home.regData.address" required>
+      <br>
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label>Habitaciones</label>
+          <select class="form-control text-center" ng-model="home.regData.rooms">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+          </select>
+        </div>
+
+        <!-- Bathrooms -->
+        <div class="form-group col-sm-6">
+          <label>Baños</label>
+          <select class="form-control" ng-model="home.regData.bathrooms">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <!-- Dimensiones -->
+        <div class="col-sm-12">
+          <label>Dimensiones</label>
+        </div>
+        <div class="col-sm-3">
+          <input class="form-control text-center" type="number" ng-min="0" step="0.01" placeholder="Ancho" ng-model="home.regData.dimensionsX" required>
+        </div>
+        <div class="col-sm-1 text-center">
+          <span>x</span>
+        </div>
+        <div class="col-sm-4">
+          <input class="form-control text-center" type="number" ng-min="0" step="0.001" placeholder="Largo" ng-model="home.regData.dimensionsY" required>
+        </div>
+        <div class="col-sm-1 text-center">
+          <span>x</span>
+        </div>
+        <div class=" col-sm-3">
+          <input class="form-control text-center" type="number" ng-min="0" step="0.001" placeholder="Alto" ng-model="home.regData.dimensionsZ" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label>Metros Cuadrados (m^2) </label>
+          <input class="form-control text-center" type="number" ng-min="0" step="0.01" placeholder="ej: 1,253.4" ng-model="home.regData.meters" required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label>Metros de Contrucción (m^2)</label>
+          <input class="form-control text-center" type="number" ng-min="0" step="0.01" placeholder="ej: 1,253.4" ng-model="home.regData.consmeters" required>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label>Estacionamineto</label>
+          <select class="form-control" ng-model="home.regData.parking">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-3 text-center">
+          <label>Calle Cerrada: {{ home.streetclose }}</label>
+            <md-switch ng-click="home.streetcloseText()" style="width:50px; margin: 0px auto;" class="md-primary" ng-model="home.regData.streetclose" aria-label="Switch 1"></md-switch>
+          </div>
+        <div class="form-group col-sm-3 text-center">
+          <label>Vigilante: {{ home.guard }}</label>
+            <md-switch ng-click="home.guardText()" style="width:50px; margin: 0px auto;" class="md-warn" ng-model="home.regData.guard" aria-label="Switch 2"></md-switch>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label>Edad del Inmueble (años)</label>
+          <input class="form-control text-center" type="number" placeholder="Años" ng-model="home.regData.age" required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label>Precio</label>
+          <input class="form-control text-center" type="number" placeholder="1,000,000.00Bsf" ng-model="home.regData.price" required>
+        </div>
+      </div>
+
+      <div class="row text-center">
+        <h1>{{ home.regData.price | currency:"Bsf "}}</h1>
+      </div>
+
+      <br>
+      <button class="btn btn-primary" type="submit">Agregar</button>
+
+    </form>
+
+    <div class="jumbotron text-center" ng-show="home.loading">
+      <span class="glyphicon glyphicon-repeat spinner"></span>
+      <p>Cargando...</p>
+    </div>
+  </div>
+</div>
