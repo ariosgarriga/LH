@@ -17,5 +17,9 @@ angular.module('houseServices',[])
     return $http.get('/api2/house/'+id);
   }
 
+  houseFactory.editHouse = function(house){
+    return $http.put('/api/house/edit', house);
+  }
+
   return houseFactory;
 });

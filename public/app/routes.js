@@ -51,8 +51,8 @@ var app = angular.module('appRoutes', ['ngRoute'])
   })
   .when('/house/edit/:id', {
     templateUrl: 'app/views/pages/houses/edit.html',
-    controller: 'houseCtrl',
-    controllerAs: 'house',
+    controller: 'editHouseCtrl',
+    controllerAs: 'editHouse',
     authenticated: true
   })
 
