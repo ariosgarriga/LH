@@ -15,32 +15,68 @@
     <div id="map"></div>
   </div>
 
-  <label>Direccion</label>
-  <h3>{{ house.data.address }}</h3>
-  <label>Edad</label>
-  <h3>{{ house.data.age }}</h3>
-  <label>Baños</label>
-  <h3>{{ house.data.bathrooms }}</h3>
-  <label>Dimensiones X</label>
-  <h3>{{ house.data.dimensionsX }}</h3>
-  <label>Dimensiones Y</label>
-  <h3>{{ house.data.dimensionsY }}</h3>
-  <label>Dimensiones Z</label>
-  <h3>{{ house.data.dimensionsZ }}</h3>
-  <label>Vigilancia</label>
-  <h3>{{ house.data.guard }}</h3>
-  <label>Latitud</label>
-  <h3>{{ house.data.lat }}</h3>
-  <label>Longitud</label>
-  <h3>{{ house.data.lng }}</h3>
-  <label>Metros Cuadrados</label>
-  <h3>{{ house.data.meters }}</h3>
-  <label>Estacionamiento</label>
-  <h3>{{ house.data.parking }}</h3>
-  <label>Habitaciones</label>
-  <h3>{{ house.data.rooms }}</h3>
-  <label>Calle Cerrada </label>
-  <h3>{{ house.data.streetclose }}</h3>
-
+  <div class="panel panel-info">
+    <div class="panel-heading" style="text-align: center;">
+      <strong>Caracteristicas del Hogar</strong></strong>
+    </div>
+    <table class="table">
+      <tr>
+        <td><strong>Direccion</strong></td>
+        <td>{{ house.data.address }}</td>
+      </tr>
+      <tr>
+        <td><strong>Edad</strong></td>
+        <td>{{ house.data.age }}</td>
+      </tr>
+      <tr>
+        <td><strong>Baños</strong></td>
+        <td>{{ house.data.bathrooms }}</td>
+      </tr>
+      <tr>
+        <td><strong>Dimensiones X</strong></td>
+        <td>{{ house.data.dimensionsX }}</td>
+      </tr>
+      <tr>
+        <td><strong>Dimensiones Y</strong></td>
+        <td>{{ house.data.dimensionsY }}</td>
+      </tr>
+      <tr>
+        <td><strong>Dimensiones Z</strong></td>
+        <td>{{ house.data.dimensionsZ }}</td>
+      </tr>
+      <tr>
+        <td><strong>Vigilancia</strong></td>
+        <td><strong>{{ house.guard }}</strong> hay Vigilante</td>
+      </tr>
+      <tr>
+        <td><strong>Latitud</strong></td>
+        <td>{{ house.data.lat }}</td>
+      </tr>
+      <tr>
+        <td><strong>Longitud</strong></td>
+        <td>{{ house.data.lng }}</td>
+      </tr>
+      <tr>
+        <td><strong>Metros Cuadrados</strong></td>
+        <td>{{ house.data.meters }}</td>
+      </tr>
+      <tr>
+        <td><strong>Metros Cuadrados de Construccion</strong></td>
+        <td>{{ house.data.consmeters }}</td>
+      </tr>
+      <tr>
+        <td><strong>Estacionamiento</strong></td>
+        <td>{{ house.data.parking }}</td>
+      </tr>
+      <tr>
+        <td><strong>Habitaciones</strong></td>
+        <td>{{ house.data.rooms }}</td>
+      </tr>
+      <tr>
+        <td><strong>Calle Cerrada </strong></td>
+        <td>{{ house.streetclose }}</td>
+      </tr>
+    </table>
+  </div>
 
 </div>

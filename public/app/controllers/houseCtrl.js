@@ -69,7 +69,16 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
           $scope.addSlide(app.data.morePictures[i].url);
         }
       }
-
+      if(data.data.house.guard){
+        app.guard = "Si";
+      } else {
+        app.guard = "No";
+      }
+      if(data.data.house.streetclose){
+        app.streetclose = "Cerrada";
+      } else {
+        app.streetclose = "Abierta";
+      }
 
     } else {
       $scope.errorMsg = data.data.message;
@@ -87,6 +96,7 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
   $scope.noWrapSlides = false;
   $scope.active = 0;
   $scope.superhero = {};
+  $scope.max = 10;
   var slides = $scope.slides = [];
   var currIndex = 0;
 
@@ -140,14 +150,9 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
       app.data.bathrooms = data.data.house.bathrooms.toString();
       app.data.rooms = data.data.house.rooms.toString();
       app.data.parking = data.data.house.parking.toString();
-      $scope.addSlide(app.data.picture.url);
       $scope.superhero.picture = data.data.house.picture;
       $scope.superhero.morePictures = data.data.house.morePictures;
-      if (app.data.morePictures) {
-        for (var i = 0; i < app.data.morePictures.length; i++) {
-          $scope.addSlide(app.data.morePictures[i].url);
-        }
-      }
+      $scope.max = $scope.max - data.data.house.morePictures.length;
 
 
     } else {
@@ -185,14 +190,12 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
     filepickerService.pick(
       {
         mimetype: 'image/*',
-        language: 'en',
+        language: 'es',
         services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE'],
-        openTo: 'IMAGE_SEARCH',
-        language: 'es'
+        openTo: 'COMPUTER'
       },
       function(Blob){
         console.log(JSON.stringify(Blob));
-        $scope.superhero.picture = Blob;
         app.data.picture = Blob;
 
         $scope.$apply();
@@ -200,23 +203,64 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
     );
   };
 
-  $scope.uploadMultiple = function(index){
+  $scope.upload2 = function(index){
     filepickerService.pick(
       {
         mimetype: 'image/*',
-        language: 'en',
+        language: 'es',
         services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE'],
-        openTo: 'IMAGE_SEARCH',
-        language: 'es'
+        openTo: 'COMPUTER'
       },
       function(Blob){
         console.log(JSON.stringify(Blob));
-        $scope.superhero.morePictures[index] = Blob;
         app.data.morePictures[index] = Blob;
 
         $scope.$apply();
       }
     );
   };
+  $scope.upload3 = function(index){
+
+    filepickerService.pick(
+      {
+        mimetype: 'image/*',
+        language: 'es',
+        services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE'],
+        openTo: 'COMPUTER'
+      },
+      function(new_blob){
+        filepickerService.remove(
+          new_blob
+
+        );
+      }
+    );
+  };
+
+  $scope.uploadMultiple = function(){
+    filepickerService.pickMultiple(
+      {
+        mimetype: 'image/*',
+        language: 'es',
+        maxFiles: $scope.max, //pickMultiple has one more option
+        services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE'],
+        openTo: 'COMPUTER'
+      },
+      function(Blob){
+        for (var i = 0; i < Blob.length; i++) {
+          app.data.morePictures.push(Blob[i]);
+        }
+        $scope.max = $scope.max-Blob.length;
+        $scope.$apply();
+      }
+    );
+  };
+
+  $scope.deleteUpload = function(index){
+    if (index > -1) {
+      app.data.morePictures.splice(index, 1);
+      $scope.max++;
+    }
+  }
 
 });

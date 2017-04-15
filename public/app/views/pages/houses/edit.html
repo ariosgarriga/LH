@@ -22,7 +22,7 @@
 
                 <div style="margin-top:10px;">
                   <!-- Show the thumbnail only when the picture is uploaded -->
-                  <div class="thumbnail" ng-if="superhero.picture">
+                  <div class="thumbnail" ng-if="editHouse.data.picture">
                   <!-- the picture is rendered with width: 500 and sharpened -->
                     <img ng-src="{{superhero.picture.url | fpConvert: {filter:'sharpen'} }}">
                     <button type="button" class="btn btn-default" ng-click="upload()">
@@ -33,20 +33,33 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="picture">Otras Imagenes</label>
+            <label for="picture">Otras Imagenes (max: 10)</label>
             <div class="text-center">
 
               <!-- Show the thumbanil of more pictures -->
-              <div style="margin-top:10px;" ng-repeat="picture in superhero.morePictures">
-                <div class="col-md-{{12 / superhero.morePictures.length}}">
+              <div style="margin-top:10px;" ng-repeat="picture in editHouse.data.morePictures">
+                <div class="col-md-4">
                   <div class="thumbnail">
                     <img ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
-                    <button type="button" class="btn btn-default" ng-click="uploadMultiple($index)">
+                    <button type="button" class="btn btn-default" ng-click="upload2($index)">
                       Editar
+                    </button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteUpload($index)">
+                      Eliminar
                     </button>
                   </div>
                 </div>
               </div>
+              <div class="col-md-4" ng-show="max>0">
+                <div class="thumbnail ">
+                  (10/{{max}})
+                  <button type="button" class="btn btn-default" ng-click="uploadMultiple($index)">
+                    Agregar
+                  </button>
+                </div>
+              </div>
+
+
             </div>
         </div>
       </div>

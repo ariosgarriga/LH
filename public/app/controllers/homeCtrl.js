@@ -13,15 +13,17 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   app.streetclose = "No";
   app.guard = "No";
   app.houses = [];
+  $scope.max = 10;
+
 
 
   $scope.upload = function(){
     filepickerService.pick(
       {
         mimetype: 'image/*',
-        language: 'en',
+        language: 'es',
         services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE'],
-        openTo: 'IMAGE_SEARCH'
+        openTo: 'COMPUTER'
       },
       function(Blob){
         console.log(JSON.stringify(Blob));
@@ -37,14 +39,15 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
     filepickerService.pickMultiple(
       {
         mimetype: 'image/*',
-        language: 'en',
-        maxFiles: 10, //pickMultiple has one more option
+        language: 'es',
+        maxFiles: $scope.max, //pickMultiple has one more option
         services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE'],
         openTo: 'COMPUTER'
       },
       function(Blob){
-        console.log(JSON.stringify(Blob));
         $scope.superhero.morePictures = Blob;
+        $scope.max = $scope.max-Blob.length;
+        console.log($scope.max);
         app.regData.morePictures = Blob;
         $scope.$apply();
       }
