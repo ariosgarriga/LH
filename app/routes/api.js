@@ -53,7 +53,7 @@ module.exports = function(router){
         if (!validPassword) {
           res.json({ success: false, message: 'Contraseña Incorrecta'});
         } else {
-          var token = jwt.sign({email: user.email, name: user.name, _id: user._id }, secret, { expiresIn:'24h'});
+          var token = jwt.sign({email: user.email, name: user.name, _id: user._id }, secret, { expiresIn:'365 days'});
           res.json({ success: true, message: 'Exito!', token: token });
         }
       }
@@ -237,6 +237,7 @@ module.exports = function(router){
     house.dimensionsY = req.body.dimensionsY;
     house.dimensionsZ = req.body.dimensionsZ;
     house.meters = req.body.meters;
+    house.consmeters = req.body.consmeters;
     house.parking = req.body.parking;
     house.streetclose = req.body.streetclose;
     house.guard = req.body.guard;
@@ -260,6 +261,55 @@ module.exports = function(router){
           }
         });
       }
+  });
+
+  router.put('/house/edit', function(req, res){
+    var editHouse = req.body._id;
+    var newHouse =req.body;
+    User.findOne({ email: req.decoded.email }, function(err, mainUser){
+      if (err) throw err;
+      if (!mainUser) {
+        res.json({ success: false, message: 'No encontro usuario'})
+      } else {
+        House.findOne({ _id: editHouse }, function(err, house){
+          if(err) throw err;
+          if (!house) {
+            res.json({ success: false, message: 'Hogar no encontrado'})
+          } else {
+            if (mainUser.permission === 'admin' || mainUser.permission === 'moderator' || mainUser._id === house.id_user) {
+              House.update({_id: editHouse}, {
+                address : req.body.address,
+                rooms : req.body.rooms,
+                bathrooms : req.body.bathrooms,
+                dimensionsX : req.body.dimensionsX,
+                dimensionsY : req.body.dimensionsY,
+                dimensionsZ : req.body.dimensionsZ,
+                meters : req.body.meters,
+                consmeters : req.body.consmeters,
+                parking : req.body.parking,
+                streetclose : req.body.streetclose,
+                guard : req.body.guard,
+                age : req.body.age,
+                price : req.body.price,
+                lat : req.body.lat,
+                lng : req.body.lng,
+                picture : req.body.picture,
+                morePictures : req.body.morePictures
+              }, function(err){ 
+                if (err) {
+                  console.log(err);
+                } else {
+                  res.json({ success: true, message: 'El hogar ha sido actualizado' });
+                }
+              });
+            } else {
+              res.json({success: false, message: 'No posee permiso para realizar esta accion'});
+            }
+          }
+        });
+
+      }
+    });
   });
 
   return router;
