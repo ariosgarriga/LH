@@ -122,3 +122,11 @@ header .navbar{
   display:block;
   padding: 0px 30px;
 }
+
+.glyphicon-chevron-left, .glyphicon-chevron-right{
+  color: black;
+}
+
+.selected{
+  border: 4px solid #5cb85c;
+}

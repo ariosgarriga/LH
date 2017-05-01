@@ -9,6 +9,7 @@ angular.module('userApp',
    'houseControllers',
    'ngMaterial',
    'angular-filepicker',
+   'angular-advanced-searchbox',
    'ui.bootstrap',
    'managementController'])
 

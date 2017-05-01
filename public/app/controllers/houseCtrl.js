@@ -89,7 +89,7 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
 
 })
 
-.controller('editHouseCtrl', function($http, $scope, $routeParams, filepickerService, $window, $location, $timeout, User, House) {
+.controller('editHouseCtrl', function($http, $anchorScroll, $scope, $routeParams, filepickerService, $window, $location, $timeout, User, House) {
 
   var app = this;
   $scope.myInterval = 0;
@@ -152,7 +152,10 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
       app.data.parking = data.data.house.parking.toString();
       $scope.superhero.picture = data.data.house.picture;
       $scope.superhero.morePictures = data.data.house.morePictures;
-      $scope.max = $scope.max - data.data.house.morePictures.length;
+      if (data.data.house.morePictures) {
+        $scope.max = $scope.max - data.data.house.morePictures.length;
+      }
+
 
 
     } else {
@@ -172,12 +175,13 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
     House.editHouse(houseObject).then(function(data){
       if (data.data.success) {
         app.successMsg = data.data.message;
+        $anchorScroll();
         $timeout(function(){
           app.editForm.$setPristine();
           app.editForm.$setUntouched();
           $window.location.reload();
           app.successMsg = false;
-        }, 2000);
+        }, 5000);
       } else {
         app.errorMsg = data.data.message;
       }

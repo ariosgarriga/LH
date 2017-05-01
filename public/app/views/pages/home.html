@@ -1,15 +1,46 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
-      <input type="text" class="form-control" placeholder="Que Busca?" ng-model="searchHouse" ng-change="newPagination()">
-    </div><!-- /.col-lg-6 -->
-  </div>
-  <div class="row" style="margin: 10px 0px">
-    <div class="col-sm-8 col-sm-offset-2">
-      <button class="btn btn-warning" type="button"><i class="fa fa-tag" aria-hidden="true"></i> Agregar Prioridades </button>
-      <button class="btn btn-success" type="button" ng-click="home.addHouse()" >Publicar un hogar</button>
+
+      <div class="row">
+        <label class="col-sm-2">Que Buscas? </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" placeholder="Ubicacion" ng-model="searchHouse.address" ng-change="newPagination()">
+        </div>
+        <div style="margin-top:40px;">
+          <label class="col-sm-3">Precio Minimo:</label>
+          <div class="col-sm-3">
+            <input type="number" class="form-control col-sm-3" placeholder="Precio Minimo" ng-model="searchHouse.price.min" value="0" ng-change="newPagination()">
+          </div>
+
+          <label class="col-sm-3">Precio Maximo:</label>
+          <div class="col-sm-3">
+            <input type="number" class="form-control col-sm-3" placeholder="Precio Maximo" ng-model="searchHouse.price.max" value="10000000000"ng-change="newPagination()">
+          </div>
+        </div>
+      </div>
+
+
+      <!-- <nit-advanced-searchbox
+      	ng-model="searchParams"
+      	parameters="availableSearchParams"
+      	placeholder="Search...">
+      </nit-advanced-searchbox> -->
+
+      <div class="row" style="margin: 10px 0px">
+        <div class="col-sm-4 col-xs-12">
+          <button class="btn btn-warning col-sm-10 col-xs-12" type="button"><i class="fa fa-tag" aria-hidden="true"></i> Agregar Prioridades </button>
+        </div>
+        <div class="col-sm-4 col-xs-12">
+          <button class="btn btn-success col-sm-10 col-xs-12" type="button" ng-click="home.addHouse()" >Publicar un hogar</button>
+        </div>
+        <div class="col-sm-4 col-xs-12">
+          <button class="btn btn-primary col-sm-10 col-xs-12" type="button" ng-click="home.compareHouses()" ng-show="disabled">Comparar</button>
+        </div>
+      </div>
     </div>
   </div>
+
 </div>
 
 <!-- Modal -->
@@ -29,6 +60,99 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" ng-click="main.setLocation('/register')" data-dismiss="modal">Registrarse</button>
         <button type="button" class="btn btn-danger" ng-click="main.setLocation('/login')" data-dismiss="modal">Ingresar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal fade text-center" id="compareModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" ng-click="hideModal2()" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Comparacion de inmuebles</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-info">
+          <div class="panel-heading" style="text-align: center;">
+            <strong>Caracteristicas del Hogar</strong></strong>
+          </div>
+          <table class="table">
+            <tr>
+              <td><strong>A comparar</strong></td>
+              <td><strong>A</strong></td>
+              <td><strong>B</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Direccion</strong></td>
+              <td>{{ home.compare[0].address }}</td>
+              <td>{{ home.compare[1].address }}</td>
+            </tr>
+            <tr>
+              <td><strong>Edad</strong></td>
+              <td ng-class="{'success': home.compare[0].age < home.compare[1].age}">{{ home.compare[0].age }}</td>
+              <td ng-class="{'success': home.compare[1].age<home.compare[0].age}">{{ home.compare[1].age }}</td>
+            </tr>
+            <tr>
+              <td><strong>Baños</strong></td>
+              <td ng-class="{'success': home.compare[0].bathrooms > home.compare[1].bathrooms}">{{ home.compare[0].bathrooms }}</td>
+              <td ng-class="{'success': home.compare[0].bathrooms < home.compare[1].bathrooms}">{{ home.compare[1].bathrooms }}</td>
+            </tr>
+            <tr>
+              <td><strong>Dimensiones X</strong></td>
+              <td ng-class="{'success': home.compare[0].dimensionsX > home.compare[1].dimensionsX}">{{ home.compare[0].dimensionsX }}</td>
+              <td ng-class="{'success': home.compare[0].dimensionsX < home.compare[1].dimensionsX}">{{ home.compare[1].dimensionsX }}</td>
+            </tr>
+            <tr>
+              <td><strong>Dimensiones Y</strong></td>
+              <td ng-class="{'success': home.compare[0].dimensionsY > home.compare[1].dimensionsY}">{{ home.compare[0].dimensionsY }}</td>
+              <td ng-class="{'success': home.compare[0].dimensionsY < home.compare[1].dimensionsY}">{{ home.compare[1].dimensionsY }}</td>
+            </tr>
+            <tr>
+              <td><strong>Dimensiones Z</strong></td>
+              <td ng-class="{'success': home.compare[0].dimensionsZ > home.compare[1].dimensionsZ}">{{ home.compare[0].dimensionsZ }}</td>
+              <td ng-class="{'success': home.compare[0].dimensionsZ < home.compare[1].dimensionsZ}">{{ home.compare[1].dimensionsZ }}</td>
+            </tr>
+            <tr>
+              <td><strong>Vigilancia</strong></td>
+              <td ng-class="{'success': home.compare[0].guard === 'Si'}"><strong>{{ home.compare[0].guard }}</strong> hay Vigilante</td>
+              <td ng-class="{'success': home.compare[1].guard === 'Si'}"><strong>{{ home.compare[1].guard }}</strong> hay Vigilante</td>
+            </tr>
+            <tr>
+              <td><strong>Metros Cuadrados</strong></td>
+              <td ng-class="{'success': home.compare[0].meters > home.compare[1].meters}">{{ home.compare[0].meters }}</td>
+              <td ng-class="{'success': home.compare[0].meters < home.compare[1].meters}">{{ home.compare[1].meters }}</td>
+            </tr>
+            <tr>
+              <td><strong>Metros Cuadrados de Construccion</strong></td>
+              <td ng-class="{'success': home.compare[0].consmeters > home.compare[1].consmeters}">{{ home.compare[0].consmeters }}</td>
+              <td ng-class="{'success': home.compare[0].consmeters < home.compare[1].consmeters}">{{ home.compare[1].consmeters }}</td>
+            </tr>
+            <tr>
+              <td><strong>Estacionamiento</strong></td>
+              <td ng-class="{'success': home.compare[0].parking > home.compare[1].parking}">{{ home.compare[0].parking }}</td>
+              <td ng-class="{'success': home.compare[0].parking < home.compare[1].parking}">{{ home.compare[1].parking }}</td>
+            </tr>
+            <tr>
+              <td><strong>Habitaciones</strong></td>
+              <td ng-class="{'success': home.compare[0].rooms > home.compare[1].rooms}">{{ home.compare[0].rooms }}</td>
+              <td ng-class="{'success': home.compare[0].rooms < home.compare[1].rooms}">{{ home.compare[1].rooms }}</td>
+            </tr>
+            <tr>
+              <td><strong>Calle Cerrada </strong></td>
+              <td ng-class="{'success': home.compare[0].streetclose === 'Abierta'}">{{ home.compare[0].streetclose }}</td>
+              <td ng-class="{'success': home.compare[1].streetclose === 'Abierta'}">{{ home.compare[1].streetclose }}</td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="main.setLocation('/house/'+idSelected[0])" data-dismiss="modal">Ver A</button>
+        <button type="button" class="btn btn-danger" ng-click="main.setLocation('/house/'+idSelected[1])" data-dismiss="modal">Ver B</button>
       </div>
     </div>
 
@@ -219,9 +343,14 @@
 
   <div class="row houses-home">
     <!-- <div ng-repeat="item in filtered = ( home.houses.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter: searchHouse)"> -->
-    <div ng-repeat="item in home.houses | filter: searchHouse">
+    <!-- <div ng-repeat="item in home.houses | filter: searchParams | orderBy: 'created_at':true "> -->
+    <!-- <div ng-repeat="item in home.houses | filter: {address: searchHouse} | orderBy: 'created_at':true "> -->
+    <div ng-repeat="item in home.houses | customSearch:searchHouse.address:searchHouse.price.max:searchHouse.price.min | orderBy: 'created_at':true "
+         ng-click="setSelected(item._id)">
+
       <div class="col-lg-4 col-sm-6 col-xs-12 col-sm-offset-0">
-        <div class="thumbnail">
+        <div class="thumbnail" ng-class="setClassSelected(item._id)">
+
           <div class="image-div">
             <img ng-src="{{item.picture.url | fpConvert: {filter:'sharpen', w:300, h:150} }}" />
           </div>
@@ -233,6 +362,7 @@
               <button type="button" class="btn btn-info ">Ver</button>
             </a>
           </div>
+
         </div>
       </div>
     </div>

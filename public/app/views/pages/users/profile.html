@@ -53,7 +53,7 @@
   </div>
 
 
-  <div class="row houses-home"><div ng-repeat="item in main.user.houses | filter: searchHouse">
+  <div class="row houses-home"><div ng-repeat="item in main.user.houses | orderBy: 'created_at':true ">
       <div class="col-lg-4 col-sm-6 col-xs-12 col-sm-offset-0">
         <div class="thumbnail">
           <div class="image-div">

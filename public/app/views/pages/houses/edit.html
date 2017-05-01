@@ -3,17 +3,17 @@
     <div class="page-header">
       <h1>Editar el Hogar</h1>
     </div>
-    <div class="row show-hide-message" ng-show="home.successMsg">
+    <div class="row show-hide-message" ng-show="editHouse.successMsg">
       <br>
       <div class="alert alert-success ">{{ editHouse.successMsg }}</div>
     </div>
 
-    <div class="row show-hide-message" ng-show="home.errorMsg">
+    <div class="row show-hide-message" ng-show="editHouse.errorMsg">
       <br>
       <div class="alert alert-danger">{{ editHouse.errorMsg }}</div>
     </div>
 
-    <form class="col-sm-8 col-sm-offset-2" name="editHouse.editForm" ng-submit="editHouse.editHouse(editHouse.data)" novalidate>
+    <form class="col-sm-8 col-sm-offset-2" style="margin-bottom:20px" name="editHouse.editForm" ng-submit="editHouse.editHouse(editHouse.data)" novalidate>
 
       <div class="row">
         <div class="form-group">
@@ -182,10 +182,5 @@
       <button class="btn btn-primary" type="submit">Guardar</button>
 
     </form>
-
-    <div class="jumbotron text-center" ng-show="home.loading">
-      <span class="glyphicon glyphicon-repeat spinner"></span>
-      <p>Cargando...</p>
-    </div>
   </div>
 </div>

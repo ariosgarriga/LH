@@ -4,6 +4,7 @@ angular.module('mainController',['authServices', 'userServices'])
   var app = this;
 
   app.loadme = false;
+  app.disabled = true;
 
   $scope.isActive = function (viewLocation) {
     return viewLocation === $location.path();

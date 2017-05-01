@@ -1,6 +1,6 @@
 var app = angular.module('homeController', ['houseServices', 'authServices', 'userServices'])
 
-.controller('homeCtrl', function($http, filepickerService, $interpolate, $scope, $filter, $window, $rootScope, $location, $timeout, User, House, $routeParams, Auth) {
+.controller('homeCtrl', function($http, $anchorScroll, filepickerService, $interpolate, $scope, $filter, $window, $rootScope, $location, $timeout, User, House, $routeParams, Auth) {
   var app = this;
   app.regData = {};
   $scope.superhero = {};
@@ -14,7 +14,87 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   app.guard = "No";
   app.houses = [];
   $scope.max = 10;
+  $scope.idSelected = [];
+  $scope.disabled = false;
+  app.compare = [];
 
+  $scope.availableSearchParams = [
+    { key: "address", name: "Direccion", placeholder: " " },
+    { key: "rooms", name: "Cuartos", placeholder: " ", allowMultiple: true, restrictToSuggestedValues: true, suggestedValues: ['1', '2', '3']},
+  ];
+
+  $scope.setSelected = function(id){
+
+    if ($scope.idSelected.length) {
+      if($scope.idSelected.indexOf(id) === -1){
+        if ($scope.idSelected.length < 2) {
+          $scope.idSelected.push(id);
+          console.log($scope.idSelected);
+
+        } else {
+          $scope.idSelected.shift();
+          $scope.idSelected.push(id);
+          console.log($scope.idSelected);
+        }
+        $scope.disabled = true;
+      } else {
+        for (var i = 0; i < $scope.idSelected.length; i++) {
+          if ($scope.idSelected[i] === id) {
+            $scope.idSelected.splice(i, 1);
+          }
+        }
+        $scope.disabled = false;
+      }
+
+    } else {
+      $scope.idSelected.push(id);
+      console.log($scope.idSelected);
+      $scope.disabled = false;
+    }
+  }
+
+  $scope.setClassSelected = function(id){
+    if($scope.idSelected.length){
+      for (var i = 0; i < $scope.idSelected.length; i++) {
+        if($scope.idSelected[i] === id)
+        return "selected";
+      }
+    }
+
+  }
+
+  app.compareHouses = function(){
+    $("#compareModal").modal({backdrop: "static"});
+    for (var i = 0; i < app.houses.length; i++) {
+      if(app.houses[i]._id === $scope.idSelected[0]){
+        app.compare[0] = app.houses[i];
+        if(app.compare[0].guard){
+          app.compare[0].guard = "Si";
+        } else {
+          app.compare[0].guard = "No";
+        }
+        if(app.compare[0].streetclose){
+          app.compare[0].streetclose = "Cerrada";
+        } else {
+          app.compare[0].streetclose = "Abierta";
+        }
+      }
+      if(app.houses[i]._id === $scope.idSelected[1]){
+        app.compare[1] = app.houses[i];
+        if(app.compare[1].guard){
+          app.compare[1].guard = "Si";
+        } else {
+          app.compare[1].guard = "No";
+        }
+        if(app.compare[1].streetclose){
+          app.compare[1].streetclose = "Cerrada";
+        } else {
+          app.compare[1].streetclose = "Abierta";
+        }
+      }
+    }
+
+  }
 
 
   $scope.upload = function(){
@@ -142,6 +222,9 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   $scope.hideModal = function() {
     $("#userHouseAuth").modal('hide');
   };
+  $scope.hideModal2 = function() {
+    $("#compareModal").modal('hide');
+  };
 
 
 
@@ -170,12 +253,14 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
     app.regData.id_user = app.user._id;
     app.regData.lat = app.map.getCenter().lat();
     app.regData.lng = app.map.getCenter().lng();
+    app.regData.dateCreated = Date.now();
 
     House.create(app.regData).then(function(data){
       if (data.data.success) {
         //Create Success Message
-        app.successMsg = data.data.message + " ...Redireccionando";
+        app.successMsg = data.data.message;
         //Redirect to home page
+        $anchorScroll();
         $timeout(function () {
           $window.location.reload();
         }, 2000);
@@ -206,3 +291,68 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   app.getHouses();
 
 });
+
+app.filter('customSearch',[function(){
+    /** @data is the original data**/
+    /** @address is the search query for address**/
+    /** @max is the search query for max**/
+    return function(data,address,max,min){
+        var output = []; // store result in this
+
+        /**@case1 if both searches are present**/
+        if(!!address && !!max && !!min){
+            address = address.toLowerCase();
+            //loop over the original array
+            for(var i = 0;i<data.length; i++){
+                // check if any result matching the search request
+                if(data[i].address.toLowerCase().indexOf(address) !== -1 && data[i].price <= max && data[i].price >= min){
+                    //push data into results array
+                    output.push(data[i]);
+                }
+            }
+        } else if(!!address && !!max){ /**@case2 if only address query is present**/
+            address = address.toLowerCase();
+            for(var i = 0;i<data.length; i++){
+                if(data[i].address.toLowerCase().indexOf(address) !== -1 && data[i].price <= max){
+                    output.push(data[i]);
+                }
+            }
+        } else if(!!address && !!min){ /**@case2 if only address query is present**/
+            address = address.toLowerCase();
+            for(var i = 0;i<data.length; i++){
+                if(data[i].address.toLowerCase().indexOf(address) !== -1 && data[i].price >= min){
+                    output.push(data[i]);
+                }
+            }
+        }else if(!!address){ /**@case2 if only address query is present**/
+            address = address.toLowerCase();
+            for(var i = 0;i<data.length; i++){
+                if(data[i].address.toLowerCase().indexOf(address) !== -1){
+                    output.push(data[i]);
+                }
+            }
+        } else if(!!max && !!min){ /**@case3 if only max query is present**/
+            for(var i = 0;i<data.length; i++){
+                if(data[i].price <= max && data[i].price >= min){
+                    output.push(data[i]);
+                }
+            }
+        }else if(!!max){ /**@case3 if only max query is present**/
+            for(var i = 0;i<data.length; i++){
+                if(data[i].price <= max){
+                    output.push(data[i]);
+                }
+            }
+        }  else if(!!min){ /**@case3 if only max query is present**/
+            for(var i = 0;i<data.length; i++){
+                if(data[i].price >= min){
+                    output.push(data[i]);
+                }
+            }
+        } else {
+            /**@case4 no query is present**/
+            output = data;
+        }
+        return output; // finally return the result
+    }
+}]);
