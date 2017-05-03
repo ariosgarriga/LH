@@ -24,8 +24,7 @@
     <table class="table">
       <tr>
         <td><strong>Direccion</strong></td>
-        <td>{{ house.compare[0].address }}</td>
-        <td>{{ house.compare[1].address }}</td>
+        <td>{{ house.data.address }}</td>
       </tr>
       <tr>
         <td><strong>Edad</strong></td>
@@ -79,7 +78,21 @@
         <td><strong>Calle Cerrada </strong></td>
         <td>{{ house.streetclose }}</td>
       </tr>
+      <tr>
+        <td><strong>Zonificación </strong></td>
+        <td>{{ house.data.zonetype }}</td>
+      </tr>
     </table>
   </div>
 
+  <div class="row text-center">
+    <h2>Leyes a las que se rige esta parcela por el tipo de zonificación</h2>
+    <h3>{{house.laws[0].type}}</h3>
+    <div ng-repeat="law in house.laws">
+      <blockquote class="blockquote-reverse">
+        <p>{{law.article}}</p>
+        <footer>{{law.ordinance}}</footer>
+      </blockquote>
+    </div>
+  </div>
 </div>

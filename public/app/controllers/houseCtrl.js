@@ -16,6 +16,7 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
    });
   };
 
+
   app.initMap = function() {
     app.map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: app.data.lat, lng: app.data.lng},
@@ -79,6 +80,8 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
       } else {
         app.streetclose = "Abierta";
       }
+
+      app.laws = data.data.laws;
 
     } else {
       $scope.errorMsg = data.data.message;

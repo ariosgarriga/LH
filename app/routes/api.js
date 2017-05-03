@@ -1,5 +1,6 @@
 var User = require('../models/user.js');
 var House = require('../models/house.js');
+var Law = require('../models/laws.js');
 var jwt = require('jsonwebtoken');
 var secret = 'andresandcesco';
 
@@ -295,7 +296,8 @@ module.exports = function(router){
                 lat : req.body.lat,
                 lng : req.body.lng,
                 picture : req.body.picture,
-                morePictures : req.body.morePictures
+                morePictures : req.body.morePictures,
+                zonetype : req.body.zonetype
               }, function(err){
                 if (err) {
                   console.log(err);
@@ -312,6 +314,12 @@ module.exports = function(router){
       }
     });
   });
+
+  // LAWS ROUTES
+  // =============
+
+
+
 
   return router;
 }
