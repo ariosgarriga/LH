@@ -8,6 +8,11 @@ angular.module('houseServices',[])
     return $http.post('/api/houses', regData);
   };
 
+  // House.addUser(regData)
+  houseFactory.addUser = function(id) {
+    return $http.post('/api/adduser', id);
+  };
+
   // House.getHouses();
   houseFactory.getHouses = function(){
     return $http.get('/api2/houses');

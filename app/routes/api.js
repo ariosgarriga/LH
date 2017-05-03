@@ -248,6 +248,7 @@ module.exports = function(router){
     house.picture = req.body.picture;
     house.morePictures = req.body.morePictures;
     house.id_user = req.body.id_user;
+    house.zonetype = req.body.zonetype;
 
     if(req.body.address == null || req.body.address == ''
       || req.body.id_user == null || req.body.id_user == ''){
@@ -295,7 +296,7 @@ module.exports = function(router){
                 lng : req.body.lng,
                 picture : req.body.picture,
                 morePictures : req.body.morePictures
-              }, function(err){ 
+              }, function(err){
                 if (err) {
                   console.log(err);
                 } else {

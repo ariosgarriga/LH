@@ -17,6 +17,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   $scope.idSelected = [];
   $scope.disabled = false;
   app.compare = [];
+  app.regData.zonetype = 'N/D'
 
   $scope.availableSearchParams = [
     { key: "address", name: "Direccion", placeholder: " " },
@@ -140,6 +141,8 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
       zoom: 16
     });
 
+    app.map.polyArray = [];
+
     var LaFlorestaCoords = [
       {lng: -66.8484547175467, lat: 10.495428761731864},
       {lng: -66.84319758787751, lat: 10.496789623167475},
@@ -156,7 +159,6 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
       {lng: -66.84781098738313, lat: 10.489478878632676},
       {lng: -66.84825086966157, lat: 10.49063932580788}
     ];
-
     var LaFloresta = new google.maps.Polygon({
       paths: LaFlorestaCoords,
       strokeColor: '#FF0000',
@@ -165,8 +167,114 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
       fillColor: '#FF0000',
       fillOpacity: 0.1
     });
-
     LaFloresta.setMap(app.map);
+
+    var cslcCoords = [
+      new google.maps.LatLng(10.495180687387377, -66.8445311486721),
+      new google.maps.LatLng(10.495346839528478, -66.84439167380333),
+      new google.maps.LatLng(10.495845295416235, -66.84455260634422),
+      new google.maps.LatLng(10.49594551396333, -66.84424683451653),
+      new google.maps.LatLng(10.49591122867455, -66.84423878788948),
+      new google.maps.LatLng(10.495995623224701, -66.84401616454124),
+      new google.maps.LatLng(10.49608792973755, -66.8438820540905),
+      new google.maps.LatLng(10.49617232423947, -66.84358432888985),
+      new google.maps.LatLng(10.496188148206022, -66.84335365891457),
+      new google.maps.LatLng(10.496177598895082, -66.84318736195564),
+      new google.maps.LatLng(10.49550507957989, -66.84320345520973),
+      new google.maps.LatLng(10.495399586221275, -66.84315785765648),
+      new google.maps.LatLng(10.495383762214377, -66.84353604912758),
+      new google.maps.LatLng(10.495370575541353, -66.84398666024208),
+      new google.maps.LatLng(10.495143764677229, -66.84448823332787)
+    ];
+    var Cslc = new google.maps.Polygon({
+      paths: cslcCoords,
+      strokeColor: '#000000',
+      strokeOpacity: 0.8,
+      strokeWeight: 1,
+      fillColor: '#FF0000',
+      fillOpacity: 0.1,
+      zonetype: 'E'
+    });
+    Cslc.setMap(app.map);
+    app.map.polyArray.push(Cslc);
+
+    var ArufloCoords = [
+      new google.maps.LatLng(10.490702457965472, -66.84556514024734),
+      new google.maps.LatLng(10.49072355696042, -66.84566169977188),
+      new google.maps.LatLng(10.490987294276058, -66.84566169977188),
+      new google.maps.LatLng(10.49088179937678, -66.84502333402634),
+      new google.maps.LatLng(10.490639160971948, -66.8450340628624),
+      new google.maps.LatLng(10.490648412071813, -66.84510899965579),
+      new google.maps.LatLng(10.490570589214355, -66.84510916471481),
+      new google.maps.LatLng(10.490549490208961, -66.8450179696083),
+      new google.maps.LatLng(10.490285752520169, -66.84504479169846),
+      new google.maps.LatLng(10.490385972868388, -66.84560269117355),
+      new google.maps.LatLng(10.490612787220831, -66.84562548995018),
+      new google.maps.LatLng(10.490618061971235, -66.84556648135185)
+    ];
+    var ArufloCentral = new google.maps.Polygon({
+      paths: ArufloCoords,
+      strokeColor: '#000000',
+      strokeOpacity: 0.8,
+      strokeWeight: 1,
+      fillColor: '#FF0000',
+      fillOpacity: 0.1,
+      zonetype: 'P'
+    });
+    ArufloCentral.setMap(app.map);
+    app.map.polyArray.push(ArufloCentral);
+
+    var ClinicaCoord = [
+      new google.maps.LatLng(10.494840470819938, -66.84543505311012),
+      new google.maps.LatLng(10.494429045633824, -66.84606000781059),
+      new google.maps.LatLng(10.494239156901802, -66.8461699783802),
+      new google.maps.LatLng(10.49358509482147, -66.8462236225605),
+      new google.maps.LatLng(10.493645753862914, -66.84517487883568),
+      new google.maps.LatLng(10.49392795011671, -66.84512659907341),
+      new google.maps.LatLng(10.493914763381596, -66.8455021083355),
+      new google.maps.LatLng(10.494107289658205, -66.84549942612648),
+      new google.maps.LatLng(10.494254980967272, -66.84512123465538),
+      new google.maps.LatLng(10.494727065214308, -66.84534922242165)
+    ];
+    var Clinica = new google.maps.Polygon({
+      paths: ClinicaCoord,
+      strokeColor: '#000000',
+      strokeOpacity: 0.8,
+      strokeWeight: 1,
+      fillColor: '#FF0000',
+      fillOpacity: 0.1,
+      zonetype: 'R3'
+    });
+    Clinica.setMap(app.map);
+    app.map.polyArray.push(Clinica);
+
+    var LaEstanciaCoords = [
+      new google.maps.LatLng(10.495449695571104, -66.84801399707794),
+      new google.maps.LatLng(10.493508611665307, -66.84794962406158),
+      new google.maps.LatLng(10.493571908071765, -66.84670776128769),
+      new google.maps.LatLng(10.494057180090902, -66.84670776128769),
+      new google.maps.LatLng(10.494073004165655, -66.84627324342728),
+      new google.maps.LatLng(10.4942708050319, -66.84623166918755),
+      new google.maps.LatLng(10.494458056402065, -66.84611365199089),
+      new google.maps.LatLng(10.494436957661787, -66.84633895754814),
+      new google.maps.LatLng(10.495845295416235, -66.8465293943882)
+    ];
+    var LaEstancia = new google.maps.Polygon({
+      paths: LaEstanciaCoords,
+      strokeColor: '#000000',
+      strokeOpacity: 0.8,
+      strokeWeight: 1,
+      fillColor: '#FF0000',
+      fillOpacity: 0.1,
+      zonetype: 'AE-C3-1'
+    });
+    LaEstancia.setMap(app.map);
+    app.map.polyArray.push(LaEstancia);
+
+
+    app.map.addListener('dragend', showArrays);
+    app.map.addListener('zoom_changed', showArrays);
+
 
 
     if (navigator.geolocation) {
@@ -180,6 +288,17 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
     }
   }
 
+  function showArrays() {
+    for (var i = 0; i < app.map.polyArray.length; i++) {
+      if(google.maps.geometry.poly.containsLocation(app.map.getCenter(), app.map.polyArray[i]) == true) {
+        app.regData.zonetype = app.map.polyArray[i].zonetype;
+
+        return
+      }
+    }
+    app.regData.zonetype = 'N/D';
+  }
+
   app.initMap();
 
   $scope.$watch('regHouseForm', function () {
@@ -187,7 +306,6 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
       google.maps.event.trigger(app.map, 'resize');
     },100);
   });
-
 
 
   app.streetcloseText = function(){
@@ -278,7 +396,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
       if (data.data.success) {
         //Redirect to home page
         app.houses = data.data.houses;
-        console.log(app.houses);
+        // console.log(app.houses);
       } else {
         //Create error message
         app.loading = false;

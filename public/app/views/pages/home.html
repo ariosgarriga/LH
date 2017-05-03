@@ -218,8 +218,18 @@
 
 
       <!-- Direccion -->
-      <label>Dirección</label>
-      <input class="form-control text-center" type="text" name="name" placeholder="Ej: El cafetal, calle limon, Qta wachu" ng-model="home.regData.address" required>
+      <div class="row">
+        <div class="form-group col-sm-10">
+          <label>Dirección</label>
+          <input class="form-control text-center" type="text" name="name" placeholder="Ej: El cafetal, calle limon, Qta wachu" ng-model="home.regData.address" required>
+        </div>
+        <div class="form-group col-sm-2">
+          <label>Zona</label>
+          <p class="form-control-static">{{home.regData.zonetype}}</p>
+        </div>
+
+
+      </div>
       <br>
       <div class="row">
         <div class="form-group col-sm-6">
