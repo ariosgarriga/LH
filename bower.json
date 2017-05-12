@@ -1,7 +1,10 @@
 {
-    "name": "livinghouse",
-    "main": "server.js",
-    "dependencies": {
-     "angular-filepicker": "^1.1.4"
-    }
+  "name": "livinghouse",
+  "main": "server.js",
+  "dependencies": {
+    "angular-filepicker": "^1.1.4",
+    "angularjs-slider": "^6.1.1",
+    "fusioncharts": "^3.12.0",
+    "chart.js": "^2.5.0"
+  }
 }

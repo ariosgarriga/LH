@@ -130,3 +130,11 @@ header .navbar{
 .selected{
   border: 4px solid #5cb85c;
 }
+
+.leftPercentaje-success{
+  color: green;
+}
+
+.leftPercentaje-danger{
+  color: red;
+}

@@ -29,7 +29,7 @@
 
       <div class="row" style="margin: 10px 0px">
         <div class="col-sm-4 col-xs-12">
-          <button class="btn btn-warning col-sm-10 col-xs-12" type="button"><i class="fa fa-tag" aria-hidden="true"></i> Agregar Prioridades </button>
+          <button class="btn btn-warning col-sm-10 col-xs-12" type="button" ng-click="home.addPriority()"> Agregar Prioridades </button>
         </div>
         <div class="col-sm-4 col-xs-12">
           <button class="btn btn-success col-sm-10 col-xs-12" type="button" ng-click="home.addHouse()" >Publicar un hogar</button>
@@ -42,6 +42,82 @@
   </div>
 
 </div>
+
+
+<div class="container" ng-show="home.priorities">
+  <div class="row">
+    <h1 class="text-center">Sistema de prioridades</h1>
+  </div>
+  <div class="row">
+    <div class="panel panel-info col-md-8">
+      <div class="panel-heading" style="text-align: center;">
+        <strong>Metas</strong></strong>
+      </div>
+      <table class="table">
+        <tr ng-repeat="item in home.priorityGoal">
+          <td class="col-sm-4">{{ item.nombre }}</td>
+          <td class="col-sm-4">{{ item.value }}</td>
+          <td class="col-sm-3">
+            <i class="fa fa-arrow-left" aria-hidden="true" ng-click="minusPercentaje($index)" ng-show="item.percentaje>0"></i>
+            <label>{{ item.percentaje }}</label>
+            <i class="fa fa-arrow-right" aria-hidden="true" ng-click="plusPercentaje($index)" ng-show="home.leftPercentaje>0"></i>
+          </td>
+          <td class="col-sm-1">
+            <i class="fa fa-times" aria-hidden="true" ng-click="ereasePriority($index)"></i>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-4" >
+      <div ng-show="home.priorityGoal.length>0">
+        <fusioncharts
+
+            width="100%"
+            height="200"
+            type="pie3d"
+            datasource="{{myDataSource}}"
+        ></fusioncharts>
+      </div>
+      <label>Disponible: {{ home.leftPercentaje }}</label>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+    <form class="form-inline" ng-submit="home.addGoal()">
+      <div class="form-group">
+        <label>Posibles prioridades</label>
+        <select class="form-control" ng-model="home.prioritySelected">
+          <option>--Seleccione--</option>
+          <option ng-repeat="option in home.availableOptions" >{{option.nombre}}</option>
+        </select>
+        <input type="number" class="form-control" ng-model="home.priorityInputA" placeholder="ej: 1000.00"
+          ng-hide="home.prioritySelected == 'Baños'|| home.prioritySelected == 'Cuartos' || home.prioritySelected == 'Estacionamiento' || home.prioritySelected == 'Calle Cerrada'|| home.prioritySelected == 'Vigilante'">
+        <select class="form-control text-center" ng-model="home.priorityInputB"
+          ng-show="home.prioritySelected == 'Baños'|| home.prioritySelected == 'Cuartos' || home.prioritySelected == 'Estacionamiento'">
+          <option>0</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+        </select>
+        <select class="form-control text-center" ng-model="home.priorityInputC"
+          ng-show="home.prioritySelected == 'Calle Cerrada'|| home.prioritySelected == 'Vigilante'">
+          <option>Si</option>
+          <option>No</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-link"><i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i></button>
+    </form>
+  </div>
+
+</div>
+
+<!-- ============== MODAL COMPARACION HOGARES =================-->
 
 <!-- Modal -->
 <div class="modal fade text-center" id="userHouseAuth" role="dialog">
@@ -312,8 +388,8 @@
         </div>
         <div class="form-group col-sm-3 text-center">
           <label>Calle Cerrada: {{ home.streetclose }}</label>
-            <md-switch ng-click="home.streetcloseText()" style="width:50px; margin: 0px auto;" class="md-primary" ng-model="home.regData.streetclose" aria-label="Switch 1"></md-switch>
-          </div>
+          <md-switch ng-click="home.streetcloseText()" style="width:50px; margin: 0px auto;" class="md-primary" ng-model="home.regData.streetclose" aria-label="Switch 1"></md-switch>
+        </div>
         <div class="form-group col-sm-3 text-center">
           <label>Vigilante: {{ home.guard }}</label>
             <md-switch ng-click="home.guardText()" style="width:50px; margin: 0px auto;" class="md-warn" ng-model="home.regData.guard" aria-label="Switch 2"></md-switch>

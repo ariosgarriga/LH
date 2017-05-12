@@ -11,6 +11,8 @@ angular.module('userApp',
    'angular-filepicker',
    'angular-advanced-searchbox',
    'ui.bootstrap',
+   'rzModule',
+   'ng-fusioncharts',
    'managementController'])
 
 .config(function($httpProvider){

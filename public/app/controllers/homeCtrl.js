@@ -17,12 +17,161 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   $scope.idSelected = [];
   $scope.disabled = false;
   app.compare = [];
-  app.regData.zonetype = 'N/D'
+  app.regData.zonetype = 'N/D';
+  app.priorities = true;
+  function compare(a,b) {
+    if (a.nombre < b.nombre)
+      return -1;
+    if (a.nombre > b.nombre)
+      return 1;
+    return 0;
+  }
+  app.availableOptions= [
+    {nombre: 'Baños', name: 'bathrooms'},
+    {nombre: 'Cuartos', name: 'rooms'},
+    {nombre: 'Dimensiones (Ancho)', name: 'dimensionsX'},
+    {nombre: 'Dimensiones (Largo)', name: 'dimensionsY'},
+    {nombre: 'Dimensiones (Alto)', name: 'dimensionsZ'},
+    {nombre: 'Metros de Construción (m^2)', name: 'consmeters'},
+    {nombre: 'Metro Cuadrados (m^2)', name: 'meters'},
+    {nombre: 'Precio', name: 'price'},
+    {nombre: 'Estacionamiento', name: 'parking'},
+    {nombre: 'Calle Cerrada', name: 'streetclose'},
+    {nombre: 'Vigilante', name: 'guard'}
+  ];
+  app.availableOptions.sort(compare);
+  app.prioritySelected = '--Seleccione--';
+  app.priorityGoal = [];
+  app.priorityInputA = '';
+  app.priorityInputB = '0';
+  app.priorityInputC = 'Si';
+  app.leftPercentaje = 0;
+
+  $scope.myDataSource = {
+      chart: {
+          caption: "Age profile of website visitors",
+          subcaption: "Last Year",
+          startingangle: "120",
+          showlabels: "0",
+          showlegend: "1",
+          enablemultislicing: "0",
+          slicingdistance: "15",
+          showpercentvalues: "1",
+          showpercentintooltip: "0",
+          plottooltext: "Age group : $label Total visit : $datavalue",
+          theme: "fint"
+      },
+      data: []
+  }
 
   $scope.availableSearchParams = [
     { key: "address", name: "Direccion", placeholder: " " },
     { key: "rooms", name: "Cuartos", placeholder: " ", allowMultiple: true, restrictToSuggestedValues: true, suggestedValues: ['1', '2', '3']},
   ];
+
+
+  $scope.plusPercentaje = function(index){
+    app.priorityGoal[index].percentaje++;
+    app.leftPercentaje--;
+    if (app.leftPercentaje == 0) {
+      $scope.updateGraph();
+    }
+  }
+
+  $scope.updateGraph = function(){
+    for (var i = 0; i < $scope.myDataSource.data.length; i++) {
+      $scope.myDataSource.data[i].value = app.priorityGoal[i].percentaje;
+    }
+  }
+
+  $scope.minusPercentaje = function(index){
+    app.priorityGoal[index].percentaje--;
+    app.leftPercentaje++;
+  }
+
+  app.addPriority = function(){
+    if(app.priorities){
+      app.priorities = false;
+    } else {
+      app.priorities = true;
+    }
+  }
+
+  $scope.ereasePriority = function(index){
+    app.leftPercentaje = 100;
+    var option = {
+      nombre: app.priorityGoal[index].nombre,
+      name: app.priorityGoal[index].name
+    }
+
+    app.availableOptions.push(option);
+    function compare(a,b) {
+      if (a.nombre < b.nombre)
+        return -1;
+      if (a.nombre > b.nombre)
+        return 1;
+      return 0;
+    }
+    app.availableOptions.sort(compare);
+    $scope.myDataSource.data.splice(index, 1);
+    app.priorityGoal.splice(index, 1);
+
+    for (var i = 0; i < app.priorityGoal.length; i++) {
+      app.priorityGoal[i].percentaje = Math.trunc(100/app.priorityGoal.length);
+      app.leftPercentaje = app.leftPercentaje - app.priorityGoal[i].percentaje;
+    }
+
+    if (app.leftPercentaje == 0) {
+      $scope.updateGraph();
+    }
+
+  }
+
+  app.addGoal = function() {
+    var goal = {};
+    var data = {};
+    var index = 0;
+    app.leftPercentaje = 100;
+    goal.nombre = app.prioritySelected;
+    data.label = app.prioritySelected;
+    data.value = 0;
+    $scope.myDataSource.data.push(data);
+
+    if (app.prioritySelected !== '--Seleccione--') {
+      if (app.prioritySelected == 'Baños'|| app.prioritySelected == 'Cuartos' || app.prioritySelected == 'Estacionamiento') {
+        goal.value = app.priorityInputB;
+      } else if (app.prioritySelected == 'Calle Cerrada'|| app.prioritySelected == 'Vigilante') {
+        goal.value = app.priorityInputC;
+      } else {
+        goal.value = app.priorityInputA;
+      }
+    }
+    app.priorityGoal.push(goal);
+
+    for (var i = 0; i < app.availableOptions.length; i++) {
+      if (app.availableOptions[i].nombre === app.prioritySelected) {
+        goal.name = app.availableOptions[i].name;
+        index = i;
+      }
+    }
+
+    for (var i = 0; i < app.priorityGoal.length; i++) {
+      app.priorityGoal[i].percentaje = Math.trunc(100/app.priorityGoal.length);
+      app.leftPercentaje = app.leftPercentaje - app.priorityGoal[i].percentaje;
+    }
+
+    if (app.leftPercentaje == 0) {
+      $scope.updateGraph();
+    }
+
+    app.availableOptions.splice(index, 1);
+    app.prioritySelected = '--Seleccione--';
+    app.priorityInputA = '';
+    app.priorityInputB = 0;
+    app.priorityInputC = 'Si';
+  }
+
+
 
   $scope.setSelected = function(id){
 
@@ -389,6 +538,8 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
         app.errorMsg = data.data.message;
       }
     });
+
+
   };
 
   app.getHouses = function(){
@@ -407,6 +558,8 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   };
 
   app.getHouses();
+
+
 
 });
 
