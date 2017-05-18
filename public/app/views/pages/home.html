@@ -111,8 +111,14 @@
           <option>No</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-link"><i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i></button>
+        <button type="submit" class="btn btn-link" ng-show="auxPlusGoal<10"><i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i></button>
+
     </form>
+  </div>
+  <div class="row" style="margin-bottom: 10px">
+    <button type="button" class="btn btn-success" ng-click="home.sortPriorities()" ng-show="home.leftPercentaje == 0 && home.priorityGoal.length != 0">Aplicar</button>
+    <button type="button" class="btn btn-danger" ng-click="home.resetOrder()" ng-show="home.priorityGoal.length != 0">Borrar Todo</button>
+    <span ng-hide="home.leftPercentaje == 0" >Todavia tienes porcentajes por repartir</span>
   </div>
 
 </div>
@@ -430,8 +436,8 @@
   <div class="row houses-home">
     <!-- <div ng-repeat="item in filtered = ( home.houses.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter: searchHouse)"> -->
     <!-- <div ng-repeat="item in home.houses | filter: searchParams | orderBy: 'created_at':true "> -->
-    <!-- <div ng-repeat="item in home.houses | filter: {address: searchHouse} | orderBy: 'created_at':true "> -->
-    <div ng-repeat="item in home.houses | customSearch:searchHouse.address:searchHouse.price.max:searchHouse.price.min | orderBy: 'created_at':true "
+    <!-- <div ng-repeat="item in home.houses | filter: {address: searchHouse} | orderBy: 'created_at':true "> !orderByToggle?'created_at':['z'] -->
+    <div ng-repeat="item in home.houses | customSearch:searchHouse.address:searchHouse.price.max:searchHouse.price.min | orderBy: orderByArgument : orderByToggle "
          ng-click="setSelected(item._id)">
 
       <div class="col-lg-4 col-sm-6 col-xs-12 col-sm-offset-0">
@@ -443,6 +449,7 @@
 
           <div class="caption text-center">
             <h3>{{item.price | currency:"Bsf "}}</h3>
+            <h3>{{ item.z }}</h3>
             <p><label>Ubicación: </label> {{item.address}}</p>
             <a href="/house/{{ item._id }}">
               <button type="button" class="btn btn-info ">Ver</button>

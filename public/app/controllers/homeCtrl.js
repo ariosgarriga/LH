@@ -19,6 +19,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   app.compare = [];
   app.regData.zonetype = 'N/D';
   app.priorities = true;
+  $scope.orderByHouses = 'price';
   function compare(a,b) {
     if (a.nombre < b.nombre)
       return -1;
@@ -46,7 +47,6 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   app.priorityInputB = '0';
   app.priorityInputC = 'Si';
   app.leftPercentaje = 0;
-
   $scope.myDataSource = {
       chart: {
           caption: "Age profile of website visitors",
@@ -63,12 +63,108 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
       },
       data: []
   }
+  $scope.auxPlusGoal = 0;
+  $scope.orderByToggle = true;
+  $scope.orderByArgument = 'created_at';
+
 
   $scope.availableSearchParams = [
     { key: "address", name: "Direccion", placeholder: " " },
     { key: "rooms", name: "Cuartos", placeholder: " ", allowMultiple: true, restrictToSuggestedValues: true, suggestedValues: ['1', '2', '3']},
   ];
 
+
+  app.sortPriorities = function(){
+    var auxPriority = JSON.parse(angular.toJson(app.priorityGoal));
+    function compare(a,b) {
+      if (a.name < b.name)
+        return -1;
+      if (a.name > b.name)
+        return 1;
+      return 0;
+    }
+
+    auxPriority.sort(compare);
+
+    for (var i = 0; i < auxPriority.length; i++) {
+      if (auxPriority[i].value == 'Si') {
+        auxPriority[i].value = 1;
+      } else if (auxPriority[i].value == 'No' ){
+        auxPriority[i].value = 0;
+      }
+    }
+
+    for (var i = 0; i < app.houses.length; i++) {
+
+      var house = [];
+
+      for (var j = 0; j < auxPriority.length; j++) {
+        var aux = auxPriority[j].name;
+
+        if (aux == 'streetclose' || aux == 'guard') {
+
+          if (app.houses[i][aux]) {
+            house.push(1);
+          } else {
+            house.push(0);
+          }
+
+        }else {
+          house.push(app.houses[i][aux]);
+        }
+
+      }
+
+      var z = 0;
+      var aux = 0;
+
+      for (var j = 0; j < auxPriority.length; j++) {
+
+        if (auxPriority[j].name == 'price') {
+          aux = house[j] - auxPriority[j].value;
+        } else {
+          aux =  auxPriority[j].value - house[j];
+        }
+
+        if(aux<0){
+          aux = 0;
+        }
+        var aux2 = 0;
+        if (auxPriority[j].name == 'guard' || auxPriority[j].name == 'streetclose') {
+          if (auxPriority[j].value == house[j]) {
+            aux2 = 0;
+          } else {
+            aux2 = auxPriority[j].percentaje * 0.1;
+          }
+
+        } else if (auxPriority[j].name == 'price') {
+          if (aux != 0) {
+            aux2 = auxPriority[j].percentaje * 0.1 * (1-auxPriority[j].value / aux);
+          } else {
+            aux2 = 0;
+          }
+
+        }else {
+          aux2 = auxPriority[j].percentaje * 0.1 * aux / auxPriority[j].value;
+        }
+
+
+        z = z + aux2;
+      }
+      app.houses[i].z = z;
+    }
+
+    $scope.orderByToggle = false;
+    $scope.orderByArgument = 'z';
+  }
+
+  app.resetOrder = function(){
+    $scope.orderByToggle = true;
+    $scope.orderByArgument = 'created_at';
+    for (var i = app.priorityGoal.length; i > 0; i--) {
+      $scope.ereasePriority(i-1);
+    }
+  }
 
   $scope.plusPercentaje = function(index){
     app.priorityGoal[index].percentaje++;
@@ -98,7 +194,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   }
 
   $scope.ereasePriority = function(index){
-    app.leftPercentaje = 100;
+    app.leftPercentaje = 10;
     var option = {
       nombre: app.priorityGoal[index].nombre,
       name: app.priorityGoal[index].name
@@ -117,21 +213,25 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
     app.priorityGoal.splice(index, 1);
 
     for (var i = 0; i < app.priorityGoal.length; i++) {
-      app.priorityGoal[i].percentaje = Math.trunc(100/app.priorityGoal.length);
+      app.priorityGoal[i].percentaje = Math.trunc(10/app.priorityGoal.length);
       app.leftPercentaje = app.leftPercentaje - app.priorityGoal[i].percentaje;
     }
 
     if (app.leftPercentaje == 0) {
       $scope.updateGraph();
+    } else if (app.leftPercentaje ==  10) {
+      app.leftPercentaje = 0;
     }
 
+    $scope.auxPlusGoal--;
   }
 
   app.addGoal = function() {
+    $scope.auxPlusGoal++;
     var goal = {};
     var data = {};
     var index = 0;
-    app.leftPercentaje = 100;
+    app.leftPercentaje = 10;
     goal.nombre = app.prioritySelected;
     data.label = app.prioritySelected;
     data.value = 0;
@@ -156,7 +256,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
     }
 
     for (var i = 0; i < app.priorityGoal.length; i++) {
-      app.priorityGoal[i].percentaje = Math.trunc(100/app.priorityGoal.length);
+      app.priorityGoal[i].percentaje = Math.trunc(10/app.priorityGoal.length);
       app.leftPercentaje = app.leftPercentaje - app.priorityGoal[i].percentaje;
     }
 
