@@ -28,6 +28,11 @@ angular.module('userServices',[])
     return $http.get('/api/edit/'+id);
   };
 
+  // User.searchUser(email);
+  userFactory.searchUser = function(email){
+    return $http.get('/api/search/'+email);
+  };
+
   // User.deleteUser(email)
   userFactory.deleteUser = function(email){
     return $http.delete('/api/management/'+email);

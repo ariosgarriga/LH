@@ -8,9 +8,14 @@ angular.module('houseServices',[])
     return $http.post('/api/houses', regData);
   };
 
-  // House.addUser(regData)
-  houseFactory.addUser = function(id) {
-    return $http.post('/api/adduser', id);
+  // House.editShareUsers(users)
+  houseFactory.editShareUsers = function(users) {
+    return $http.put('/api/house/editShareHouse', users);
+  };
+
+  // House.deleteHouse(id)
+  houseFactory.deleteHouse = function(id){
+    return $http.delete('/api//house/delete/'+id);
   };
 
   // House.getHouses();

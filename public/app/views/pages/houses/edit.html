@@ -180,7 +180,23 @@
 
       <br>
       <button class="btn btn-primary" type="submit">Guardar</button>
+      <button class="btn btn-danger" ng-click="openModal()">Eliminar</button>
 
+      <div class="modal fade text-center" id="houseEliminate" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" ng-click="hideModal()" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Si la elimnas se perderan todos los datos.</h4>
+            </div>
+            <div class="modal-footer text-center">
+              <button type="button" class="btn btn-danger" ng-click="eliminate()" data-dismiss="modal">Elminar</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </form>
   </div>
 </div>

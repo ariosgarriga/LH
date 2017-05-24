@@ -23,10 +23,14 @@
     </div>
     <table class="table">
       <tr>
+        <td><strong>Corredor</strong></td>
+        <td>{{ house.data.user.name }}</td>
+      </tr>
+      <tr>
         <td><strong>Direccion</strong></td>
         <td>{{ house.data.address }}</td>
       </tr>
-      <tr>
+      <tr class="danger" ng-show="house.data.id_user == main.user._id || checkSharedUser()">
         <td><strong>Edad</strong></td>
         <td>{{ house.data.age }}</td>
       </tr>
@@ -84,6 +88,53 @@
       </tr>
     </table>
   </div>
+
+
+  <div class="row" ng-show="house.data.id_user == main.user._id ">
+    <div class="col-md-6 col-md-offset-6 text-center">
+      <laber>Compartir acceso a otros corredores</laber>
+      <div class="row show-hide-message" ng-show="house.successMsg">
+        <br>
+        <div class="alert alert-success ">{{ house.successMsg }}</div>
+      </div>
+
+      <div class="row show-hide-message" ng-show="house.errorMsg">
+        <br>
+        <div class="alert alert-danger">{{ house.errorMsg }}</div>
+      </div>
+
+      <form class="form-inline " style="margin-bottom: 10px;  ">
+        <div class="form-group">
+          <input type="email" class="form-control" ng-model="userToSearch" placeholder="andres@galletta.com">
+          <button type="submit" class="form-control btn btn-primary" ng-show='!shareBtn' ng-click='searchUser()'>Buscar</button>
+          <button type="submit" class="form-control btn btn-success" ng-show='shareBtn' ng-click='addUserToHouse()'>Compartir</button>
+        </div>
+      </form>
+
+      <div class="panel panel-info" ng-show="house.sharedUser.length>0">
+        <div class="panel-heading" style="text-align: center;">
+          <strong>Corredores compartidos</strong></strong>
+        </div>
+        <table class="table">
+          <tr>
+            <td><strong>Corredor</strong></td>
+            <td><strong>Correo</strong></td>
+          </tr>
+          <tr ng-repeat ="user in house.sharedUser">
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>
+              <i class="fa fa-times" aria-hidden="true" ng-click="ereaseUserShared($index)"></i>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+
+    </div>
+
+  </div>
+
 
   <div class="row text-center">
     <h2>Leyes a las que se rige esta parcela por el tipo de zonificación</h2>

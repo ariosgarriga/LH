@@ -22,13 +22,19 @@ module.exports = function(router){
       if (!house) {
         res.json({ success: false, message: 'No se consiguio el Hogar :('})
       } else {
-        Law.find({ name : house.zonetype }, function(err, laws){
+        User.findOne({ _id: house.id_user }, function(err, user){
           if(err) throw err;
-          if (!laws) {
-            res.json({ success: false, message: 'No se consiguio ninguna ley'})
+          if (!user) {
+            res.json({ success: false, message: 'No se consiguio el dueño del inmueble'});
           } else {
-
-            res.json({ success: true, house: house, laws: laws });
+            Law.find({ name : house.zonetype }, function(err, laws){
+              if(err) throw err;
+              if (!laws) {
+                res.json({ success: false, message: 'No se consiguio ninguna ley'});
+              } else {
+                res.json({ success: true, house: house, laws: laws, user: user });
+              }
+            });
           }
         });
       }

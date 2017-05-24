@@ -1,13 +1,103 @@
 angular.module('houseControllers', ['userServices', 'houseServices'])
 
-.controller('houseCtrl', function($http, $scope, $routeParams, $window, $location, $timeout, User, House) {
+.controller('houseCtrl', function($http, $scope, $routeParams, $window, $location, $timeout, User, House, Auth) {
 
   var app = this;
+  console.log(app);
   $scope.myInterval = 0;
   $scope.noWrapSlides = false;
   $scope.active = 0;
   var slides = $scope.slides = [];
   var currIndex = 0;
+  $scope.shareBtn = false;
+  app.sharedUser = [];
+  $scope.newUser = {};
+
+  if (Auth.isLoggedIn()) {
+    Auth.getUser().then(function(data){
+      app.currentUserID = data.data._id;
+    });
+  }
+
+  $scope.addUserToHouse = function(){
+    app.sharedUser.push($scope.newUser);
+    console.log(app.sharedUser);
+    $scope.editShareUsersFunc();
+  }
+
+  $scope.checkSharedUser = function(){
+    for (var i = 0; i < app.sharedUser.length; i++) {
+      if (app.sharedUser[i].id == app.currentUserID) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  $scope.editShareUsersFunc = function(){
+    var aux = {
+      sharedUsers: app.sharedUser,
+      house_id: app.data._id
+    }
+
+    House.editShareUsers(aux).then(function(data){
+      if (data.data.success) {
+        console.log('Success');
+        $scope.userToSearch = '';
+        app.successMsg = data.data.message;
+        $scope.shareBtn = false;
+      } else {
+        console.log('Error');
+        app.errorMsg = data.data.message;
+
+      }
+    });
+  }
+
+
+  $scope.searchUser= function(){
+    if ($scope.userToSearch != app.data.user.email) {
+      User.searchUser($scope.userToSearch).then(function(data){
+        if (data.data.success) {
+          var aux2 = true;
+
+          $scope.newUser.id = data.data.user._id;
+          $scope.newUser.name = data.data.user.name;
+          $scope.newUser.email = data.data.user.email;
+
+
+          for (var i = 0; i < app.sharedUser.length; i++) {
+            if (app.sharedUser[i].email == $scope.userToSearch) {
+              var aux2 = false;
+              app.errorMsg = 'El Usuario ya se encuentra en la lista';
+            }
+          }
+          if (aux2) {
+            $scope.shareBtn = true;
+          }
+
+        } else {
+          $scope.shareBtn = false;
+          app.errorMsg = 'El Usuario no existe';
+        }
+      });
+    } else {
+      app.errorMsg = 'Esta usando su correo';
+    }
+
+  }
+
+  $scope.ereaseUserShared = function(index){
+
+    app.sharedUser.splice(index,1);
+    $scope.editShareUsersFunc();
+  }
+
+  $scope.$watch('userToSearch', function () {
+    app.errorMsg = false;
+    app.successMsg = false;
+  });
+
 
   $scope.addSlide = function(url) {
    slides.push({
@@ -60,7 +150,6 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
   House.getHouse($routeParams.id).then(function(data){
     if (data.data.success) {
       app.data = data.data.house;
-      console.log(data.data.house);
       app.data.bathrooms = data.data.house.bathrooms.toString();
       app.data.rooms = data.data.house.rooms.toString();
       app.data.parking = data.data.house.parking.toString();
@@ -82,7 +171,8 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
       }
 
       app.laws = data.data.laws;
-
+      app.data.user = data.data.user;
+      app.sharedUser = data.data.house.shared_users;
     } else {
       $scope.errorMsg = data.data.message;
     }
@@ -109,6 +199,28 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
      id: currIndex++
    });
   };
+
+  $scope.openModal = function(){
+    $("#houseEliminate").modal({backdrop: "static"});
+  }
+  $scope.hideModal = function() {
+    $("#houseEliminate").modal('hide');
+  };
+  $scope.eliminate = function(){
+    House.deleteHouse(app.data._id).then(function(data){
+      if (data.data.success) {
+        app.successMsg = 'Se elimino con exito';
+        $anchorScroll();
+        $timeout(function(){
+          app.successMsg = false;
+          $location.path('/profile');
+        }, 3000);
+
+      } else {
+        app.errorShowMore = data.data.message;
+      }
+    });
+  }
 
   app.initMap = function() {
     app.map = new google.maps.Map(document.getElementById('map'), {

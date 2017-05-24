@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var HouseSchema = new Schema({
   address: {type: String},
   rooms: {type: Number},
-  bathrooms: {type: Number}, 
+  bathrooms: {type: Number},
   dimensionsY: {type: Number},
   dimensionsX: {type: Number},
   dimensionsZ: {type: Number},
@@ -21,7 +21,8 @@ var HouseSchema = new Schema({
   lng: {type: Number},
   picture: {type: Schema.Types.Mixed, required: true},
   morePictures: Schema.Types.Mixed,
-  id_user: {type: String}
+  id_user: {type: String},
+  shared_users: {type: Schema.Types.Mixed, require: true, default: []}
 });
 
 module.exports = mongoose.model('House', HouseSchema);

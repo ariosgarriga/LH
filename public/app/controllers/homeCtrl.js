@@ -18,7 +18,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   $scope.disabled = false;
   app.compare = [];
   app.regData.zonetype = 'N/D';
-  app.priorities = true;
+  app.priorities = false;
   $scope.orderByHouses = 'price';
   function compare(a,b) {
     if (a.nombre < b.nombre)
@@ -136,18 +136,9 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
           } else {
             aux2 = auxPriority[j].percentaje * 0.1;
           }
-
-        } else if (auxPriority[j].name == 'price') {
-          if (aux != 0) {
-            aux2 = auxPriority[j].percentaje * 0.1 * (1-auxPriority[j].value / aux);
-          } else {
-            aux2 = 0;
-          }
-
         }else {
           aux2 = auxPriority[j].percentaje * 0.1 * aux / auxPriority[j].value;
         }
-
 
         z = z + aux2;
       }
@@ -386,7 +377,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
 
   app.initMap = function() {
     app.map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 10.4806, lng: -66.9036},
+      center: {lat: 10.491961, lng: -66.845288},
       zoom: 16
     });
 
@@ -526,15 +517,15 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
 
 
 
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        app.map.setCenter(pos);
-      });
-    }
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(function(position) {
+    //     var pos = {
+    //       lat: position.coords.latitude,
+    //       lng: position.coords.longitude
+    //     };
+    //     app.map.setCenter(pos);
+    //   });
+    // }
   }
 
   function showArrays() {

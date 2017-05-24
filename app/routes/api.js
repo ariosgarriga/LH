@@ -185,6 +185,27 @@ module.exports = function(router){
     });
   });
 
+  router.get('/search/:email', function(req, res){
+    var searchUser = req.params.email;
+    User.findOne({ email: req.decoded.email }, function(err, mainUser){
+      if (err) throw err;
+      if (!mainUser) {
+        res.json({ success: false, message: 'No encontro usuario'})
+      } else {
+
+      User.findOne({ email: searchUser }, function(err, user){
+        if(err) throw err;
+        if (!user) {
+          res.json({ success: false, message: 'Usuario no encontrado'})
+        } else {
+          res.json({ success: true, user: user});
+        }
+      });
+
+      }
+    });
+  });
+
   router.put('/edit', function(req, res){
     var editUser = req.body._id;
     var newUser =req.body;
@@ -230,7 +251,6 @@ module.exports = function(router){
 
   router.post('/houses', function(req, res){
     var house = new House();
-
     house.address = req.body.address;
     house.rooms = req.body.rooms;
     house.bathrooms = req.body.bathrooms;
@@ -310,10 +330,70 @@ module.exports = function(router){
             }
           }
         });
+      }
+    });
+  });
+
+  router.put('/house/editShareHouse', function(req, res){
+    var editHouse = req.body.house_id;
+    var array = req.body.sharedUsers;
+    console.log(array);
+    User.findOne({ email: req.decoded.email }, function(err, mainUser){
+      if (err) throw err;
+      if (!mainUser) {
+        res.json({ success: false, message: 'No encontro usuario'})
+      } else {
+        House.findOne({ _id: editHouse }, function(err, house){
+          if(err) throw err;
+          if (!house) {
+            res.json({ success: false, message: 'Hogar no encontrado'})
+          } else {
+            if (mainUser.permission === 'admin' || mainUser.permission === 'moderator' || mainUser._id == house.id_user) {
+              console.log();
+              House.update({_id: editHouse}, {
+                shared_users : array
+              }, function(err){
+                if (err) {
+                  console.log(err);
+                } else {
+                  res.json({ success: true, message: 'Editado con Exito' });
+                  console.log('exito');
+                }
+              });
+            } else {
+              res.json({success: false, message: 'No posee permiso para realizar esta accion'});
+            }
+          }
+        });
+      }
+    });
+  });
+
+  router.delete('/house/delete/:id', function(req, res){
+    var deletedID = req.params.id;
+    User.findOne({ email: req.decoded.email }, function(err, mainUser){
+      if (err) throw err;
+      if (!mainUser) {
+        res.json({ success: false, message: 'No encontro usuario'})
+      } else {
+        House.findOne({_id: deletedID}, function(err, house){
+          if (err) throw err;
+          if (house.id_user == mainUser._id || mainUser.role == 'admin' || mainUser.role == 'moderator') {
+            House.findOneAndRemove({_id: deletedID}, function(err, house){
+              if (err) throw err;
+              res.json({ success: true });
+            });
+          }else {
+            res.json({ success: false, message: 'No posee permiso para realizar esta acción'});
+          }
+
+        });
+
 
       }
     });
   });
+
 
   // LAWS ROUTES
   // =============
