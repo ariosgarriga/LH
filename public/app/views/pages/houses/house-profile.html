@@ -15,7 +15,11 @@
 
     <div id="map" style="margin: 20px 0px"></div>
   </div>
-
+  <div class="row" style="margin-bottom: 10px;">
+    <a class="pull-right col-sm-1"href="/house/edit/{{ house.data._id }}">
+      <button type="button" class="btn btn-primary ">Editar</button>
+    </a>
+  </div>
 
   <div class="panel panel-info">
     <div class="panel-heading" style="text-align: center;">
@@ -23,14 +27,10 @@
     </div>
     <table class="table">
       <tr>
-        <td><strong>Corredor</strong></td>
-        <td>{{ house.data.user.name }}</td>
-      </tr>
-      <tr>
         <td><strong>Direccion</strong></td>
         <td>{{ house.data.address }}</td>
       </tr>
-      <tr class="danger" ng-show="house.data.id_user == main.user._id || checkSharedUser()">
+      <tr>
         <td><strong>Edad</strong></td>
         <td>{{ house.data.age }}</td>
       </tr>
@@ -38,17 +38,17 @@
         <td><strong>Baños</strong></td>
         <td>{{ house.data.bathrooms }}</td>
       </tr>
-      <tr>
+      <tr ng-show="house.data.dimensionsX">
         <td><strong>Dimensiones X</strong></td>
         <td>{{ house.data.dimensionsX }}</td>
       </tr>
-      <tr>
+      <tr ng-show="house.data.dimensionsY">
         <td><strong>Dimensiones Y</strong></td>
         <td>{{ house.data.dimensionsY }}</td>
       </tr>
       <tr>
-        <td><strong>Dimensiones Z</strong></td>
-        <td>{{ house.data.dimensionsZ }}</td>
+        <td><strong>Pisos</strong></td>
+        <td>{{ house.data.floors }}</td>
       </tr>
       <tr>
         <td><strong>Vigilancia</strong></td>
@@ -86,9 +86,81 @@
         <td><strong>Zonificación </strong></td>
         <td>{{ house.data.zonetype }}</td>
       </tr>
+      <tr>
+        <td><strong>Puntos de interes </strong></td>
+        <td><pre>{{ house.data.near_places }}</pre></td>
+      </tr>
     </table>
   </div>
 
+
+  <div class="panel panel-info" ng-show="house.data.id_user == main.user._id || checkSharedUser()">
+    <div class="panel-heading" style="text-align: center;">
+      <strong>Caracteristicas del Cliente</strong></strong>
+    </div>
+    <table class="table">
+      <tr ng-show="house.sharedFields[0] || (house.currentUserID == house.data.user._id )" ng-show="house.sharedFields[0]" ng-class="{'success': house.sharedFields[0] && (house.currentUserID == house.data.user._id )}">
+        <td><strong>Nombre</strong></td>
+        <td>{{ house.data.pro_name }}</td>
+      </tr>
+      <tr ng-show="house.sharedFields[1] || (house.currentUserID == house.data.user._id )" ng-class="{'success': house.sharedFields[1] && (house.currentUserID == house.data.user._id )}">
+        <td><strong>Correo</strong></td>
+        <td>{{ house.data.pro_email }}</td>
+      </tr>
+      <tr ng-show="house.sharedFields[2] || (house.currentUserID == house.data.user._id )" ng-class="{'success': house.sharedFields[2] && (house.currentUserID == house.data.user._id )}">
+        <td><strong>Telefono</strong></td>
+        <td>{{ house.data.pro_phone }}</td>
+      </tr>
+      <tr ng-show="house.sharedFields[3] || (house.currentUserID == house.data.user._id )" ng-class="{'success': house.sharedFields[3] && (house.currentUserID == house.data.user._id )}">
+        <td><strong>Domicilio</strong></td>
+        <td>{{ house.data.pro_direction }}</td>
+      </tr>
+      <tr ng-show="house.sharedFields[4] || (house.currentUserID == house.data.user._id )" ng-class="{'success': house.sharedFields[4] && (house.currentUserID == house.data.user._id )}">
+        <td><strong>Cedula</strong></td>
+        <td>{{ house.data.pro_CI }}</td>
+      </tr>
+      <tr ng-show="house.sharedFields[5] || (house.currentUserID == house.data.user._id )" ng-class="{'success': house.sharedFields[5] && (house.currentUserID == house.data.user._id )}">
+        <td><strong>Precio minimo de venta</strong></td>
+        <td>{{ house.data.pro_minPrice }}</td>
+      </tr>
+      <tr ng-show="house.sharedFields[6] || (house.currentUserID == house.data.user._id )" ng-class="{'success': house.sharedFields[6] && (house.currentUserID == house.data.user._id )}">
+        <td><strong>Porcentaje por venta</strong></td>
+        <td>{{ house.data.pro_porcentaje }}</td>
+      </tr>
+      <tr ng-show="house.sharedFields[7] || (house.currentUserID == house.data.user._id )" ng-class="{'success': house.sharedFields[7] && (house.currentUserID == house.data.user._id )}">
+        <td><strong>Porcentaje colaboradores</strong></td>
+        <td>{{ house.data.pro_porcentajeColab }}</td>
+      </tr>
+      <tr ng-show="house.sharedFields[8] || (house.currentUserID == house.data.user._id )" ng-class="{'success': house.sharedFields[8] && (house.currentUserID == house.data.user._id )}">
+        <td><strong>Exclusividad</strong></td>
+        <td><strong>{{ house.exclusive }}</strong> exclusividad</td>
+      </tr>
+      <tr ng-show="house.sharedFields[9] || (house.currentUserID == house.data.user._id )" ng-class="{'success': house.sharedFields[9] && (house.currentUserID == house.data.user._id )}">
+        <td><strong>Notas personales</strong></td>
+        <td><pre>{{ house.data.pro_notes }}</pre></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading" style="text-align: center;">
+      <strong>Caracteristicas del Corredor</strong></strong>
+    </div>
+    <table class="table">
+      <tr>
+        <td><strong>Nombre</strong></td>
+        <td>{{ house.data.user.name }}</td>
+      </tr>
+      <tr>
+        <td><strong>Correo</strong></td>
+        <td>{{ house.data.user.email }}</td>
+      </tr>
+      <tr>
+        <td><strong>Telefono</strong></td>
+        <td>{{ house.data.user.phone }}</td>
+      </tr>
+    </table>
+  </div>
 
   <div class="row" ng-show="house.data.id_user == main.user._id ">
     <div class="col-md-6 col-md-offset-6 text-center">

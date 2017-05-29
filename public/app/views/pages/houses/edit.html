@@ -71,8 +71,16 @@
 
 
       <!-- Direccion -->
-      <label>Dirección</label>
-      <input class="form-control text-center" type="text" name="name" placeholder="Ej: El cafetal, calle limon, Qta wachu" ng-model="editHouse.data.address" required>
+      <div class="row">
+        <div class="form-group col-sm-10">
+          <label>Dirección</label>
+          <input class="form-control text-center" type="text" name="name" placeholder="Ej: El cafetal, calle limon, Qta wachu" ng-model="editHouse.data.address" required>
+        </div>
+        <div class="form-group col-sm-2">
+          <label>Zona</label>
+          <p class="form-control-static">{{editHouse.data.zonetype}}</p>
+        </div>
+      </div>
       <br>
       <div class="row">
         <div class="form-group col-sm-6">
@@ -106,31 +114,47 @@
       </div>
 
       <div class="row form-group">
-        <!-- Dimensiones -->
-        <div class="col-sm-12">
-          <label>Dimensiones</label>
+        <div class="col-sm-1">
+          <md-switch ng-click="editHouse.blockCalc()" style="width:50px; margin: 0px auto;" class="md-primary" ng-model="editHouse.calcM" aria-label="Switch 3"></md-switch>
+        </div>
+        <div class="col-sm-8">
+          <div class="col-sm-12">
+            <label>Dimensiones(m)</label>
+          </div>
+          <div class="col-sm-5">
+            <input class="form-control text-center" type="number" ng-change="house.calculateMeters()" ng-disabled="!editHouse.calcM" ng-min="0" step="0.01" placeholder="Ancho" ng-model="editHouse.data.dimensionsX" >
+          </div>
+          <div class="col-sm-2 text-center">
+            <span>x</span>
+          </div>
+          <div class="col-sm-5">
+            <input class="form-control text-center" type="number" ng-change="house.calculateMeters()" ng-disabled="!editHouse.calcM" ng-min="0" step="0.001" placeholder="Largo" ng-model="editHouse.data.dimensionsY" >
+          </div>
         </div>
         <div class="col-sm-3">
-          <input class="form-control text-center" type="number" ng-min="0" step="0.01" placeholder="Ancho" ng-model="editHouse.data.dimensionsX" required>
+          <div class="form-group col-sm-12">
+            <label>Pisos</label>
+            <select class="form-control" ng-model="editHouse.data.floors">
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+            </select>
+          </div>
         </div>
-        <div class="col-sm-1 text-center">
-          <span>x</span>
-        </div>
-        <div class="col-sm-4">
-          <input class="form-control text-center" type="number" ng-min="0" step="0.001" placeholder="Largo" ng-model="editHouse.data.dimensionsY" required>
-        </div>
-        <div class="col-sm-1 text-center">
-          <span>x</span>
-        </div>
-        <div class=" col-sm-3">
-          <input class="form-control text-center" type="number" ng-min="0" step="0.001" placeholder="Alto" ng-model="editHouse.data.dimensionsZ" required>
-        </div>
+        <!-- Dimensiones -->
+
+
       </div>
 
       <div class="row">
         <div class="form-group col-sm-6">
           <label>Metros Cuadrados (m^2) </label>
-          <input class="form-control text-center" type="number" ng-min="0" step="0.01" placeholder="ej: 1,253.4" ng-model="editHouse.data.meters" required>
+          <input class="form-control text-center" type="number" ng-disabled="editHouse.calcM" ng-min="0" step="0.01" placeholder="ej: 1,253.4" ng-model="editHouse.data.meters" required>
         </div>
         <div class="form-group col-sm-6">
           <label>Metros de Contrucción (m^2)</label>
@@ -154,12 +178,12 @@
           </select>
         </div>
         <div class="form-group col-sm-3 text-center">
-          <label>Calle Cerrada: {{ home.streetclose }}</label>
-            <md-switch ng-click="home.streetcloseText()" style="width:50px; margin: 0px auto;" class="md-primary" ng-model="editHouse.data.streetclose" aria-label="Switch 1"></md-switch>
-          </div>
+          <label>Calle Cerrada: {{ editHouse.streetclose }}</label>
+          <md-switch ng-click="editHouse.streetcloseText()" style="width:50px; margin: 0px auto;" class="md-primary" ng-model="editHouse.data.streetclose" aria-label="Switch 1"></md-switch>
+        </div>
         <div class="form-group col-sm-3 text-center">
-          <label>Vigilante: {{ home.guard }}</label>
-            <md-switch ng-click="home.guardText()" style="width:50px; margin: 0px auto;" class="md-warn" ng-model="editHouse.data.guard" aria-label="Switch 2"></md-switch>
+          <label>Vigilante: {{ editHouse.guard }}</label>
+          <md-switch ng-click="editHouse.guardText()" style="width:50px; margin: 0px auto;" class="md-warn" ng-model="editHouse.data.guard" aria-label="Switch 2"></md-switch>
         </div>
       </div>
 
@@ -170,12 +194,124 @@
         </div>
         <div class="form-group col-sm-6">
           <label>Precio</label>
-          <input class="form-control text-center" type="number" placeholder="1,000,000.00Bsf" ng-model="editHouse.data.price" required>
+          <input class="form-control text-center" type="text" placeholder="1,000,000" ng-model="editHouse.data.price" required ui-number-mask="0">
         </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <label>Algunos puntos de interes</label>
+        </div>
+        <textarea class="form-control" rows="3" ng-model="editHouse.data.near_places"></textarea>
       </div>
 
       <div class="row text-center">
         <h1>{{ editHouse.data.price | currency:"Bsf "}}</h1>
+      </div>
+
+      <!-- <div class="row">
+        <div class="col-sm-12">
+          <h2>Datos del Cliente</h2>
+        </div>
+        <div class="col-sm-4">
+          <label>Nombre y Apellido</label>
+          <input type="text" class="form-control" placeholder="Jane Doe"ng-model="editHouse.data.pro_name">
+        </div>
+        <div class="col-sm-4">
+          <label>Telefono</label>
+          <input type="text" class="form-control" placeholder="04149999999" ng-model="editHouse.data.pro_phone">
+        </div>
+        <div class="col-sm-4">
+          <label>Cédula</label>
+          <input type="text" class="form-control" placeholder="V-xxxxxxxx" ng-model="editHouse.data.pro_CI">
+        </div>
+        <div class="col-sm-8">
+          <label>Domicilio</label>
+          <input type="text" class="form-control" placeholder="Urb, Municipio, Ciudad" ng-model="editHouse.data.pro_direction">
+        </div>
+        <div class="col-sm-4">
+          <label>Correo</label>
+          <input type="email" class="form-control" placeholder="Jogn@ode.com" ng-model="editHouse.data.pro_email">
+        </div>
+        <div class="col-sm-4">
+          <label>Precio Mínimo de venta</label>
+          <input class="form-control text-center" type="text" placeholder="1,000,000.00Bsf" ng-model="editHouse.data.pro_minPrice" ui-number-mask="0">
+        </div>
+        <div class="col-sm-4">
+          <label>Porcentaje por venta</label>
+          <input class="form-control text-center" type="text" placeholder="5.5%" ng-model="editHouse.data.pro_porcentaje" ui-percentage-mask>
+        </div>
+        <div class="col-sm-4">
+          <label>Porcentaje Colaboradores</label>
+          <input class="form-control text-center" type="text" placeholder="5.3" ng-model="editHouse.data.pro_porcentajeColab" ui-percentage-mask>
+        </div>
+        <div class="col-sm-4 col-sm-offset-4">
+          <label>{{editHouse.exclusive}} Exclusividad</label>
+          <md-switch ng-click="editHouse.exclusiveText()" style="width:50px; margin: 0px auto;" class="md-primary" ng-model="editHouse.data.pro_exclusive" aria-label="Switch 4"></md-switch>
+        </div>
+        <div class="col-sm-12">
+          <h3>Notas Personales</h3>
+          <textarea class="form-control" rows="3" ng-model="editHouse.data.pro_notes"></textarea>
+        </div>
+
+      </div> -->
+
+      <div class="panel panel-info">
+        <div class="panel-heading" style="text-align: center;">
+          <strong>Datos del Cliente</strong></strong>
+        </div>
+        <table class="table" popover-trigger="'mouseenter'" uib-popover="Selecciona los campos que te gustaria mostrarle a los demas corredores al momento de compartir el inmueble." popover-placement="right" >
+          <tr>
+            <td><strong>Nombre</strong></td>
+            <td><input type="text" class="form-control" placeholder="Jane Doe"ng-model="editHouse.data.pro_name"></td>
+            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[0]"></td>
+          </tr>
+          <tr>
+            <td><strong>Correo</strong></td>
+            <td><input type="email" class="form-control" placeholder="Jogn@ode.com" ng-model="editHouse.data.pro_email"></td>
+            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[1]"></td>
+          </tr>
+          <tr>
+            <td><strong>Telefono</strong></td>
+            <td><input type="text" class="form-control" placeholder="04149999999" ng-model="editHouse.data.pro_phone"></td>
+            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[2]"></td>
+          </tr>
+          <tr>
+            <td><strong>Domicilio</strong></td>
+            <td><input type="text" class="form-control" placeholder="Urb, Municipio, Ciudad" ng-model="editHouse.data.pro_direction"></td>
+            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[3]"></td>
+          </tr>
+          <tr>
+            <td><strong>Cedula</strong></td>
+            <td><input type="text" class="form-control" placeholder="V-xxxxxxxx" ng-model="editHouse.data.pro_CI"></td>
+            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[4]"></td>
+          </tr>
+          <tr>
+            <td><strong>Precio minimo de venta</strong></td>
+            <td><input class="form-control text-center" type="text" placeholder="1,000,000.00Bsf" ng-model="editHouse.data.pro_minPrice" ui-number-mask="0"></td>
+            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[5]"></td>
+          </tr>
+          <tr>
+            <td><strong>Porcentaje por venta</strong></td>
+            <td><input class="form-control text-center" type="text" placeholder="5.5%" ng-model="editHouse.data.pro_porcentaje" ui-percentage-mask></td>
+            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[6]"></td>
+          </tr>
+          <tr>
+            <td><strong>Porcentaje colaboradores</strong></td>
+            <td><input class="form-control text-center" type="text" placeholder="5.3" ng-model="editHouse.data.pro_porcentajeColab" ui-percentage-mask></td>
+            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[7]"></td>
+          </tr>
+          <tr>
+            <td><strong>{{editHouse.exclusive}} Exclusividad</strong></td>
+            <td><md-switch ng-click="editHouse.exclusiveText()" style="width:50px; margin: 0px auto;" class="md-primary" ng-model="editHouse.data.pro_exclusive" aria-label="Switch 4"></md-switch></td>
+            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[8]"></td>
+          </tr>
+          <tr>
+            <td><strong>Notas personales</strong></td>
+            <td><textarea class="form-control" rows="3" ng-model="editHouse.data.pro_notes"></textarea></td>
+            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[9]"></td>
+          </tr>
+        </table>
       </div>
 
       <br>

@@ -7,11 +7,13 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   app.regData.rooms = "0";
   app.regData.bathrooms ="0";
   app.regData.parking = "0";
+  app.regData.floors = "0";
   app.regData.streetclose = false;
   app.regData.guard = false;
   $scope.regHouseForm = false;
   app.streetclose = "No";
   app.guard = "No";
+  app.exclusive = "Sin"
   app.houses = [];
   $scope.max = 10;
   $scope.idSelected = [];
@@ -32,7 +34,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
     {nombre: 'Cuartos', name: 'rooms'},
     {nombre: 'Dimensiones (Ancho)', name: 'dimensionsX'},
     {nombre: 'Dimensiones (Largo)', name: 'dimensionsY'},
-    {nombre: 'Dimensiones (Alto)', name: 'dimensionsZ'},
+    {nombre: 'Pisos', name: 'floors'},
     {nombre: 'Metros de Construción (m^2)', name: 'consmeters'},
     {nombre: 'Metro Cuadrados (m^2)', name: 'meters'},
     {nombre: 'Precio', name: 'price'},
@@ -66,6 +68,28 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   $scope.auxPlusGoal = 0;
   $scope.orderByToggle = true;
   $scope.orderByArgument = 'created_at';
+  app.calcM = false;
+
+
+
+  app.blockCalc = function(){
+    app.regData.dimensionsX = "";
+    app.regData.dimensionsY = "";
+    app.regData.meters = "";
+  }
+
+  app.calculateMeters = function(){
+    app.regData.meters = app.regData.dimensionsY * app.regData.dimensionsX;
+  }
+
+
+  $scope.sheckLogIng = function(){
+    if (Auth.isLoggedIn()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 
   $scope.availableSearchParams = [
@@ -564,6 +588,14 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
     }
   }
 
+  app.exclusiveText = function(){
+    if(app.regData.pro_exclusive){
+      app.exclusive = "Sin";
+    } else {
+      app.exclusive = "Con";
+    }
+  }
+
 
   app.addHouse = function(){
     if(Auth.isLoggedIn()){
@@ -618,7 +650,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
         //Create Success Message
         app.successMsg = data.data.message;
         //Redirect to home page
-        $anchorScroll();
+        $anchorScroll(); 
         $timeout(function () {
           $window.location.reload();
         }, 2000);

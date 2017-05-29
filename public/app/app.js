@@ -13,6 +13,7 @@ angular.module('userApp',
    'ui.bootstrap',
    'rzModule',
    'ng-fusioncharts',
+   'ui.utils.masks',
    'managementController'])
 
 .config(function($httpProvider){

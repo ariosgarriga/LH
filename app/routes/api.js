@@ -256,7 +256,7 @@ module.exports = function(router){
     house.bathrooms = req.body.bathrooms;
     house.dimensionsX = req.body.dimensionsX;
     house.dimensionsY = req.body.dimensionsY;
-    house.dimensionsZ = req.body.dimensionsZ;
+    house.floors = req.body.floors;
     house.meters = req.body.meters;
     house.consmeters = req.body.consmeters;
     house.parking = req.body.parking;
@@ -270,6 +270,17 @@ module.exports = function(router){
     house.morePictures = req.body.morePictures;
     house.id_user = req.body.id_user;
     house.zonetype = req.body.zonetype;
+    house.pro_name = req.body.pro_name;
+    house.pro_phone = req.body.pro_phone;
+    house.pro_direction = req.body.pro_direction;
+    house.pro_CI = req.body.pro_CI;
+    house.pro_email = req.body.pro_email;
+    house.pro_minPrice = req.body.pro_minPrice;
+    house.pro_porcentaje = req.body.pro_porcentaje;
+    house.pro_porcentajeColab = req.body.pro_porcentajeColab;
+    house.pro_exclusive = req.body.pro_exclusive;
+    house.pro_notes = req.body.pro_notes;
+    house.near_places = req.body.near_places;
 
     if(req.body.address == null || req.body.address == ''
       || req.body.id_user == null || req.body.id_user == ''){
@@ -298,33 +309,86 @@ module.exports = function(router){
           if (!house) {
             res.json({ success: false, message: 'Hogar no encontrado'})
           } else {
-            if (mainUser.permission === 'admin' || mainUser.permission === 'moderator' || mainUser._id === house.id_user) {
-              House.update({_id: editHouse}, {
-                address : req.body.address,
-                rooms : req.body.rooms,
-                bathrooms : req.body.bathrooms,
-                dimensionsX : req.body.dimensionsX,
-                dimensionsY : req.body.dimensionsY,
-                dimensionsZ : req.body.dimensionsZ,
-                meters : req.body.meters,
-                consmeters : req.body.consmeters,
-                parking : req.body.parking,
-                streetclose : req.body.streetclose,
-                guard : req.body.guard,
-                age : req.body.age,
-                price : req.body.price,
-                lat : req.body.lat,
-                lng : req.body.lng,
-                picture : req.body.picture,
-                morePictures : req.body.morePictures,
-                zonetype : req.body.zonetype
-              }, function(err){
-                if (err) {
-                  console.log(err);
-                } else {
-                  res.json({ success: true, message: 'El hogar ha sido actualizado' });
-                }
-              });
+            if (mainUser.permission === 'admin' || mainUser.permission === 'moderator' || mainUser._id == house.id_user) {
+
+              if(editHouse.dimensionsX){
+                House.update({_id: editHouse}, {
+                  address : req.body.address,
+                  rooms : req.body.rooms,
+                  bathrooms : req.body.bathrooms,
+                  dimensionsX : req.body.dimensionsX,
+                  dimensionsY : req.body.dimensionsY,
+                  floors : req.body.floors,
+                  meters : req.body.meters,
+                  consmeters : req.body.consmeters,
+                  parking : req.body.parking,
+                  streetclose : req.body.streetclose,
+                  guard : req.body.guard,
+                  age : req.body.age,
+                  price : req.body.price,
+                  lat : req.body.lat,
+                  lng : req.body.lng,
+                  picture : req.body.picture,
+                  morePictures : req.body.morePictures,
+                  zonetype : req.body.zonetype,
+                  pro_name : req.body.pro_name,
+                  pro_phone : req.body.pro_phone,
+                  pro_direction : req.body.pro_direction,
+                  pro_CI : req.body.pro_CI,
+                  pro_email : req.body.pro_email,
+                  pro_minPrice : req.body.pro_minPrice,
+                  pro_porcentaje : req.body.pro_porcentaje,
+                  pro_porcentajeColab : req.body.pro_porcentajeColab,
+                  pro_exclusive : req.body.pro_exclusive,
+                  pro_notes : req.body.pro_notes,
+                  near_places : req.body.near_places,
+                  shared_fields : req.body.shared_fields
+                }, function(err){
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    res.json({ success: true, message: 'El hogar ha sido actualizado' });
+                  }
+                });
+              }else {
+                House.update({_id: editHouse}, {
+                  address : req.body.address,
+                  rooms : req.body.rooms,
+                  bathrooms : req.body.bathrooms,
+                  floors : req.body.floors,
+                  meters : req.body.meters,
+                  consmeters : req.body.consmeters,
+                  parking : req.body.parking,
+                  streetclose : req.body.streetclose,
+                  guard : req.body.guard,
+                  age : req.body.age,
+                  price : req.body.price,
+                  lat : req.body.lat,
+                  lng : req.body.lng,
+                  picture : req.body.picture,
+                  morePictures : req.body.morePictures,
+                  zonetype : req.body.zonetype,
+                  pro_name : req.body.pro_name,
+                  pro_phone : req.body.pro_phone,
+                  pro_direction : req.body.pro_direction,
+                  pro_CI : req.body.pro_CI,
+                  pro_email : req.body.pro_email,
+                  pro_minPrice : req.body.pro_minPrice,
+                  pro_porcentaje : req.body.pro_porcentaje,
+                  pro_porcentajeColab : req.body.pro_porcentajeColab,
+                  pro_exclusive : req.body.pro_exclusive,
+                  pro_notes : req.body.pro_notes,
+                  near_places : req.body.near_places,
+                  shared_fields : req.body.shared_fields
+                }, function(err){
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    res.json({ success: true, message: 'El hogar ha sido actualizado' });
+                  }
+                });
+              }
+
             } else {
               res.json({success: false, message: 'No posee permiso para realizar esta accion'});
             }

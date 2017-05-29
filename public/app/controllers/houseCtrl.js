@@ -13,6 +13,7 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
   app.sharedUser = [];
   $scope.newUser = {};
 
+
   if (Auth.isLoggedIn()) {
     Auth.getUser().then(function(data){
       app.currentUserID = data.data._id;
@@ -153,6 +154,7 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
       app.data.bathrooms = data.data.house.bathrooms.toString();
       app.data.rooms = data.data.house.rooms.toString();
       app.data.parking = data.data.house.parking.toString();
+      app.data.floors = data.data.house.floors.toString();
       $scope.addSlide(app.data.picture.url);
       if (app.data.morePictures) {
         for (var i = 0; i < app.data.morePictures.length; i++) {
@@ -169,10 +171,16 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
       } else {
         app.streetclose = "Abierta";
       }
+      if(data.data.house.pro_exclusive){
+        app.exclusive = "Con";
+      } else {
+        app.exclusive = "Sin";
+      }
 
       app.laws = data.data.laws;
       app.data.user = data.data.user;
       app.sharedUser = data.data.house.shared_users;
+      app.sharedFields = data.data.house.shared_fields;
     } else {
       $scope.errorMsg = data.data.message;
     }
@@ -193,12 +201,37 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
   var slides = $scope.slides = [];
   var currIndex = 0;
 
+
   $scope.addSlide = function(url) {
    slides.push({
      image: url,
      id: currIndex++
    });
   };
+
+  app.streetcloseText = function(){
+    if(app.data.streetclose){
+      app.streetclose = "No";
+    } else {
+      app.streetclose = "Si";
+    }
+  }
+
+  app.guardText = function(){
+    if(app.data.guard){
+      app.guard = "No";
+    } else {
+      app.guard = "Si";
+    }
+  }
+
+  app.exclusiveText = function(){
+    if(app.data.pro_exclusive){
+      app.exclusive = "Sin";
+    } else {
+      app.exclusive = "Con";
+    }
+  }
 
   $scope.openModal = function(){
     $("#houseEliminate").modal({backdrop: "static"});
@@ -265,10 +298,26 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
       app.data.bathrooms = data.data.house.bathrooms.toString();
       app.data.rooms = data.data.house.rooms.toString();
       app.data.parking = data.data.house.parking.toString();
+      app.data.floors = data.data.house.floors.toString();
       $scope.superhero.picture = data.data.house.picture;
       $scope.superhero.morePictures = data.data.house.morePictures;
       if (data.data.house.morePictures) {
         $scope.max = $scope.max - data.data.house.morePictures.length;
+      }
+      if(data.data.house.guard){
+        app.guard = "Si";
+      } else {
+        app.guard = "No";
+      }
+      if(data.data.house.streetclose){
+        app.streetclose = "Si";
+      } else {
+        app.streetclose = "No";
+      }
+      if(data.data.house.pro_exclusive){
+        app.exclusive = "Con";
+      } else {
+        app.exclusive = "Sin";
       }
 
 
@@ -287,6 +336,7 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
     houseObject = editData;
     houseObject.lat = app.map.getCenter().lat();
     houseObject.lng = app.map.getCenter().lng();
+    console.log(houseObject);
     House.editHouse(houseObject).then(function(data){
       if (data.data.success) {
         app.successMsg = data.data.message;
@@ -298,6 +348,7 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
           app.successMsg = false;
         }, 5000);
       } else {
+        $anchorScroll();
         app.errorMsg = data.data.message;
       }
     })

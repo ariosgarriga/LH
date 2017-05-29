@@ -8,7 +8,7 @@ var HouseSchema = new Schema({
   bathrooms: {type: Number},
   dimensionsY: {type: Number},
   dimensionsX: {type: Number},
-  dimensionsZ: {type: Number},
+  floors: {type: Number},
   consmeters: {type: Number},
   meters: {type: Number},
   parking: {type: Number},
@@ -22,7 +22,20 @@ var HouseSchema = new Schema({
   picture: {type: Schema.Types.Mixed, required: true},
   morePictures: Schema.Types.Mixed,
   id_user: {type: String},
-  shared_users: {type: Schema.Types.Mixed, require: true, default: []}
+  pro_name: {type: String},
+  pro_phone: {type: String},
+  pro_direction: {type: String},
+  pro_CI: {type: String},
+  pro_email: {type: String},
+  pro_minPrice: {type: Number},
+  pro_porcentaje: {type: Number},
+  pro_porcentajeColab: {type: Number},
+  pro_exclusive: {type: Boolean},
+  pro_notes: {type: String},
+  near_places: {type: String},
+  shared_users: {type: Schema.Types.Mixed, default: []},
+  shared_fields: {type: Schema.Types.Mixed, default: []}
+
 });
 
 module.exports = mongoose.model('House', HouseSchema);
