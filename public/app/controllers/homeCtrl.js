@@ -331,7 +331,6 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
         }
         $scope.time.push(obj);
 
-        var wait = false;
         for (var k = 0; k < app.houses.length; k++){
 
           var calcRoute = function(origin,destination,cb) {
@@ -344,13 +343,8 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
             };
             directionsService.route(request, function(response, status) {
               if (status == google.maps.DirectionsStatus.OK) {
-                wait = false;
                 cb(null, response.routes[0].legs[0].duration.value);
               } else {
-                wait = true;
-                setTimeout(true, 5000);
-                k--;
-                console.log(wait);
                 cb(status);
               }
             });
@@ -360,7 +354,28 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
             if (!err) {
               $scope.time[$scope.index].tiempos.push(dist);
 
-            }else {
+            } else if (err == google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
+
+              $timeout(function () {
+                var aux = $scope.time[$scope.index].tiempos.length;
+                var end;
+                for (var i = 0; i < $scope.goalMarkers.length; i++) {
+                  if ($scope.goalMarkers[i].label == $scope.time[$scope.index].value){
+                    end = $scope.goalMarkers[i].position;
+                  }
+                }
+                for (var p = aux; p < app.houses.length; p++) {
+                  calcRoute(new google.maps.LatLng(app.houses[p].lat, app.houses[p].lng),end, function (err, dist) {
+                    if (!err) {
+                      $scope.time[$scope.index].tiempos.push(dist);
+                    }else {
+                      console.log(err);
+                    }
+                  });
+                }
+              }, 5000);
+
+            } else {
               console.log(err);
             }
           });
