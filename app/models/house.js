@@ -15,6 +15,7 @@ var HouseSchema = new Schema({
   streetclose: {type: Boolean},
   guard: {type: Boolean},
   zonetype : {type: String},
+  type : {type: String},
   age: {type: Number},
   price: {type: Number},
   lat: {type: Number},

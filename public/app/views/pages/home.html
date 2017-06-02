@@ -44,7 +44,7 @@
 </div>
 
 
-<div class="container" ng-show="home.priorities">
+<div class="container" ng-show="priorities">
   <div class="row">
     <h1 class="text-center">Sistema de prioridades</h1>
   </div>
@@ -71,7 +71,6 @@
     <div class="col-md-4" >
       <div ng-show="home.priorityGoal.length>0">
         <fusioncharts
-
             width="100%"
             height="200"
             type="pie3d"
@@ -93,9 +92,9 @@
           <option ng-repeat="option in home.availableOptions" >{{option.nombre}}</option>
         </select>
         <input type="number" class="form-control" ng-model="home.priorityInputA" placeholder="ej: 1000.00"
-          ng-hide="home.prioritySelected == 'Baños'|| home.prioritySelected == 'Cuartos' || home.prioritySelected == 'Estacionamiento' || home.prioritySelected == 'Calle Cerrada'|| home.prioritySelected == 'Vigilante'">
+          ng-show="home.prioritySelected == 'Dimensiones (Ancho)'|| home.prioritySelected == 'Dimensiones (Largo)' || home.prioritySelected == 'Metros de Construción' || home.prioritySelected == 'Metro Cuadrados'|| home.prioritySelected == 'Precio'">
         <select class="form-control text-center" ng-model="home.priorityInputB"
-          ng-show="home.prioritySelected == 'Baños'|| home.prioritySelected == 'Cuartos' || home.prioritySelected == 'Estacionamiento'">
+          ng-show="home.prioritySelected == 'Pisos'|| home.prioritySelected == 'Baños'|| home.prioritySelected == 'Cuartos' || home.prioritySelected == 'Estacionamiento'">
           <option>0</option>
           <option>1</option>
           <option>2</option>
@@ -111,8 +110,9 @@
           <option>No</option>
         </select>
       </div>
-        <button type="submit" class="btn btn-link" ng-show="auxPlusGoal<10"><i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i></button>
-
+        <button ng-hide="home.prioritySelected == 'Distancia' && !markerGoal " type="submit" class="btn btn-link" ng-show="auxPlusGoal<10">
+          <i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i>
+        </button>
     </form>
   </div>
   <div class="row" style="margin-bottom: 10px">
@@ -120,6 +120,10 @@
     <button type="button" class="btn btn-danger" ng-click="home.resetOrder()" ng-show="home.priorityGoal.length != 0">Borrar Todo</button>
     <span ng-hide="home.leftPercentaje == 0" >Todavia tienes porcentajes por repartir</span>
   </div>
+  <div class="row" style="height:300px; margin-bottom: 10px;" ng-show="home.prioritySelected == 'Distancia'">
+    <div id="map-goals"></div>
+  </div>
+
 
 </div>
 
@@ -307,7 +311,16 @@
       </div>
       <br>
       <div class="row">
-        <div class="form-group col-sm-6">
+        <div class="form-group col-sm-4">
+          <label>Tipo de Inmueble</label>
+          <select class="form-control text-center" ng-model="home.regData.rooms">
+            <option>Casa</option>
+            <option>Apartamento</option>
+            <option>Terreno</option>
+            <option>Townhouse</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-4">
           <label>Habitaciones</label>
           <select class="form-control text-center" ng-model="home.regData.rooms">
             <option>0</option>
@@ -322,7 +335,7 @@
         </div>
 
         <!-- Bathrooms -->
-        <div class="form-group col-sm-6">
+        <div class="form-group col-sm-4">
           <label>Baños</label>
           <select class="form-control" ng-model="home.regData.bathrooms">
             <option>0</option>
@@ -377,11 +390,11 @@
 
       <div class="row">
         <div class="form-group col-sm-6">
-          <label>Metros Cuadrados (m^2) </label>
+          <label>Metros Cuadrados (m<sup>2</sup>) </label>
           <input class="form-control text-center" type="number" ng-disabled="home.calcM" ng-min="0" step="0.01" placeholder="ej: 1,253.4" ng-model="home.regData.meters" required>
         </div>
         <div class="form-group col-sm-6">
-          <label>Metros de Contrucción (m^2)</label>
+          <label>Metros de Contrucción (m<sup>2</sup>)</label>
           <input class="form-control text-center" type="number" ng-min="0" step="0.01" placeholder="ej: 1,253.4" ng-model="home.regData.consmeters" required>
         </div>
       </div>
@@ -512,7 +525,17 @@
           </div>
 
           <div class="caption text-center">
+
             <h3>{{item.price | currency:"Bsf "}}</h3>
+            <p>
+              <i class="fa fa-bath" aria-hidden="true"></i> {{ item.bathrooms }} <span style="padding: 0px 5px;"></span>
+              <i class="fa fa-hotel" aria-hidden="true"></i> {{ item.rooms }} <span style="padding: 0px 5px;"></span>
+              <i class="fa fa-car" aria-hidden="true"></i> {{ item.parking }}
+            </p>
+            <p>
+              <i class="fa fa-home" aria-hidden="true"></i> {{ item.consmeters }}m<sup>2</sup> <span style="padding: 0px 5px;"></span>
+              <i class="fa fa-map" aria-hidden="true"></i> {{ item.meters }}m<sup>2</sup>
+            </p>
             <p><label>Ubicación: </label> {{item.address}}</p>
             <a href="/house/{{ item._id }}" ng-show="sheckLogIng()">
               <button type="button" class="btn btn-info ">Ver</button>

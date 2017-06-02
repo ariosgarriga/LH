@@ -20,7 +20,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   $scope.disabled = false;
   app.compare = [];
   app.regData.zonetype = 'N/D';
-  app.priorities = false;
+  $scope.priorities = false;
   $scope.orderByHouses = 'price';
   function compare(a,b) {
     if (a.nombre < b.nombre)
@@ -35,12 +35,13 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
     {nombre: 'Dimensiones (Ancho)', name: 'dimensionsX'},
     {nombre: 'Dimensiones (Largo)', name: 'dimensionsY'},
     {nombre: 'Pisos', name: 'floors'},
-    {nombre: 'Metros de Construción (m^2)', name: 'consmeters'},
-    {nombre: 'Metro Cuadrados (m^2)', name: 'meters'},
+    {nombre: 'Metros de Construción', name: 'consmeters'},
+    {nombre: 'Metro Cuadrados', name: 'meters'},
     {nombre: 'Precio', name: 'price'},
     {nombre: 'Estacionamiento', name: 'parking'},
     {nombre: 'Calle Cerrada', name: 'streetclose'},
-    {nombre: 'Vigilante', name: 'guard'}
+    {nombre: 'Vigilante', name: 'guard'},
+    {nombre: 'Distancia', name: 'latlng'}
   ];
   app.availableOptions.sort(compare);
   app.prioritySelected = '--Seleccione--';
@@ -69,6 +70,46 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   $scope.orderByToggle = true;
   $scope.orderByArgument = 'created_at';
   app.calcM = false;
+  $scope.labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  $scope.labelIndex = 0;
+  $scope.goalMarkers = [];
+  $scope.time = [];
+  var directionsService = new google.maps.DirectionsService();
+
+
+  app.initMapGoals = function() {
+    app.mapGoals = new google.maps.Map(document.getElementById('map-goals'), {
+      center: {lat: 10.491961, lng: -66.845288},
+      zoom: 16
+    });
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        app.mapGoals.setCenter(pos);
+      });
+    }
+
+    app.mapGoals.addListener('click', function(event) {
+      if (!$scope.markerGoal) {
+        $scope.markerGoal = new google.maps.Marker({
+          position: event.latLng,
+          map : app.mapGoals,
+          label: $scope.labels[$scope.labelIndex++ % $scope.labels.length],
+          draggable: true
+        });
+
+      }
+        console.log($scope.markerGoal);
+    });
+
+  }
+
+  app.initMapGoals();
+
 
 
 
@@ -100,6 +141,8 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
 
   app.sortPriorities = function(){
     var auxPriority = JSON.parse(angular.toJson(app.priorityGoal));
+    console.log($scope.time);
+
     function compare(a,b) {
       if (a.name < b.name)
         return -1;
@@ -115,62 +158,68 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
         auxPriority[i].value = 1;
       } else if (auxPriority[i].value == 'No' ){
         auxPriority[i].value = 0;
+      } else if (auxPriority[i].position) {
+
       }
     }
 
-    for (var i = 0; i < app.houses.length; i++) {
+      for (var i = 13; i < app.houses.length; i++) {
+        console.log(auxPriority);
+        var house = [];
 
-      var house = [];
+        for (var j = 0; j < auxPriority.length; j++) {
+          var aux = auxPriority[j].name;
 
-      for (var j = 0; j < auxPriority.length; j++) {
-        var aux = auxPriority[j].name;
+          if (aux == 'streetclose' || aux == 'guard') {
 
-        if (aux == 'streetclose' || aux == 'guard') {
+            if (app.houses[i][aux]) {
+              house.push(1);
+            } else {
+              house.push(0);
+            }
 
-          if (app.houses[i][aux]) {
-            house.push(1);
+          }else if (auxPriority[j].position) {
+            house.push(app.houses[i].time);
           } else {
-            house.push(0);
+            house.push(app.houses[i][aux]);
           }
 
-        }else {
-          house.push(app.houses[i][aux]);
         }
 
-      }
+        console.log(house);
 
-      var z = 0;
-      var aux = 0;
+        var z = 0;
+        var aux = 0;
 
-      for (var j = 0; j < auxPriority.length; j++) {
+        for (var j = 0; j < auxPriority.length; j++) {
 
-        if (auxPriority[j].name == 'price') {
-          aux = house[j] - auxPriority[j].value;
-        } else {
-          aux =  auxPriority[j].value - house[j];
-        }
-
-        if(aux<0){
-          aux = 0;
-        }
-        var aux2 = 0;
-        if (auxPriority[j].name == 'guard' || auxPriority[j].name == 'streetclose') {
-          if (auxPriority[j].value == house[j]) {
-            aux2 = 0;
+          if ((auxPriority[j].name == 'price') || auxPriority[j].position) {
+            aux = house[j] - auxPriority[j].value;
           } else {
-            aux2 = auxPriority[j].percentaje * 0.1;
+            aux =  auxPriority[j].value - house[j];
           }
-        }else {
-          aux2 = auxPriority[j].percentaje * 0.1 * aux / auxPriority[j].value;
+
+          if(aux<0){
+            aux = 0;
+          }
+
+          var aux2 = 0;
+          if (auxPriority[j].name == 'guard' || auxPriority[j].name == 'streetclose') {
+            if (auxPriority[j].value == house[j]) {
+              aux2 = 0;
+            } else {
+              aux2 = auxPriority[j].percentaje * 0.1;
+            }
+          } else {
+            aux2 = auxPriority[j].percentaje * 0.1 * aux / auxPriority[j].value;
+          }
+          z = z + aux2;
+          console.log(i+"-->"+z);
         }
-
-        z = z + aux2;
+        app.houses[i].z = z;
       }
-      app.houses[i].z = z;
-    }
-
-    $scope.orderByToggle = false;
-    $scope.orderByArgument = 'z';
+      $scope.orderByToggle = false;
+      $scope.orderByArgument = 'z';
   }
 
   app.resetOrder = function(){
@@ -201,10 +250,10 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   }
 
   app.addPriority = function(){
-    if(app.priorities){
-      app.priorities = false;
+    if($scope.priorities){
+      $scope.priorities = false;
     } else {
-      app.priorities = true;
+      $scope.priorities = true;
     }
   }
 
@@ -214,8 +263,18 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
       nombre: app.priorityGoal[index].nombre,
       name: app.priorityGoal[index].name
     }
+    if (option.nombre != 'Distancia') {
+      app.availableOptions.push(option);
+    } else {
+      console.log(app.priorityGoal[index]);
+      console.log($scope.goalMarkers);
+      for (var i = 0; i < $scope.goalMarkers.length; i++) {
+        if ($scope.goalMarkers[i].label == app.priorityGoal[index].value) {
+          $scope.goalMarkers[i].setMap(null);
+        }
+      }
+    }
 
-    app.availableOptions.push(option);
     function compare(a,b) {
       if (a.nombre < b.nombre)
         return -1;
@@ -223,6 +282,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
         return 1;
       return 0;
     }
+
     app.availableOptions.sort(compare);
     $scope.myDataSource.data.splice(index, 1);
     app.priorityGoal.splice(index, 1);
@@ -252,11 +312,60 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
     data.value = 0;
     $scope.myDataSource.data.push(data);
 
+
     if (app.prioritySelected !== '--Seleccione--') {
       if (app.prioritySelected == 'Baños'|| app.prioritySelected == 'Cuartos' || app.prioritySelected == 'Estacionamiento') {
         goal.value = app.priorityInputB;
       } else if (app.prioritySelected == 'Calle Cerrada'|| app.prioritySelected == 'Vigilante') {
         goal.value = app.priorityInputC;
+      } else if (app.prioritySelected == 'Distancia') {
+        goal.position = $scope.markerGoal.position;
+        goal.value = $scope.markerGoal.label;
+        $scope.markerGoal.setDraggable(false);
+        $scope.goalMarkers.push($scope.markerGoal);
+
+        $scope.index = $scope.time.length;
+        var obj = {
+          value:$scope.markerGoal.label,
+          tiempos: []
+        }
+        $scope.time.push(obj);
+
+        var wait = false;
+        for (var k = 0; k < app.houses.length; k++){
+
+          var calcRoute = function(origin,destination,cb) {
+            var dist;
+            var directionsService = new google.maps.DirectionsService();
+            var request = {
+              origin:origin,
+              destination:destination,
+              travelMode: google.maps.DirectionsTravelMode.DRIVING
+            };
+            directionsService.route(request, function(response, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                wait = false;
+                cb(null, response.routes[0].legs[0].duration.value);
+              } else {
+                wait = true;
+                setTimeout(true, 5000);
+                k--;
+                console.log(wait);
+                cb(status);
+              }
+            });
+          };
+
+          calcRoute(new google.maps.LatLng(app.houses[k].lat, app.houses[k].lng),$scope.markerGoal.position, function (err, dist) {
+            if (!err) {
+              $scope.time[$scope.index].tiempos.push(dist);
+
+            }else {
+              console.log(err);
+            }
+          });
+        }
+
       } else {
         goal.value = app.priorityInputA;
       }
@@ -279,11 +388,16 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
       $scope.updateGraph();
     }
 
-    app.availableOptions.splice(index, 1);
+    if (app.prioritySelected != 'Distancia') {
+      app.availableOptions.splice(index, 1);
+    }
+
     app.prioritySelected = '--Seleccione--';
     app.priorityInputA = '';
     app.priorityInputB = 0;
     app.priorityInputC = 'Si';
+    $scope.markerGoal = null;
+    console.log(app.priorityGoal);
   }
 
 
@@ -563,11 +677,24 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
     app.regData.zonetype = 'N/D';
   }
 
+
   app.initMap();
 
+
+
   $scope.$watch('regHouseForm', function () {
+
     window.setTimeout(function(){
       google.maps.event.trigger(app.map, 'resize');
+    },100);
+  });
+
+  $scope.$watch(angular.bind(this, function (prioritySelected) {
+    return this.prioritySelected;
+  }), function (newVal, oldVal) {
+    // console.log('Name changed to ' + newVal);
+    window.setTimeout(function(){
+      google.maps.event.trigger(app.mapGoals, 'resize');
     },100);
   });
 
@@ -650,7 +777,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
         //Create Success Message
         app.successMsg = data.data.message;
         //Redirect to home page
-        $anchorScroll(); 
+        $anchorScroll();
         $timeout(function () {
           $window.location.reload();
         }, 2000);
@@ -737,7 +864,7 @@ app.filter('customSearch',[function(){
                     output.push(data[i]);
                 }
             }
-        }  else if(!!min){ /**@case3 if only max query is present**/
+        }  else if(!!min){ /**@case3 if only min query is present**/
             for(var i = 0;i<data.length; i++){
                 if(data[i].price >= min){
                     output.push(data[i]);

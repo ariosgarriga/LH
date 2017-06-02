@@ -109,7 +109,7 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
 
 
   app.initMap = function() {
-    app.map = new google.maps.Map(document.getElementById('map'), {
+    app.map = new google.maps.Map(document.getElementById('map-profile'), {
       center: {lat: app.data.lat, lng: app.data.lng},
       zoom: 16,
       draggable: false,

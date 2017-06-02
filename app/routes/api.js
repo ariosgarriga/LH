@@ -270,6 +270,7 @@ module.exports = function(router){
     house.morePictures = req.body.morePictures;
     house.id_user = req.body.id_user;
     house.zonetype = req.body.zonetype;
+    house.type = req.body.type;
     house.pro_name = req.body.pro_name;
     house.pro_phone = req.body.pro_phone;
     house.pro_direction = req.body.pro_direction;
@@ -331,6 +332,7 @@ module.exports = function(router){
                   picture : req.body.picture,
                   morePictures : req.body.morePictures,
                   zonetype : req.body.zonetype,
+                  type : req.body.type,
                   pro_name : req.body.pro_name,
                   pro_phone : req.body.pro_phone,
                   pro_direction : req.body.pro_direction,
@@ -368,6 +370,7 @@ module.exports = function(router){
                   picture : req.body.picture,
                   morePictures : req.body.morePictures,
                   zonetype : req.body.zonetype,
+                  type : req.body.type,
                   pro_name : req.body.pro_name,
                   pro_phone : req.body.pro_phone,
                   pro_direction : req.body.pro_direction,
