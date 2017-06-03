@@ -1,4 +1,4 @@
-angular.module('houseControllers', ['userServices', 'houseServices'])
+angular.module('houseControllers', ['userServices', 'houseServices', 'locationServices'])
 
 .controller('houseCtrl', function($http, $scope, $routeParams, $window, $location, $timeout, User, House, Auth) {
 
@@ -190,7 +190,7 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
 
 })
 
-.controller('editHouseCtrl', function($http, $anchorScroll, $scope, $routeParams, filepickerService, $window, $location, $timeout, User, House) {
+.controller('editHouseCtrl', function($http, $anchorScroll, $scope, Areas, $routeParams, filepickerService, $window, $location, $timeout, User, House) {
 
   var app = this;
   $scope.myInterval = 0;
@@ -201,6 +201,9 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
   var slides = $scope.slides = [];
   var currIndex = 0;
 
+  app.calculateMeters = function(){
+    app.data.meters = app.data.dimensionsY * app.data.dimensionsX;
+  }
 
   $scope.addSlide = function(url) {
    slides.push({
@@ -261,33 +264,27 @@ angular.module('houseControllers', ['userServices', 'houseServices'])
       zoom: 16
     });
 
-    var LaFlorestaCoords = [
-      {lng: -66.8484547175467, lat: 10.495428761731864},
-      {lng: -66.84319758787751, lat: 10.496789623167475},
-      {lng: -66.84313321486115, lat: 10.494795800884317},
-      {lng: -66.84339070692658, lat: 10.494510968080306},
-      {lng: -66.84276843443513, lat: 10.493382183648023},
-      {lng: -66.84302592650056, lat: 10.492095153381955},
-      {lng: -66.84329414740205, lat: 10.490776469277407},
-      {lng: -66.84246802702546, lat: 10.489141293182778},
-      {lng: -66.84079432860017, lat: 10.488772058675266},
-      {lng: -66.84077287092805, lat: 10.488487220325627},
-      {lng: -66.84281134977937, lat: 10.488592716041241},
-      {lng: -66.84518242254853, lat: 10.488845905612017},
-      {lng: -66.84781098738313, lat: 10.489478878632676},
-      {lng: -66.84825086966157, lat: 10.49063932580788}
-    ];
+    app.map.polyArray = [];
 
-    var LaFloresta = new google.maps.Polygon({
-      paths: LaFlorestaCoords,
-      strokeColor: '#FF0000',
-      strokeOpacity: 0.8,
-      strokeWeight: 1,
-      fillColor: '#FF0000',
-      fillOpacity: 0.1
-    });
+    for (var i = 0; i < Areas.length; i++) {
+      app.map.polyArray.push(Areas[i]);
+      app.map.polyArray[i].setMap(app.map);
+    }
 
-    LaFloresta.setMap(app.map);
+    app.map.addListener('dragend', showArrays);
+    app.map.addListener('zoom_changed', showArrays);
+
+  }
+
+  function showArrays() {
+    for (var i = 0; i < app.map.polyArray.length; i++) {
+      if(google.maps.geometry.poly.containsLocation(app.map.getCenter(), app.map.polyArray[i]) == true) {
+        app.data.zonetype = app.map.polyArray[i].zonetype;
+
+        return
+      }
+    }
+    app.data.zonetype = 'N/D';
   }
 
 

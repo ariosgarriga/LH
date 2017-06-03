@@ -83,7 +83,16 @@
       </div>
       <br>
       <div class="row">
-        <div class="form-group col-sm-6">
+        <div class="form-group col-sm-4">
+          <label>Tipo de Inmueble</label>
+          <select class="form-control text-center" ng-model="editHouse.data.type">
+            <option>Casa</option>
+            <option>Apartamento</option>
+            <option>Terreno</option>
+            <option>Townhouse</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-4">
           <label>Habitaciones</label>
           <select class="form-control text-center" ng-model="editHouse.data.rooms">
             <option>0</option>
@@ -98,7 +107,7 @@
         </div>
 
         <!-- Bathrooms -->
-        <div class="form-group col-sm-6">
+        <div class="form-group col-sm-4">
           <label>Baños</label>
           <select class="form-control" ng-model="editHouse.data.bathrooms">
             <option>0</option>
@@ -122,13 +131,13 @@
             <label>Dimensiones(m)</label>
           </div>
           <div class="col-sm-5">
-            <input class="form-control text-center" type="number" ng-change="house.calculateMeters()" ng-disabled="!editHouse.calcM" ng-min="0" step="0.01" placeholder="Ancho" ng-model="editHouse.data.dimensionsX" >
+            <input class="form-control text-center" type="number" ng-change="editHouse.calculateMeters()" ng-disabled="!editHouse.calcM" ng-min="0" step="0.01" placeholder="Ancho" ng-model="editHouse.data.dimensionsX" >
           </div>
           <div class="col-sm-2 text-center">
             <span>x</span>
           </div>
           <div class="col-sm-5">
-            <input class="form-control text-center" type="number" ng-change="house.calculateMeters()" ng-disabled="!editHouse.calcM" ng-min="0" step="0.001" placeholder="Largo" ng-model="editHouse.data.dimensionsY" >
+            <input class="form-control text-center" type="number" ng-change="editHouse.calculateMeters()" ng-disabled="!editHouse.calcM" ng-min="0" step="0.001" placeholder="Largo" ng-model="editHouse.data.dimensionsY" >
           </div>
         </div>
         <div class="col-sm-3">
@@ -315,6 +324,9 @@
       </div>
 
       <br>
+      <a href="/house/{{ editHouse.data._id }}" >
+        <button type="button" class="btn btn-danger ">Cancelar</button>
+      </a>
       <button class="btn btn-primary" type="submit">Guardar</button>
       <button class="btn btn-danger" ng-click="openModal()">Eliminar</button>
 

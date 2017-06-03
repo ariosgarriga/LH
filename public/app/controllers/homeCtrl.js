@@ -1,6 +1,6 @@
-var app = angular.module('homeController', ['houseServices', 'authServices', 'userServices'])
+var app = angular.module('homeController', ['houseServices', 'authServices', 'userServices', 'locationServices'])
 
-.controller('homeCtrl', function($http, $anchorScroll, filepickerService, $interpolate, $scope, $filter, $window, $rootScope, $location, $timeout, User, House, $routeParams, Auth) {
+.controller('homeCtrl', function($http, $anchorScroll, filepickerService, $interpolate, $scope, $filter, $window, $rootScope, $location, $timeout, Areas, User, House, $routeParams, Auth) {
   var app = this;
   app.regData = {};
   $scope.superhero = {};
@@ -75,6 +75,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   $scope.goalMarkers = [];
   $scope.time = [];
   var directionsService = new google.maps.DirectionsService();
+  app.regData.type = 'Casa';
 
 
   app.initMapGoals = function() {
@@ -159,67 +160,95 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
       } else if (auxPriority[i].value == 'No' ){
         auxPriority[i].value = 0;
       } else if (auxPriority[i].position) {
+        var min=9999999999999;
+        for (var k = 0; k < $scope.time.length; k++) {
+          if ($scope.time[k].value == auxPriority[i].value) {
+            for (var p = 0; p < $scope.time[k].tiempos.length; p++) {
 
+              if ($scope.time[k].tiempos[p].routes[0].legs[0].duration.value < min) {
+                min = $scope.time[k].tiempos[p].routes[0].legs[0].duration.value;
+              }
+            }
+
+          }
+        }
+        auxPriority[i].min = min;
       }
     }
 
-      for (var i = 13; i < app.houses.length; i++) {
-        console.log(auxPriority);
-        var house = [];
 
-        for (var j = 0; j < auxPriority.length; j++) {
-          var aux = auxPriority[j].name;
+    console.log(auxPriority);
 
-          if (aux == 'streetclose' || aux == 'guard') {
+    for (var i = 0; i < app.houses.length; i++) {
+      var house = [];
 
-            if (app.houses[i][aux]) {
-              house.push(1);
-            } else {
-              house.push(0);
+      for (var j = 0; j < auxPriority.length; j++) {
+        var aux = auxPriority[j].name;
+
+        if (aux == 'streetclose' || aux == 'guard') {
+
+          if (app.houses[i][aux]) {
+            house.push(1);
+          } else {
+            house.push(0);
+          }
+
+        }else if (auxPriority[j].position) {
+
+          for (var k = 0; k < $scope.time.length; k++) {
+            if ($scope.time[k].value == auxPriority[j].value) {
+              for (var p = 0; p < $scope.time[k].tiempos.length; p++) {
+                if ($scope.time[k].tiempos[p].idHouse == app.houses[i]._id) {
+                  house.push($scope.time[k].tiempos[p].routes[0].legs[0].duration.value);
+                }
+              }
             }
-
-          }else if (auxPriority[j].position) {
-            house.push(app.houses[i].time);
-          } else {
-            house.push(app.houses[i][aux]);
           }
 
+        } else {
+          house.push(app.houses[i][aux]);
         }
-
-        console.log(house);
-
-        var z = 0;
-        var aux = 0;
-
-        for (var j = 0; j < auxPriority.length; j++) {
-
-          if ((auxPriority[j].name == 'price') || auxPriority[j].position) {
-            aux = house[j] - auxPriority[j].value;
-          } else {
-            aux =  auxPriority[j].value - house[j];
-          }
-
-          if(aux<0){
-            aux = 0;
-          }
-
-          var aux2 = 0;
-          if (auxPriority[j].name == 'guard' || auxPriority[j].name == 'streetclose') {
-            if (auxPriority[j].value == house[j]) {
-              aux2 = 0;
-            } else {
-              aux2 = auxPriority[j].percentaje * 0.1;
-            }
-          } else {
-            aux2 = auxPriority[j].percentaje * 0.1 * aux / auxPriority[j].value;
-          }
-          z = z + aux2;
-          console.log(i+"-->"+z);
-        }
-        app.houses[i].z = z;
       }
-      $scope.orderByToggle = false;
-      $scope.orderByArgument = 'z';
+
+      console.log(house);
+
+      var z = 0;
+      var aux = 0;
+
+      for (var j = 0; j < auxPriority.length; j++) {
+
+        if (auxPriority[j].name == 'price') {
+          aux = house[j] - auxPriority[j].value;
+        } else if (auxPriority[j].position) {
+          aux = house[j] - auxPriority[j].min;
+        } else {
+          aux =  auxPriority[j].value - house[j];
+        }
+
+        if(aux<0){
+          aux = 0;
+        }
+
+        var aux2 = 0;
+        if (auxPriority[j].name == 'guard' || auxPriority[j].name == 'streetclose') {
+          if (auxPriority[j].value == house[j]) {
+            aux2 = 0;
+          } else {
+            aux2 = auxPriority[j].percentaje * 0.1;
+          }
+        } else if (auxPriority[j].position) {
+          aux2 = auxPriority[j].percentaje * 0.1 * aux / auxPriority[j].min;
+        } else {
+          aux2 = auxPriority[j].percentaje * 0.1 * aux / auxPriority[j].value;
+        }
+        z = z + aux2;
+
+      }
+      app.houses[i].z = z;
+
+    }
+    $scope.orderByToggle = false;
+    $scope.orderByArgument = 'z';
   }
 
   app.resetOrder = function(){
@@ -254,6 +283,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
       $scope.priorities = false;
     } else {
       $scope.priorities = true;
+      $scope.regHouseForm = false;
     }
   }
 
@@ -266,11 +296,10 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
     if (option.nombre != 'Distancia') {
       app.availableOptions.push(option);
     } else {
-      console.log(app.priorityGoal[index]);
-      console.log($scope.goalMarkers);
       for (var i = 0; i < $scope.goalMarkers.length; i++) {
         if ($scope.goalMarkers[i].label == app.priorityGoal[index].value) {
           $scope.goalMarkers[i].setMap(null);
+          $scope.time.splice(i,1);
         }
       }
     }
@@ -314,7 +343,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
 
 
     if (app.prioritySelected !== '--Seleccione--') {
-      if (app.prioritySelected == 'Baños'|| app.prioritySelected == 'Cuartos' || app.prioritySelected == 'Estacionamiento') {
+      if (app.prioritySelected == 'Baños'|| app.prioritySelected == 'Cuartos' || app.prioritySelected == 'Estacionamiento' || app.prioritySelected == 'Pisos') {
         goal.value = app.priorityInputB;
       } else if (app.prioritySelected == 'Calle Cerrada'|| app.prioritySelected == 'Vigilante') {
         goal.value = app.priorityInputC;
@@ -333,7 +362,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
 
         for (var k = 0; k < app.houses.length; k++){
 
-          var calcRoute = function(origin,destination,cb) {
+          var calcRoute = function(id,origin,destination,cb) {
             var dist;
             var directionsService = new google.maps.DirectionsService();
             var request = {
@@ -343,19 +372,18 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
             };
             directionsService.route(request, function(response, status) {
               if (status == google.maps.DirectionsStatus.OK) {
-                cb(null, response.routes[0].legs[0].duration.value);
+                response.idHouse = id;
+                cb(null, response);
               } else {
                 cb(status);
               }
             });
           };
 
-          calcRoute(new google.maps.LatLng(app.houses[k].lat, app.houses[k].lng),$scope.markerGoal.position, function (err, dist) {
+          calcRoute(app.houses[k]._id, new google.maps.LatLng(app.houses[k].lat, app.houses[k].lng),$scope.markerGoal.position, function (err, dist) {
             if (!err) {
               $scope.time[$scope.index].tiempos.push(dist);
-
             } else if (err == google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
-
               $timeout(function () {
                 var aux = $scope.time[$scope.index].tiempos.length;
                 var end;
@@ -365,7 +393,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
                   }
                 }
                 for (var p = aux; p < app.houses.length; p++) {
-                  calcRoute(new google.maps.LatLng(app.houses[p].lat, app.houses[p].lng),end, function (err, dist) {
+                  calcRoute(app.houses[p]._id, new google.maps.LatLng(app.houses[p].lat, app.houses[p].lng),end, function (err, dist) {
                     if (!err) {
                       $scope.time[$scope.index].tiempos.push(dist);
                     }else {
@@ -374,7 +402,6 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
                   });
                 }
               }, 5000);
-
             } else {
               console.log(err);
             }
@@ -536,134 +563,10 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
 
     app.map.polyArray = [];
 
-    var LaFlorestaCoords = [
-      {lng: -66.8484547175467, lat: 10.495428761731864},
-      {lng: -66.84319758787751, lat: 10.496789623167475},
-      {lng: -66.84313321486115, lat: 10.494795800884317},
-      {lng: -66.84339070692658, lat: 10.494510968080306},
-      {lng: -66.84276843443513, lat: 10.493382183648023},
-      {lng: -66.84302592650056, lat: 10.492095153381955},
-      {lng: -66.84329414740205, lat: 10.490776469277407},
-      {lng: -66.84246802702546, lat: 10.489141293182778},
-      {lng: -66.84079432860017, lat: 10.488772058675266},
-      {lng: -66.84077287092805, lat: 10.488487220325627},
-      {lng: -66.84281134977937, lat: 10.488592716041241},
-      {lng: -66.84518242254853, lat: 10.488845905612017},
-      {lng: -66.84781098738313, lat: 10.489478878632676},
-      {lng: -66.84825086966157, lat: 10.49063932580788}
-    ];
-    var LaFloresta = new google.maps.Polygon({
-      paths: LaFlorestaCoords,
-      strokeColor: '#FF0000',
-      strokeOpacity: 0.8,
-      strokeWeight: 1,
-      fillColor: '#FF0000',
-      fillOpacity: 0.1
-    });
-    LaFloresta.setMap(app.map);
-
-    var cslcCoords = [
-      new google.maps.LatLng(10.495180687387377, -66.8445311486721),
-      new google.maps.LatLng(10.495346839528478, -66.84439167380333),
-      new google.maps.LatLng(10.495845295416235, -66.84455260634422),
-      new google.maps.LatLng(10.49594551396333, -66.84424683451653),
-      new google.maps.LatLng(10.49591122867455, -66.84423878788948),
-      new google.maps.LatLng(10.495995623224701, -66.84401616454124),
-      new google.maps.LatLng(10.49608792973755, -66.8438820540905),
-      new google.maps.LatLng(10.49617232423947, -66.84358432888985),
-      new google.maps.LatLng(10.496188148206022, -66.84335365891457),
-      new google.maps.LatLng(10.496177598895082, -66.84318736195564),
-      new google.maps.LatLng(10.49550507957989, -66.84320345520973),
-      new google.maps.LatLng(10.495399586221275, -66.84315785765648),
-      new google.maps.LatLng(10.495383762214377, -66.84353604912758),
-      new google.maps.LatLng(10.495370575541353, -66.84398666024208),
-      new google.maps.LatLng(10.495143764677229, -66.84448823332787)
-    ];
-    var Cslc = new google.maps.Polygon({
-      paths: cslcCoords,
-      strokeColor: '#000000',
-      strokeOpacity: 0.8,
-      strokeWeight: 1,
-      fillColor: '#FF0000',
-      fillOpacity: 0.1,
-      zonetype: 'E'
-    });
-    Cslc.setMap(app.map);
-    app.map.polyArray.push(Cslc);
-
-    var ArufloCoords = [
-      new google.maps.LatLng(10.490702457965472, -66.84556514024734),
-      new google.maps.LatLng(10.49072355696042, -66.84566169977188),
-      new google.maps.LatLng(10.490987294276058, -66.84566169977188),
-      new google.maps.LatLng(10.49088179937678, -66.84502333402634),
-      new google.maps.LatLng(10.490639160971948, -66.8450340628624),
-      new google.maps.LatLng(10.490648412071813, -66.84510899965579),
-      new google.maps.LatLng(10.490570589214355, -66.84510916471481),
-      new google.maps.LatLng(10.490549490208961, -66.8450179696083),
-      new google.maps.LatLng(10.490285752520169, -66.84504479169846),
-      new google.maps.LatLng(10.490385972868388, -66.84560269117355),
-      new google.maps.LatLng(10.490612787220831, -66.84562548995018),
-      new google.maps.LatLng(10.490618061971235, -66.84556648135185)
-    ];
-    var ArufloCentral = new google.maps.Polygon({
-      paths: ArufloCoords,
-      strokeColor: '#000000',
-      strokeOpacity: 0.8,
-      strokeWeight: 1,
-      fillColor: '#FF0000',
-      fillOpacity: 0.1,
-      zonetype: 'P'
-    });
-    ArufloCentral.setMap(app.map);
-    app.map.polyArray.push(ArufloCentral);
-
-    var ClinicaCoord = [
-      new google.maps.LatLng(10.494840470819938, -66.84543505311012),
-      new google.maps.LatLng(10.494429045633824, -66.84606000781059),
-      new google.maps.LatLng(10.494239156901802, -66.8461699783802),
-      new google.maps.LatLng(10.49358509482147, -66.8462236225605),
-      new google.maps.LatLng(10.493645753862914, -66.84517487883568),
-      new google.maps.LatLng(10.49392795011671, -66.84512659907341),
-      new google.maps.LatLng(10.493914763381596, -66.8455021083355),
-      new google.maps.LatLng(10.494107289658205, -66.84549942612648),
-      new google.maps.LatLng(10.494254980967272, -66.84512123465538),
-      new google.maps.LatLng(10.494727065214308, -66.84534922242165)
-    ];
-    var Clinica = new google.maps.Polygon({
-      paths: ClinicaCoord,
-      strokeColor: '#000000',
-      strokeOpacity: 0.8,
-      strokeWeight: 1,
-      fillColor: '#FF0000',
-      fillOpacity: 0.1,
-      zonetype: 'R3'
-    });
-    Clinica.setMap(app.map);
-    app.map.polyArray.push(Clinica);
-
-    var LaEstanciaCoords = [
-      new google.maps.LatLng(10.495449695571104, -66.84801399707794),
-      new google.maps.LatLng(10.493508611665307, -66.84794962406158),
-      new google.maps.LatLng(10.493571908071765, -66.84670776128769),
-      new google.maps.LatLng(10.494057180090902, -66.84670776128769),
-      new google.maps.LatLng(10.494073004165655, -66.84627324342728),
-      new google.maps.LatLng(10.4942708050319, -66.84623166918755),
-      new google.maps.LatLng(10.494458056402065, -66.84611365199089),
-      new google.maps.LatLng(10.494436957661787, -66.84633895754814),
-      new google.maps.LatLng(10.495845295416235, -66.8465293943882)
-    ];
-    var LaEstancia = new google.maps.Polygon({
-      paths: LaEstanciaCoords,
-      strokeColor: '#000000',
-      strokeOpacity: 0.8,
-      strokeWeight: 1,
-      fillColor: '#FF0000',
-      fillOpacity: 0.1,
-      zonetype: 'AE-C3-1'
-    });
-    LaEstancia.setMap(app.map);
-    app.map.polyArray.push(LaEstancia);
-
+    for (var i = 0; i < Areas.length; i++) {
+      app.map.polyArray.push(Areas[i]);
+      app.map.polyArray[i].setMap(app.map);
+    }
 
     app.map.addListener('dragend', showArrays);
     app.map.addListener('zoom_changed', showArrays);
@@ -745,6 +648,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
         $scope.regHouseForm = false;
       } else {
         $scope.regHouseForm = true;
+        $scope.priorities = false;
       }
     } else {
       $("#userHouseAuth").modal({backdrop: "static"});
