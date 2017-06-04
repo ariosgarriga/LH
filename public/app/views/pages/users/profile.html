@@ -1,18 +1,13 @@
 <div class="container ">
-  <div class="row ">
-    <div class="col-xs-12 col-sm-6" style="text-align:center;">
-      <h1>Perfil de {{ main.user.name }}</h1>
-    </div>
-  </div>
 
-  <div class="panel panel-info">
-    <div class="panel-heading" style="text-align: center;">
-      <strong>Perfil del Usuario</strong>
+  <div class="panel panel-info ">
+    <div class="panel-heading" style="text-align: center; font-size: 16px;">
+      <strong>Perfil de {{ main.user.name }}</strong>
     </div>
-    <table class="table">
+    <table class="table text-center">
       <tr>
-        <td><strong>Nombre</strong></td>
-        <td>{{ main.user.name }}</td>
+        <td class="col-xs-6"><strong>Nombre</strong></td>
+        <td class="col-xs-6">{{ main.user.name }}</td>
       </tr>
       <tr>
         <td><strong>Apellido</strong></td>
@@ -40,16 +35,14 @@
       </tr>
     </table>
   </div>
-  <div class="row pull-right">
-    <div class="col-xs-12">
-      <a href="/edit/{{ main.user._id }}">
-        <button type="button" class="btn btn-primary ">Editar Perfil</button>
-      </a>
-    </div>
+  <div class="row text-center">
+    <a href="/edit/{{ main.user._id }}">
+      <button type="button" class="btn btn-primary ">Editar Perfil</button>
+    </a>
   </div>
   <div class="col-xs-12 text-center">
     <h1>Mis Publicaciones</h1>
-    <h3 ng-show="main.user.houses.notHouses">No ha realizado ninguna publicación :(</h3>
+    <h3 ng-show="main.user.houses.notHouses">No ha realizado ninguna publicación</h3>
   </div>
 
 

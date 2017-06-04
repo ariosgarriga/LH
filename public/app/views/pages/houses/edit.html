@@ -72,7 +72,17 @@
 
       <!-- Direccion -->
       <div class="row">
-        <div class="form-group col-sm-10">
+        <div class="form-group col-sm-3">
+          <label>Municipio</label>
+          <select class="form-control text-center" ng-model="editHouse.data.township">
+            <option>Baruta</option>
+            <option>Chacao</option>
+            <option>Hatillo</option>
+            <option>Libertador</option>
+            <option>Sucre</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-7">
           <label>Dirección</label>
           <input class="form-control text-center" type="text" name="name" placeholder="Ej: El cafetal, calle limon, Qta wachu" ng-model="editHouse.data.address" required>
         </div>
@@ -267,9 +277,14 @@
 
       <div class="panel panel-info">
         <div class="panel-heading" style="text-align: center;">
-          <strong>Datos del Cliente</strong></strong>
+          <strong>
+            A continuación se le presentan los campos que podra compartir con otros corredores,
+            solo los que se encuentren seleccionados ( <i class="fa fa-check-square-o" aria-hidden="true"></i> ) serán compartidos
+          </strong>
         </div>
-        <table class="table" popover-trigger="'mouseenter'" uib-popover="Selecciona los campos que te gustaria mostrarle a los demas corredores al momento de compartir el inmueble." popover-placement="right" >
+        <!-- <table class="table" popover-trigger="'mouseenter'" uib-popover="Selecciona los campos que te gustaria mostrarle a los demas corredores al momento de compartir el inmueble." popover-placement="right" > -->
+        <table class="table">
+          <tr>
           <tr>
             <td><strong>Nombre</strong></td>
             <td><input type="text" class="form-control" placeholder="Jane Doe"ng-model="editHouse.data.pro_name"></td>
@@ -277,7 +292,7 @@
           </tr>
           <tr>
             <td><strong>Correo</strong></td>
-            <td><input type="email" class="form-control" placeholder="Jogn@ode.com" ng-model="editHouse.data.pro_email"></td>
+            <td><input type="email" class="form-control" placeholder="cliente@correo.com" ng-model="editHouse.data.pro_email"></td>
             <td><input type="checkbox" ng-model="editHouse.data.shared_fields[1]"></td>
           </tr>
           <tr>
@@ -325,10 +340,13 @@
 
       <br>
       <a href="/house/{{ editHouse.data._id }}" >
-        <button type="button" class="btn btn-danger ">Cancelar</button>
+        <button type="button" class="btn btn-warning ">Cancelar</button>
       </a>
       <button class="btn btn-primary" type="submit">Guardar</button>
-      <button class="btn btn-danger" ng-click="openModal()">Eliminar</button>
+      <button class="btn btn-danger" ng-click="openModal()">
+        Eliminar
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+      </button>
 
       <div class="modal fade text-center" id="houseEliminate" role="dialog">
         <div class="modal-dialog">
@@ -337,7 +355,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" ng-click="hideModal()" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Si la elimnas se perderan todos los datos.</h4>
+              <h4 class="modal-title">Si la eliminas se perderán todos los datos.</h4>
             </div>
             <div class="modal-footer text-center">
               <button type="button" class="btn btn-danger" ng-click="eliminate()" data-dismiss="modal">Elminar</button>

@@ -3,40 +3,38 @@
     <div class="col-sm-8 col-sm-offset-2">
 
       <div class="row">
-        <label class="col-sm-2">Que Buscas? </label>
+        <label class="col-sm-2">Ubicación</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Ubicacion" ng-model="searchHouse.address" ng-change="newPagination()">
+          <nit-advanced-searchbox
+            ng-model="searchParams"
+            parameters="availableSearchParams"
+            placeholder="Avenida, Urbanizacion" >
+          </nit-advanced-searchbox>
         </div>
-        <div style="margin-top:40px;">
-          <label class="col-sm-3">Precio Minimo:</label>
+          <label class="col-sm-1">Deste</label>
           <div class="col-sm-3">
-            <input type="number" class="form-control col-sm-3" placeholder="Precio Minimo" ng-model="searchHouse.price.min" value="0" ng-change="newPagination()">
+            <input type="text" ui-number-mask="0" class="form-control col-sm-3" placeholder="0" ng-model="searchHouse.price.min" value="0" ng-change="newPagination()">
           </div>
 
-          <label class="col-sm-3">Precio Maximo:</label>
+          <label class="col-sm-1">Hasta</label>
           <div class="col-sm-3">
-            <input type="number" class="form-control col-sm-3" placeholder="Precio Maximo" ng-model="searchHouse.price.max" value="10000000000"ng-change="newPagination()">
+            <input type="text" ui-number-mask="0" class="form-control col-sm-3" placeholder="999,999,999" ng-model="searchHouse.price.max" value="10000000000"ng-change="newPagination()">
           </div>
-        </div>
       </div>
 
-
-      <!-- <nit-advanced-searchbox
-      	ng-model="searchParams"
-      	parameters="availableSearchParams"
-      	placeholder="Search...">
-      </nit-advanced-searchbox> -->
-
-      <div class="row" style="margin: 10px 0px">
-        <div class="col-sm-4 col-xs-12">
-          <button class="btn btn-warning col-sm-10 col-xs-12" type="button" ng-click="home.addPriority()"> Agregar Prioridades </button>
+      <div class="row" style="margin: 10px 0px 5px 0px;">
+          <button class="btn btn-warning col-xs-12 col-md-6 col-md-offset-3 text-center" type="button" ng-click="home.addPriority()">Busqueda Avanzada</button>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <label>Publicar un inmueble ahora</label>
         </div>
-        <div class="col-sm-4 col-xs-12">
-          <button class="btn btn-success col-sm-10 col-xs-12" type="button" ng-click="home.addHouse()" >Publicar un hogar</button>
-        </div>
-        <div class="col-sm-4 col-xs-12">
-          <button class="btn btn-primary col-sm-10 col-xs-12" type="button" ng-click="home.compareHouses()" ng-show="disabled">Comparar</button>
-        </div>
+      </div>
+      <div class="row" style="margin: 5px 0px;">
+          <button class="btn btn-success col-xs-12 col-md-6 col-md-offset-3 text-center" type="button" ng-click="home.addHouse()" >Publicar un hogar</button>
+      </div>
+      <div class="row" style="margin: 5px 0px;">
+          <button class="btn btn-primary col-xs-12 col-md-6 col-md-offset-3 text-center" type="button" ng-click="home.compareHouses()" ng-show="disabled">Comparar</button>
       </div>
     </div>
   </div>
@@ -46,14 +44,20 @@
 
 <div class="container" ng-show="priorities">
   <div class="row">
-    <h1 class="text-center">Sistema de prioridades</h1>
+    <h2 class="text-center">Busqueda avanzada por metas</h2>
   </div>
-  <div class="row">
-    <div class="panel panel-info col-md-8">
-      <div class="panel-heading" style="text-align: center;">
-        <strong>Metas</strong></strong>
+  <div class="row" ng-show="home.priorityGoal.length>0">
+    <div class="panel panel-info col-md-12">
+      <div class="panel-heading" style="text-align: center; font-size: 16px">
+        <strong>Metas</strong>
       </div>
       <table class="table">
+        <tr>
+          <td><strong>Criterio</strong></td>
+          <td><strong>Valor</strong></td>
+          <td><strong>Peso</strong></td>
+          <td></td>
+        </tr>
         <tr ng-repeat="item in home.priorityGoal">
           <td class="col-sm-4">{{ item.nombre }}</td>
           <td class="col-sm-4">{{ item.value }}</td>
@@ -68,7 +72,50 @@
         </tr>
       </table>
     </div>
-    <div class="col-md-4" >
+  </div>
+
+  <div class="row">
+    <div class="col-md-4  col-md-offset-2">
+      <form class="form-inline" ng-submit="home.addGoal()">
+        <div class="form-group text-center">
+          <label>Agregar nuevo criterio de busqueda</label>
+          <select class="form-control" ng-model="home.prioritySelected">
+            <option>--Seleccione--</option>
+            <option ng-repeat="option in home.availableOptions" >{{option.nombre}}</option>
+          </select>
+          <input type="text" ui-number-mask="0" style="margin-top: 10px;" class="form-control" ng-model="home.priorityInputA" placeholder="Ej: 1000.00"
+            ng-show="home.prioritySelected == 'Dimensiones (Ancho)'|| home.prioritySelected == 'Dimensiones (Largo)' || home.prioritySelected == 'Metros de Construción' || home.prioritySelected == 'Metro Cuadrados'|| home.prioritySelected == 'Precio'">
+          <select class="form-control text-center" ng-model="home.priorityInputB"
+            ng-show="home.prioritySelected == 'Pisos'|| home.prioritySelected == 'Baños'|| home.prioritySelected == 'Cuartos' || home.prioritySelected == 'Estacionamiento'">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+          </select>
+          <select class="form-control text-center" ng-model="home.priorityInputC"
+            ng-show="home.prioritySelected == 'Calle Cerrada'|| home.prioritySelected == 'Vigilante'">
+            <option>Si</option>
+            <option>No</option>
+          </select>
+          <select class="form-control text-center" ng-model="home.priorityInputD"
+            ng-show="home.prioritySelected == 'Tipo de Inmueble'">
+            <option>Casa</option>
+            <option>Apartamento</option>
+            <option>Terreno</option>
+            <option>Townhouse</option>
+          </select>
+          <button style="margin: 10px 0px;" ng-hide="(!markerGoal && home.prioritySelected == 'Distancia') || home.prioritySelected == '--Seleccione--' " type="submit" class="btn btn-primary" ng-show="auxPlusGoal<10">
+            Agregar criterio
+          </button>
+        </div>
+
+      </form>
+    </div>
+    <div class="col-md-4 text-center" ng-show="home.priorityGoal.length>0">
       <div ng-show="home.priorityGoal.length>0">
         <fusioncharts
             width="100%"
@@ -77,47 +124,14 @@
             datasource="{{myDataSource}}"
         ></fusioncharts>
       </div>
-      <label>Disponible: {{ home.leftPercentaje }}</label>
-
+      <label>Peso disponible por asignar: {{ home.leftPercentaje }}</label>
     </div>
-
-  </div>
-
-  <div class="row">
-    <form class="form-inline" ng-submit="home.addGoal()">
-      <div class="form-group">
-        <label>Posibles prioridades</label>
-        <select class="form-control" ng-model="home.prioritySelected">
-          <option>--Seleccione--</option>
-          <option ng-repeat="option in home.availableOptions" >{{option.nombre}}</option>
-        </select>
-        <input type="number" class="form-control" ng-model="home.priorityInputA" placeholder="ej: 1000.00"
-          ng-show="home.prioritySelected == 'Dimensiones (Ancho)'|| home.prioritySelected == 'Dimensiones (Largo)' || home.prioritySelected == 'Metros de Construción' || home.prioritySelected == 'Metro Cuadrados'|| home.prioritySelected == 'Precio'">
-        <select class="form-control text-center" ng-model="home.priorityInputB"
-          ng-show="home.prioritySelected == 'Pisos'|| home.prioritySelected == 'Baños'|| home.prioritySelected == 'Cuartos' || home.prioritySelected == 'Estacionamiento'">
-          <option>0</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-          <option>7</option>
-        </select>
-        <select class="form-control text-center" ng-model="home.priorityInputC"
-          ng-show="home.prioritySelected == 'Calle Cerrada'|| home.prioritySelected == 'Vigilante'">
-          <option>Si</option>
-          <option>No</option>
-        </select>
-      </div>
-        <button ng-hide="home.prioritySelected == 'Distancia' && !markerGoal " type="submit" class="btn btn-link" ng-show="auxPlusGoal<10">
-          <i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i>
-        </button>
-    </form>
   </div>
   <div class="row" style="margin-bottom: 10px">
-    <button type="button" class="btn btn-success" ng-click="home.sortPriorities()" ng-show="home.leftPercentaje == 0 && home.priorityGoal.length != 0">Aplicar</button>
-    <button type="button" class="btn btn-danger" ng-click="home.resetOrder()" ng-show="home.priorityGoal.length != 0">Borrar Todo</button>
+    <button type="button" class="btn btn-success col-md-2 col-md-offset-3" ng-click="home.sortPriorities()" ng-show="home.leftPercentaje == 0 && home.priorityGoal.length != 0">
+      Iniciar busqueda avanzada
+    </button>
+    <button type="button" class="btn btn-danger col-md-2 col-md-offset-2" ng-click="home.resetOrder()" ng-show="home.priorityGoal.length != 0">Borrar todo</button>
     <span ng-hide="home.leftPercentaje == 0" >Todavia tienes porcentajes por repartir</span>
   </div>
   <div class="row" style="height:300px; margin-bottom: 10px;" ng-show="home.prioritySelected == 'Distancia'">
@@ -276,7 +290,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="picture">Mas imagenes? (Max 10, opcional!)</label>
+            <label for="picture">Mas imagenes? (Max 10, <label style="color: #B4B4B4;">opcional</label>)</label>
             <div class="text-center">
               <button type="button" class="btn btn-default" ng-click="uploadMultiple()" ng-show="max>0">
                 Subir <span class="caret"></span>
@@ -300,13 +314,23 @@
 
       <!-- Direccion -->
       <div class="row">
-        <div class="form-group col-sm-10">
+        <div class="form-group col-sm-3">
+          <label>Municipio</label>
+          <select class="form-control text-center" ng-model="home.regData.township">
+            <option>Baruta</option>
+            <option>Chacao</option>
+            <option>Hatillo</option>
+            <option>Libertador</option>
+            <option>Sucre</option>
+          </select>
+        </div> 
+        <div class="form-group col-sm-7">
           <label>Dirección</label>
-          <input class="form-control text-center" type="text" name="name" placeholder="Ej: El cafetal, calle limon, Qta wachu" ng-model="home.regData.address" required>
+          <input class="form-control text-center" type="text" name="name" placeholder="Ej: El Cafetal, Calle Limón, Quinta Wachu" ng-model="home.regData.address" required>
         </div>
         <div class="form-group col-sm-2">
           <label>Zona</label>
-          <p class="form-control-static">{{home.regData.zonetype}}</p>
+          <p class="form-control-static" style="color: red; font-size:18px;"><strong>{{home.regData.zonetype}}</strong></p>
         </div>
       </div>
       <br>
@@ -351,27 +375,32 @@
       </div>
 
       <div class="row form-group">
+        <p class="col-sm-12">
+          A continuación puede escoger entre ingresar el Ancho y Largo del Terreno y sera calculado el tamaño de forma
+          automática o ingresar su valor si lo desea. Utilice el Switche (ubicado a la izquierda), pera seleccionar la
+          opción de su preferencia
+        </p>
         <div class="col-sm-1">
           <md-switch ng-click="home.blockCalc()" style="width:50px; margin: 0px auto;" class="md-primary" ng-model="home.calcM" aria-label="Switch 3"></md-switch>
         </div>
         <div class="col-sm-8">
           <div class="col-sm-12">
-            <label>Dimensiones(m)</label>
+            <label>Dimensiones del Terreno(m)</label>
           </div>
           <div class="col-sm-5">
-            <input class="form-control text-center" type="number" ng-change="home.calculateMeters()" ng-disabled="!home.calcM" ng-min="0" step="0.01" placeholder="Ancho" ng-model="home.regData.dimensionsX" required>
+            <input class="form-control text-center" type="text" ui-number-mask="0" ng-change="home.calculateMeters()" ng-disabled="!home.calcM" ng-min="0" step="0.01" placeholder="Ancho" ng-model="home.regData.dimensionsX" required>
           </div>
           <div class="col-sm-2 text-center">
             <span>x</span>
           </div>
           <div class="col-sm-5">
-            <input class="form-control text-center" type="number" ng-change="home.calculateMeters()" ng-disabled="!home.calcM" ng-min="0" step="0.001" placeholder="Largo" ng-model="home.regData.dimensionsY" required>
+            <input class="form-control text-center" type="text" ui-number-mask="0" ng-change="home.calculateMeters()" ng-disabled="!home.calcM" ng-min="0" step="0.001" placeholder="Largo" ng-model="home.regData.dimensionsY" required>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group col-sm-12">
             <label>Pisos</label>
-            <select class="form-control" ng-model="home.regData.floors">
+            <select class="form-control" ng-model="home.regData.floors" required>
               <option>0</option>
               <option>1</option>
               <option>2</option>
@@ -390,19 +419,19 @@
 
       <div class="row">
         <div class="form-group col-sm-6">
-          <label>Metros Cuadrados (m<sup>2</sup>) </label>
-          <input class="form-control text-center" type="number" ng-disabled="home.calcM" ng-min="0" step="0.01" placeholder="ej: 1,253.4" ng-model="home.regData.meters" required>
+          <label>Metros Cuadrados de Parcela (m<sup>2</sup>) </label>
+          <input class="form-control text-center" type="text" ui-number-mask="0" ng-disabled="home.calcM" ng-min="0" step="0.01" placeholder="Ej: 1,253.4" ng-model="home.regData.meters" required>
         </div>
         <div class="form-group col-sm-6">
-          <label>Metros de Contrucción (m<sup>2</sup>)</label>
-          <input class="form-control text-center" type="number" ng-min="0" step="0.01" placeholder="ej: 1,253.4" ng-model="home.regData.consmeters" required>
+          <label>Metros Cuadrados de Contrucción (m<sup>2</sup>)</label>
+          <input class="form-control text-center" type="text" ui-number-mask="0" ng-min="0" step="0.01" placeholder="Ej: 1,253.4" ng-model="home.regData.consmeters" required>
         </div>
       </div>
 
 
       <div class="row">
         <div class="form-group col-sm-6">
-          <label>Estacionamineto</label>
+          <label>Puestos de estacionamiento</label>
           <select class="form-control" ng-model="home.regData.parking">
             <option>0</option>
             <option>1</option>
@@ -426,29 +455,29 @@
 
       <div class="row">
         <div class="form-group col-sm-6">
-          <label>Edad del Inmueble (años)</label>
-          <input class="form-control text-center" type="number" placeholder="Años" ng-model="home.regData.age" required>
+          <label>Antiguedad del inmueble (años)</label>
+          <input class="form-control text-center" type="text" ui-number-mask="0" placeholder="Años" ng-model="home.regData.age" required>
         </div>
         <div class="form-group col-sm-6">
-          <label>Precio</label>
-          <input class="form-control text-center" type="number" placeholder="1,000,000.00Bsf" ng-model="home.regData.price" required>
+          <label>Precio (BsF)</label>
+          <input class="form-control text-center" type="text" ui-number-mask="0" placeholder="BsF. 1,000,000.00" ng-model="home.regData.price" required>
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-12">
-          <label>Algunos puntos de interes</label>
+          <label>Puntos de interes cercanos</label>
         </div>
         <textarea class="form-control" rows="3" ng-model="home.regData.near_places"></textarea>
       </div>
 
       <div class="row text-center">
-        <h1>{{ home.regData.price | currency:"Bsf "}}</h1>
+        <h1>{{ home.regData.price | currency:"BsF. "}}</h1>
       </div>
 
       <div class="row">
         <div class="col-sm-12">
-          <h2>Datos del Cliente</h2>
+          <h2>Datos del contrato</h2>
         </div>
         <div class="col-sm-4">
           <label>Nombre y Apellido</label>
@@ -472,15 +501,15 @@
         </div>
         <div class="col-sm-4">
           <label>Precio Mínimo de venta</label>
-          <input class="form-control text-center" type="text" placeholder="1,000,000.00Bsf" ng-model="home.regData.pro_minPrice" ui-number-mask="0">
+          <input class="form-control text-center" type="text" placeholder="BsF. 1,000,000.00" ng-model="home.regData.pro_minPrice" ui-number-mask="0">
         </div>
         <div class="col-sm-4">
           <label>Porcentaje por venta</label>
           <input class="form-control text-center" type="text" placeholder="5.5%" ng-model="home.regData.pro_porcentaje" ui-percentage-mask>
         </div>
         <div class="col-sm-4">
-          <label>Porcentaje Colaboradores</label>
-          <input class="form-control text-center" type="text" placeholder="5.3" ng-model="home.regData.pro_porcentajeColab" ui-percentage-mask>
+          <label>Porcentaje de comision para colaborador</label>
+          <input class="form-control text-center" type="text" placeholder="5.3%" ng-model="home.regData.pro_porcentajeColab" ui-percentage-mask>
         </div>
         <div class="col-sm-4 col-sm-offset-4">
           <label>{{home.exclusive}} Exclusividad</label>
@@ -511,10 +540,7 @@
 <div class="container">
 
   <div class="row houses-home">
-    <!-- <div ng-repeat="item in filtered = ( home.houses.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter: searchHouse)"> -->
-    <!-- <div ng-repeat="item in home.houses | filter: searchParams | orderBy: 'created_at':true "> -->
-    <!-- <div ng-repeat="item in home.houses | filter: {address: searchHouse} | orderBy: 'created_at':true "> !orderByToggle?'created_at':['z'] -->
-    <div ng-repeat="item in home.houses | customSearch:searchHouse.address:searchHouse.price.max:searchHouse.price.min | orderBy: orderByArgument : orderByToggle "
+    <div ng-repeat="item in home.houses | filter: searchParams | customSearch:searchHouse.price.max:searchHouse.price.min | orderBy: orderByArgument : orderByToggle "
          ng-click="setSelected(item._id)">
 
       <div class="col-lg-4 col-sm-6 col-xs-12 col-sm-offset-0">
@@ -564,8 +590,5 @@
     <p>
       Ven y se parte de la revolucion tecnologica en la venta de inmuebles.
     </p>
-    <h3>
-      "Tener prioridades es mejor que eliminar opciones" <strong>-LH</strong>
-    </h3>
   </div>
 </div>

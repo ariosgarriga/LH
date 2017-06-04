@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 var HouseSchema = new Schema({
   address: {type: String},
+  township: {type: String},
   rooms: {type: Number},
   bathrooms: {type: Number},
   dimensionsY: {type: Number},

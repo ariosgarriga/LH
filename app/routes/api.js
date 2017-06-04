@@ -252,6 +252,7 @@ module.exports = function(router){
   router.post('/houses', function(req, res){
     var house = new House();
     house.address = req.body.address;
+    house.township = req.body.township;
     house.rooms = req.body.rooms;
     house.bathrooms = req.body.bathrooms;
     house.dimensionsX = req.body.dimensionsX;
@@ -315,6 +316,7 @@ module.exports = function(router){
               if(editHouse.dimensionsX){
                 House.update({_id: editHouse}, {
                   address : req.body.address,
+                  township : req.body.township,
                   rooms : req.body.rooms,
                   bathrooms : req.body.bathrooms,
                   dimensionsX : req.body.dimensionsX,
@@ -355,6 +357,7 @@ module.exports = function(router){
               }else {
                 House.update({_id: editHouse}, {
                   address : req.body.address,
+                  township : req.body.township,
                   rooms : req.body.rooms,
                   bathrooms : req.body.bathrooms,
                   floors : req.body.floors,

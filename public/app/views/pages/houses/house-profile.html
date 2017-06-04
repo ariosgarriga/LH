@@ -16,19 +16,20 @@
     <div id="map-profile" style="margin: 20px 0px"></div>
   </div>
   <div class="row" style="margin-bottom: 10px;">
-    <a class="pull-right col-sm-1"href="/house/edit/{{ house.data._id }}">
+    <a class="pull-right col-sm-1"href="/house/edit/{{ house.data._id }}"
+      ng-show="house.data.id_user == main.user._id || main.user.role == 'admin'">
       <button type="button" class="btn btn-primary ">Editar</button>
     </a>
   </div>
 
-  <div class="panel panel-info">
+  <div class="panel panel-info text-center">
     <div class="panel-heading" style="text-align: center;">
       <strong>Caracteristicas del Hogar</strong></strong>
     </div>
     <table class="table">
       <tr>
-        <td><strong>Direccion</strong></td>
-        <td>{{ house.data.address }}</td>
+        <td class="col-xs-6"><strong>Direccion</strong></td>
+        <td class="col-xs-6">{{ house.data.address }}</td>
       </tr>
       <tr>
         <td><strong>Tipo de inmueble</strong></td>
@@ -98,14 +99,14 @@
   </div>
 
 
-  <div class="panel panel-info" ng-show="house.data.id_user == main.user._id || checkSharedUser()">
+  <div class="panel panel-info text-center" ng-show="house.data.id_user == main.user._id || checkSharedUser()">
     <div class="panel-heading" style="text-align: center;">
       <strong>Caracteristicas del Cliente</strong></strong>
     </div>
     <table class="table">
       <tr ng-show="house.sharedFields[0] || (house.currentUserID == house.data.user._id )" ng-show="house.sharedFields[0]" ng-class="{'success': house.sharedFields[0] && (house.currentUserID == house.data.user._id )}">
-        <td><strong>Nombre</strong></td>
-        <td>{{ house.data.pro_name }}</td>
+        <td class="col-xs-6"><strong>Nombre</strong></td>
+        <td class="col-xs-6">{{ house.data.pro_name }}</td>
       </tr>
       <tr ng-show="house.sharedFields[1] || (house.currentUserID == house.data.user._id )" ng-class="{'success': house.sharedFields[1] && (house.currentUserID == house.data.user._id )}">
         <td><strong>Correo</strong></td>
@@ -146,14 +147,14 @@
     </table>
   </div>
 
-  <div class="panel panel-info">
-    <div class="panel-heading" style="text-align: center;">
+  <div class="panel panel-info text-center">
+    <div class="panel-heading">
       <strong>Caracteristicas del Corredor</strong></strong>
     </div>
     <table class="table">
       <tr>
-        <td><strong>Nombre</strong></td>
-        <td>{{ house.data.user.name }}</td>
+        <td class="col-xs-6"><strong>Nombre</strong></td>
+        <td class="col-xs-6">{{ house.data.user.name }}</td>
       </tr>
       <tr>
         <td><strong>Correo</strong></td>
@@ -168,7 +169,7 @@
 
   <div class="row" ng-show="house.data.id_user == main.user._id ">
     <div class="col-md-6 col-md-offset-6 text-center">
-      <laber>Compartir acceso a otros corredores</laber>
+      <laber>Compartir inmueble con otro corredor</laber>
       <div class="row show-hide-message" ng-show="house.successMsg">
         <br>
         <div class="alert alert-success ">{{ house.successMsg }}</div>
@@ -181,7 +182,7 @@
 
       <form class="form-inline " style="margin-bottom: 10px;  ">
         <div class="form-group">
-          <input type="email" class="form-control" ng-model="userToSearch" placeholder="andres@galletta.com">
+          <input type="email" class="form-control" ng-model="userToSearch" placeholder="corredor@correo.com">
           <button type="submit" class="form-control btn btn-primary" ng-show='!shareBtn' ng-click='searchUser()'>Buscar</button>
           <button type="submit" class="form-control btn btn-success" ng-show='shareBtn' ng-click='addUserToHouse()'>Compartir</button>
         </div>

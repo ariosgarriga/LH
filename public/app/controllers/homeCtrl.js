@@ -10,6 +10,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   app.regData.floors = "0";
   app.regData.streetclose = false;
   app.regData.guard = false;
+  app.regData.township = 'Baruta';
   $scope.regHouseForm = false;
   app.streetclose = "No";
   app.guard = "No";
@@ -41,19 +42,20 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
     {nombre: 'Estacionamiento', name: 'parking'},
     {nombre: 'Calle Cerrada', name: 'streetclose'},
     {nombre: 'Vigilante', name: 'guard'},
-    {nombre: 'Distancia', name: 'latlng'}
+    {nombre: 'Distancia', name: 'latlng'},
+    {nombre: 'Tipo de Inmueble', name: 'type'}
   ];
   app.availableOptions.sort(compare);
   app.prioritySelected = '--Seleccione--';
   app.priorityGoal = [];
   app.priorityInputA = '';
-  app.priorityInputB = '0';
+  app.priorityInputB = "0";
   app.priorityInputC = 'Si';
+  app.priorityInputD = 'Casa';
   app.leftPercentaje = 0;
   $scope.myDataSource = {
       chart: {
-          caption: "Age profile of website visitors",
-          subcaption: "Last Year",
+          caption: "Pesos de las metas de busqueda",
           startingangle: "120",
           showlabels: "0",
           showlegend: "1",
@@ -61,7 +63,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
           slicingdistance: "15",
           showpercentvalues: "1",
           showpercentintooltip: "0",
-          plottooltext: "Age group : $label Total visit : $datavalue",
+          plottooltext: "$label: $datavalue",
           theme: "fint"
       },
       data: []
@@ -76,6 +78,18 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   $scope.time = [];
   var directionsService = new google.maps.DirectionsService();
   app.regData.type = 'Casa';
+
+
+
+  $scope.availableSearchParams = [
+    { key: "rooms",
+      name: "Cuartos",
+      placeholder: "0",
+      allowMultiple: true,
+      restrictToSuggestedValues: true,
+      suggestedValues: ['1', '2', '3']},
+  ];
+
 
 
   app.initMapGoals = function() {
@@ -104,7 +118,8 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
         });
 
       }
-        console.log($scope.markerGoal);
+
+      console.log($scope.markerGoal);
     });
 
   }
@@ -132,12 +147,6 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
       return false;
     }
   }
-
-
-  $scope.availableSearchParams = [
-    { key: "address", name: "Direccion", placeholder: " " },
-    { key: "rooms", name: "Cuartos", placeholder: " ", allowMultiple: true, restrictToSuggestedValues: true, suggestedValues: ['1', '2', '3']},
-  ];
 
 
   app.sortPriorities = function(){
@@ -205,7 +214,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
             }
           }
 
-        } else {
+        } else{
           house.push(app.houses[i][aux]);
         }
       }
@@ -221,6 +230,13 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
           aux = house[j] - auxPriority[j].value;
         } else if (auxPriority[j].position) {
           aux = house[j] - auxPriority[j].min;
+        } else if (auxPriority[j].name == 'type') {
+          if (auxPriority[j].value == house[j]) {
+            aux = 0;
+          } else {
+            aux = 1;
+          }
+          console.log(aux);
         } else {
           aux =  auxPriority[j].value - house[j];
         }
@@ -408,6 +424,8 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
           });
         }
 
+      } else if (app.prioritySelected == 'Tipo de Inmueble') {
+        goal.value = app.priorityInputD;
       } else {
         goal.value = app.priorityInputA;
       }
@@ -564,6 +582,27 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
     app.map.polyArray = [];
 
     for (var i = 0; i < Areas.length; i++) {
+      if (Areas[i].zonetype == 'E') {
+        Areas[i].fillColor = '#FFE200';
+      } else if (Areas[i].zonetype == 'R3E') {
+        Areas[i].fillColor = '#0039D6';
+      } else if (Areas[i].zonetype == 'R3') {
+        Areas[i].fillColor = '#FFAA00';
+      } else if (Areas[i].zonetype == 'R4') {
+        Areas[i].fillColor = '#39EC00';
+      } else if (Areas[i].zonetype == 'P') {
+        Areas[i].fillColor = '#1C8400';
+      } else if (Areas[i].zonetype == 'C1') {
+        Areas[i].fillColor = '#A5A5A5';
+      } else if (Areas[i].zonetype == 'AEC31E') {
+        Areas[i].fillColor = '#FE0006';
+      } else if (Areas[i].zonetype == 'C2') {
+        Areas[i].fillColor = '#552700';
+      }
+
+
+
+
       app.map.polyArray.push(Areas[i]);
       app.map.polyArray[i].setMap(app.map);
     }
@@ -597,7 +636,6 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
 
 
   app.initMap();
-
 
 
   $scope.$watch('regHouseForm', function () {
@@ -703,6 +741,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
 
       } else {
         //Create error message
+        $anchorScroll();
         app.loading = false;
         app.errorMsg = data.data.message;
       }
@@ -733,45 +772,11 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
 });
 
 app.filter('customSearch',[function(){
-    /** @data is the original data**/
-    /** @address is the search query for address**/
-    /** @max is the search query for max**/
-    return function(data,address,max,min){
+
+    return function(data,max,min){
         var output = []; // store result in this
 
-        /**@case1 if both searches are present**/
-        if(!!address && !!max && !!min){
-            address = address.toLowerCase();
-            //loop over the original array
-            for(var i = 0;i<data.length; i++){
-                // check if any result matching the search request
-                if(data[i].address.toLowerCase().indexOf(address) !== -1 && data[i].price <= max && data[i].price >= min){
-                    //push data into results array
-                    output.push(data[i]);
-                }
-            }
-        } else if(!!address && !!max){ /**@case2 if only address query is present**/
-            address = address.toLowerCase();
-            for(var i = 0;i<data.length; i++){
-                if(data[i].address.toLowerCase().indexOf(address) !== -1 && data[i].price <= max){
-                    output.push(data[i]);
-                }
-            }
-        } else if(!!address && !!min){ /**@case2 if only address query is present**/
-            address = address.toLowerCase();
-            for(var i = 0;i<data.length; i++){
-                if(data[i].address.toLowerCase().indexOf(address) !== -1 && data[i].price >= min){
-                    output.push(data[i]);
-                }
-            }
-        }else if(!!address){ /**@case2 if only address query is present**/
-            address = address.toLowerCase();
-            for(var i = 0;i<data.length; i++){
-                if(data[i].address.toLowerCase().indexOf(address) !== -1){
-                    output.push(data[i]);
-                }
-            }
-        } else if(!!max && !!min){ /**@case3 if only max query is present**/
+        if(!!max && !!min){ /**@case3 if only max query is present**/
             for(var i = 0;i<data.length; i++){
                 if(data[i].price <= max && data[i].price >= min){
                     output.push(data[i]);

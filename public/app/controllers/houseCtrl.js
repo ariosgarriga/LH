@@ -253,6 +253,7 @@ angular.module('houseControllers', ['userServices', 'houseServices', 'locationSe
         }, 3000);
 
       } else {
+        $anchorScroll();
         app.errorShowMore = data.data.message;
       }
     });
@@ -267,6 +268,24 @@ angular.module('houseControllers', ['userServices', 'houseServices', 'locationSe
     app.map.polyArray = [];
 
     for (var i = 0; i < Areas.length; i++) {
+      if (Areas[i].zonetype == 'E') {
+        Areas[i].fillColor = '#FFE200';
+      } else if (Areas[i].zonetype == 'R3E') {
+        Areas[i].fillColor = '#0039D6';
+      } else if (Areas[i].zonetype == 'R3') {
+        Areas[i].fillColor = '#FFAA00';
+      } else if (Areas[i].zonetype == 'R4') {
+        Areas[i].fillColor = '#39EC00';
+      } else if (Areas[i].zonetype == 'P') {
+        Areas[i].fillColor = '#1C8400';
+      } else if (Areas[i].zonetype == 'C1') {
+        Areas[i].fillColor = '#A5A5A5';
+      } else if (Areas[i].zonetype == 'AEC31E') {
+        Areas[i].fillColor = '#FE0006';
+      } else if (Areas[i].zonetype == 'C2') {
+        Areas[i].fillColor = '#552700';
+      }
+      
       app.map.polyArray.push(Areas[i]);
       app.map.polyArray[i].setMap(app.map);
     }

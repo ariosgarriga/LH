@@ -25,7 +25,7 @@ angular.module('locationServices',[])
     strokeOpacity: 0.8,
     strokeWeight: 1,
     fillColor: '#FF0000',
-    fillOpacity: 0.1,
+    fillOpacity: 0.7,
     zonetype: 'E'
   });
   polyArray.push(Cslc);
@@ -50,7 +50,7 @@ angular.module('locationServices',[])
   //   strokeOpacity: 0.8,
   //   strokeWeight: 1,
   //   fillColor: '#FF0000',
-  //   fillOpacity: 0.1,
+  //   fillOpacity: 0.7,
   //   zonetype: 'P'
   // });
   // polyArray.push(ArufloCentral);
@@ -73,7 +73,7 @@ angular.module('locationServices',[])
   //   strokeOpacity: 0.8,
   //   strokeWeight: 1,
   //   fillColor: '#FF0000',
-  //   fillOpacity: 0.1,
+  //   fillOpacity: 0.7,
   //   zonetype: 'R3'
   // });
   // polyArray.push(Clinica);
@@ -95,7 +95,7 @@ angular.module('locationServices',[])
   //   strokeOpacity: 0.8,
   //   strokeWeight: 1,
   //   fillColor: '#FF0000',
-  //   fillOpacity: 0.1,
+  //   fillOpacity: 0.7,
   //   zonetype: 'AE-C3-1'
   // });
   // polyArray.push(LaEstancia);
@@ -112,7 +112,7 @@ var R4Coord = [
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R4'
     });
     polyArray.push(R4);
@@ -131,7 +131,7 @@ new google.maps.LatLng(10.495043545870331, -66.84439033269882)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -151,7 +151,7 @@ new google.maps.LatLng(10.494727065214308, -66.8440979719162)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -169,7 +169,7 @@ new google.maps.LatLng(10.494716753789264, -66.84408683051777)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -189,7 +189,7 @@ new google.maps.LatLng(10.494881638123676, -66.84354429530629)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -208,7 +208,7 @@ new google.maps.LatLng(10.494423770948394, -66.84389144182205)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -227,7 +227,7 @@ new google.maps.LatLng(10.494252483567045, -66.8437812890769)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -249,7 +249,7 @@ new google.maps.LatLng(10.49408237128998, -66.84370202237164)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -268,7 +268,7 @@ new google.maps.LatLng(10.493772346606722, -66.84354543685913)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -286,7 +286,7 @@ new google.maps.LatLng(10.493600918920396, -66.84346497058868)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -305,7 +305,7 @@ new google.maps.LatLng(10.493482238158801, -66.84340864419937)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -323,7 +323,7 @@ new google.maps.LatLng(10.493478993593397, -66.84307230323708)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -342,7 +342,7 @@ new google.maps.LatLng(10.493310462229317, -66.84298641963835)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -361,7 +361,7 @@ new google.maps.LatLng(10.493107734123702, -66.84297144412994)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -380,7 +380,7 @@ new google.maps.LatLng(10.492939135483718, -66.84334557907653)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -399,7 +399,7 @@ new google.maps.LatLng(10.492865097464575, -66.84337913990021)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -418,7 +418,7 @@ new google.maps.LatLng(10.492648834194949, -66.84304654598236)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -438,7 +438,7 @@ new google.maps.LatLng(10.492509054196326, -66.84301167726517)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -458,7 +458,7 @@ new google.maps.LatLng(10.4950856337923, -66.84504735244894)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R4'
     });
     polyArray.push(R4);
@@ -476,7 +476,7 @@ new google.maps.LatLng(10.49486420687168, -66.84538006782532)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R4'
     });
     polyArray.push(R4);
@@ -495,7 +495,7 @@ new google.maps.LatLng(10.494739438390935, -66.84529107032876)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -515,7 +515,7 @@ new google.maps.LatLng(10.494877393566293, -66.84484094381332)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -534,7 +534,7 @@ new google.maps.LatLng(10.494795454165104, -66.84474752894766)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -553,7 +553,7 @@ new google.maps.LatLng(10.494691369523125, -66.84465263596775)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -572,7 +572,7 @@ new google.maps.LatLng(10.494579868430632, -66.84456377956025)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -591,7 +591,7 @@ new google.maps.LatLng(10.494400962485022, -66.84442898707846)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -610,7 +610,7 @@ new google.maps.LatLng(10.494312653318282, -66.84432262423991)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -629,7 +629,7 @@ new google.maps.LatLng(10.49419168470059, -66.84422135353088)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -648,7 +648,7 @@ new google.maps.LatLng(10.49390157664595, -66.84406042098999)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -667,7 +667,7 @@ new google.maps.LatLng(10.493744133994394, -66.84395957097797)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -686,7 +686,7 @@ new google.maps.LatLng(10.493629929766291, -66.84388071298599)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -706,7 +706,7 @@ new google.maps.LatLng(10.493482509416134, -66.84378890702203)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -732,7 +732,7 @@ new google.maps.LatLng(10.49328268014018, -66.84370493146486)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -751,7 +751,7 @@ new google.maps.LatLng(10.49315520649127, -66.84365272521973)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -771,7 +771,7 @@ new google.maps.LatLng(10.493068173811833, -66.8435937166214)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -788,7 +788,7 @@ new google.maps.LatLng(10.49315520649127, -66.84365272521973)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -806,7 +806,7 @@ new google.maps.LatLng(10.49315520649127, -66.84366077184677)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -825,7 +825,7 @@ new google.maps.LatLng(10.493279162083367, -66.843701004982)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -844,7 +844,7 @@ new google.maps.LatLng(10.493377748316508, -66.84374331480365)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -863,7 +863,7 @@ new google.maps.LatLng(10.493627292416775, -66.84387266635895)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -882,7 +882,7 @@ new google.maps.LatLng(10.493743335774186, -66.84395849704742)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -901,7 +901,7 @@ new google.maps.LatLng(10.494014982554232, -66.84415966272354)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -921,7 +921,7 @@ new google.maps.LatLng(10.493590507339965, -66.84447880418452)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -940,7 +940,7 @@ new google.maps.LatLng(10.493643116513526, -66.84463441371918)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -961,7 +961,7 @@ new google.maps.LatLng(10.494012345208011, -66.84505015611649)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -981,7 +981,7 @@ new google.maps.LatLng(10.494400034862865, -66.84512794017792)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1000,7 +1000,7 @@ new google.maps.LatLng(10.494502891220337, -66.84516549110413)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1023,7 +1023,7 @@ new google.maps.LatLng(10.494822009445121, -66.84543639421463)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1043,7 +1043,7 @@ new google.maps.LatLng(10.494442232347003, -66.84599965810776)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1062,7 +1062,7 @@ new google.maps.LatLng(10.494020257246635, -66.8462061882019)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1081,7 +1081,7 @@ new google.maps.LatLng(10.493870417706908, -66.84620777123473)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1101,7 +1101,7 @@ new google.maps.LatLng(10.49387520317293, -66.84610694646835)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1120,7 +1120,7 @@ new google.maps.LatLng(10.494036081323285, -66.84599429368973)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1139,7 +1139,7 @@ new google.maps.LatLng(10.49406245478258, -66.8457180261612)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1158,7 +1158,7 @@ new google.maps.LatLng(10.494159851586828, -66.84512096654419)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1177,7 +1177,7 @@ new google.maps.LatLng(10.493935862157484, -66.84513598680496)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1197,7 +1197,7 @@ new google.maps.LatLng(10.494579374130655, -66.8452861905098)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'C1'
     });
     polyArray.push(C1);
@@ -1215,7 +1215,7 @@ new google.maps.LatLng(10.493935862157484, -66.84513598680496)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1236,31 +1236,11 @@ new google.maps.LatLng(10.495866394060418, -66.84631884098053)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'C2'
     });
     polyArray.push(C2);
 
-var R3ECoord = [
-new google.maps.LatLng(10.495871668721245, -66.8463134765625),
-new google.maps.LatLng(10.494880030905149, -66.84547662734985),
-new google.maps.LatLng(10.494579374130655, -66.84593260288239),
-new google.maps.LatLng(10.494938052354302, -66.84627056121826),
-new google.maps.LatLng(10.494869481549593, -66.84641003608704),
-new google.maps.LatLng(10.495797823461528, -66.84659779071808),
-new google.maps.LatLng(10.495866394060418, -66.84631884098053)
-    ];
-    var R3E= new google.maps.Polygon({
-      paths: R3ECoord,
-      strokeColor: '#000000',
-      strokeOpacity: 0.8,
-      strokeWeight: 1,
-      fillColor: '#FF0000',
-      fillOpacity: 0.1,
-      zonetype: 'R3E'
-    });
-
-    polyArray.push(R3E);
 
 
 var AEC31Coord = [
@@ -1277,8 +1257,8 @@ new google.maps.LatLng(10.494858932193663, -66.84641540050507)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
-      zonetype: 'AEC31'
+      fillOpacity: 0.7,
+      zonetype: 'AEC31E'
     });
     polyArray.push(AEC31E);
 
@@ -1299,7 +1279,7 @@ new google.maps.LatLng(10.493965240748766, -66.84628612295205)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1317,7 +1297,7 @@ new google.maps.LatLng(10.493962235625327, -66.84628129005432)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1335,7 +1315,7 @@ new google.maps.LatLng(10.49338849170155, -66.84441484077098)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1354,7 +1334,7 @@ new google.maps.LatLng(10.493571908071765, -66.84473365545273)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1373,7 +1353,7 @@ new google.maps.LatLng(10.493578414976202, -66.84486739215305)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1392,7 +1372,7 @@ new google.maps.LatLng(10.493579820121647, -66.84502869844437)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1411,7 +1391,7 @@ new google.maps.LatLng(10.493566633371717, -66.84513866901398)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1430,7 +1410,7 @@ new google.maps.LatLng(10.493569270721741, -66.84529960155487)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1449,7 +1429,7 @@ new google.maps.LatLng(10.493550809271046, -66.84545248746872)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1468,7 +1448,7 @@ new google.maps.LatLng(10.493540259870146, -66.84561342000961)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1487,7 +1467,7 @@ new google.maps.LatLng(10.493529710468902, -66.84578508138657)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1507,7 +1487,7 @@ new google.maps.LatLng(10.493235476033494, -66.84593835237001)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1526,7 +1506,7 @@ new google.maps.LatLng(10.493505974314761, -66.84609353542328)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1545,7 +1525,7 @@ new google.maps.LatLng(10.493234327087707, -66.84620350599289)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1566,7 +1546,7 @@ new google.maps.LatLng(10.492868724555306, -66.84602133200536)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1585,7 +1565,7 @@ new google.maps.LatLng(10.493218546821518, -66.8455932556592)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1606,7 +1586,7 @@ new google.maps.LatLng(10.49320535026507, -66.84527147129631)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1627,7 +1607,7 @@ new google.maps.LatLng(10.493161613260904, -66.84497010428123)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1646,7 +1626,7 @@ new google.maps.LatLng(10.493094547353644, -66.84480339288712)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1665,7 +1645,7 @@ new google.maps.LatLng(10.493088096201543, -66.84480327431976)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1684,7 +1664,7 @@ new google.maps.LatLng(10.492841361259432, -66.84458613395691)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1703,7 +1683,7 @@ new google.maps.LatLng(10.492989053172915, -66.84431254863739)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1723,7 +1703,7 @@ new google.maps.LatLng(10.493500699613593, -66.84629201889038)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1741,7 +1721,7 @@ new google.maps.LatLng(10.493152569137708, -66.84627324342728)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1759,7 +1739,7 @@ new google.maps.LatLng(10.4934808742409, -66.84649532102173)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1777,7 +1757,7 @@ new google.maps.LatLng(10.493470549208885, -66.84670225454505)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1796,7 +1776,7 @@ new google.maps.LatLng(10.493464997328749, -66.8468682194976)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1814,7 +1794,7 @@ new google.maps.LatLng(10.493452295636713, -66.84703126624197)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1835,7 +1815,7 @@ new google.maps.LatLng(10.493433348283748, -66.84721384135162)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1853,7 +1833,7 @@ new google.maps.LatLng(10.492841361259432, -66.8464583158493)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1872,7 +1852,7 @@ new google.maps.LatLng(10.492833449190655, -66.84664338827133)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1892,7 +1872,7 @@ new google.maps.LatLng(10.492825537121677, -66.84682309627533)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1911,7 +1891,7 @@ new google.maps.LatLng(10.492809864721416, -66.84697451615989)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1930,7 +1910,7 @@ new google.maps.LatLng(10.492801800913504, -66.8471610546112)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1948,7 +1928,7 @@ new google.maps.LatLng(10.493424216436566, -66.8475204706192)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1966,7 +1946,7 @@ new google.maps.LatLng(10.493384656165166, -66.84798449277878)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -1984,7 +1964,7 @@ new google.maps.LatLng(10.49320267885156, -66.84834390878677)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2002,7 +1982,7 @@ new google.maps.LatLng(10.492997023807535, -66.84833190424717)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2020,7 +2000,7 @@ new google.maps.LatLng(10.492785982006401, -66.84831575095637)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2038,7 +2018,7 @@ new google.maps.LatLng(10.492561801373038, -66.84747219085693)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2056,7 +2036,7 @@ new google.maps.LatLng(10.4923349884494, -66.84830099344254)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2074,7 +2054,7 @@ new google.maps.LatLng(10.492153010518335, -66.84745609760284)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2092,7 +2072,7 @@ new google.maps.LatLng(10.491947296206492, -66.8474480509758)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2110,7 +2090,7 @@ new google.maps.LatLng(10.491696746539386, -66.84826612472534)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2128,7 +2108,7 @@ new google.maps.LatLng(10.491351251402461, -66.84741050004959)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2146,7 +2126,7 @@ new google.maps.LatLng(10.490966195299084, -66.84823930263519)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2164,7 +2144,7 @@ new google.maps.LatLng(10.490660259971234, -66.84736222028732)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2182,7 +2162,7 @@ new google.maps.LatLng(10.490443995160426, -66.8473568558693)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2200,7 +2180,7 @@ new google.maps.LatLng(10.490235642333879, -66.84733539819717)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2218,7 +2198,7 @@ new google.maps.LatLng(10.490016739846022, -66.8473219871521)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2236,7 +2216,7 @@ new google.maps.LatLng(10.492712130777317, -66.8474131822586)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2254,7 +2234,7 @@ new google.maps.LatLng(10.492522240991361, -66.84707522392273)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2272,7 +2252,7 @@ new google.maps.LatLng(10.492350812612257, -66.84739172458649)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2290,7 +2270,7 @@ new google.maps.LatLng(10.492735866992358, -66.84709936380386)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2309,7 +2289,7 @@ new google.maps.LatLng(10.492749053777711, -66.8467104434967)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2328,7 +2308,7 @@ new google.maps.LatLng(10.492767515276265, -66.84652268886566)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2348,7 +2328,7 @@ new google.maps.LatLng(10.49277015263311, -66.84638053178787)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2367,7 +2347,7 @@ new google.maps.LatLng(10.492444317527386, -66.84623330462296)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2386,7 +2366,7 @@ new google.maps.LatLng(10.49211345008437, -66.84634566307068)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2405,7 +2385,7 @@ new google.maps.LatLng(10.492094988546796, -66.84650391340256)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2424,7 +2404,7 @@ new google.maps.LatLng(10.492094988546796, -66.84666082262993)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2443,7 +2423,7 @@ new google.maps.LatLng(10.492089713821567, -66.8468365073204)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2462,7 +2442,7 @@ new google.maps.LatLng(10.492043629713399, -66.84621405099705)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2480,7 +2460,7 @@ new google.maps.LatLng(10.492022478620584, -66.84644227394728)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2499,7 +2479,7 @@ new google.maps.LatLng(10.491704658637232, -66.84667021036148)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2521,7 +2501,7 @@ new google.maps.LatLng(10.492010592932406, -66.84682846069336)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2540,7 +2520,7 @@ new google.maps.LatLng(10.492005318205727, -66.8469974398613)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2558,7 +2538,7 @@ new google.maps.LatLng(10.491986856661704, -66.84716373682022)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2581,7 +2561,7 @@ new google.maps.LatLng(10.491399964899829, -66.84664895495428)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2599,7 +2579,7 @@ new google.maps.LatLng(10.491712570734888, -66.84680700302124)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2618,7 +2598,7 @@ new google.maps.LatLng(10.491694208087626, -66.84714621510187)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2637,7 +2617,7 @@ new google.maps.LatLng(10.491686197075255, -66.8473568558693)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2656,7 +2636,7 @@ new google.maps.LatLng(10.492771558349924, -66.84617914338753)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2675,7 +2655,7 @@ new google.maps.LatLng(10.492787207717637, -66.84600491943888)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2693,7 +2673,7 @@ new google.maps.LatLng(10.492804438270056, -66.84579849243164)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2711,7 +2691,7 @@ new google.maps.LatLng(10.492778064703513, -66.84547930955887)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2729,7 +2709,7 @@ new google.maps.LatLng(10.492456307010636, -66.84512794017792)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2747,7 +2727,7 @@ new google.maps.LatLng(10.492710769659285, -66.84485689008642)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2766,7 +2746,7 @@ new google.maps.LatLng(10.492461581729618, -66.84466391801834)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2784,7 +2764,7 @@ new google.maps.LatLng(10.492822899765304, -66.84443593025208)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2802,7 +2782,7 @@ new google.maps.LatLng(10.49287300953255, -66.84434205293655)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2820,7 +2800,7 @@ new google.maps.LatLng(10.492904657802411, -66.84391289949417)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2838,7 +2818,7 @@ new google.maps.LatLng(10.492303340121246, -66.84387534856796)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2856,7 +2836,7 @@ new google.maps.LatLng(10.49220312039409, -66.84407383203506)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2874,7 +2854,7 @@ new google.maps.LatLng(10.492050153379513, -66.8444761633873)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2892,7 +2872,7 @@ new google.maps.LatLng(10.492036966564378, -66.84485703706741)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2910,7 +2890,7 @@ new google.maps.LatLng(10.492060702831226, -66.84516549110413)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2928,7 +2908,7 @@ new google.maps.LatLng(10.492129274258561, -66.84554100036621)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2946,7 +2926,7 @@ new google.maps.LatLng(10.492147735794099, -66.84578508138657)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2964,7 +2944,7 @@ new google.maps.LatLng(10.49213191162085, -66.84595942497253)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -2982,7 +2962,7 @@ new google.maps.LatLng(10.492052790742477, -66.8461525440216)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3001,7 +2981,7 @@ new google.maps.LatLng(10.49173366966097, -66.84612572193146)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3020,7 +3000,7 @@ new google.maps.LatLng(10.4915886145151, -66.84585481882095)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3038,7 +3018,7 @@ new google.maps.LatLng(10.49207125228257, -66.84589236974716)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3056,7 +3036,7 @@ new google.maps.LatLng(10.49204520818751, -66.84554242359047)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3074,7 +3054,7 @@ new google.maps.LatLng(10.491717845466539, -66.84538275003433)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3092,7 +3072,7 @@ new google.maps.LatLng(10.49168092234307, -66.84518158435822)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3110,7 +3090,7 @@ new google.maps.LatLng(10.49166509814594, -66.84501260519028)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3128,7 +3108,7 @@ new google.maps.LatLng(10.491947296206492, -66.84477120637894)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3146,7 +3126,7 @@ new google.maps.LatLng(10.49197366984386, -66.84459149837494)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3163,7 +3143,7 @@ new google.maps.LatLng(10.491997406115567, -66.8444573879242)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3181,7 +3161,7 @@ new google.maps.LatLng(10.491727346314192, -66.84419244326261)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3199,7 +3179,7 @@ new google.maps.LatLng(10.491818065350905, -66.84399336576462)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3220,7 +3200,7 @@ new google.maps.LatLng(10.492129167566283, -66.84398334368723)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3238,7 +3218,7 @@ new google.maps.LatLng(10.492155834594193, -66.84330885371747)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3256,7 +3236,7 @@ new google.maps.LatLng(10.491601801349356, -66.84331476688385)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3274,7 +3254,7 @@ new google.maps.LatLng(10.49162026291637, -66.84356421232224)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3292,7 +3272,7 @@ new google.maps.LatLng(10.491817408710302, -66.84399631792093)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3310,7 +3290,7 @@ new google.maps.LatLng(10.4911397701434, -66.84408580002741)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3328,7 +3308,7 @@ new google.maps.LatLng(10.491174547633701, -66.84428572654724)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3346,7 +3326,7 @@ new google.maps.LatLng(10.491228625239817, -66.84457951627962)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3364,7 +3344,7 @@ new google.maps.LatLng(10.491254698869048, -66.84484610867969)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3382,7 +3362,7 @@ new google.maps.LatLng(10.491310774199881, -66.84506016718746)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3400,7 +3380,7 @@ new google.maps.LatLng(10.491317841211053, -66.84525018453598)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3418,7 +3398,7 @@ new google.maps.LatLng(10.491343339295568, -66.84545785188675)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3436,7 +3416,7 @@ new google.maps.LatLng(10.491367075615635, -66.84584140777588)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3454,7 +3434,7 @@ new google.maps.LatLng(10.490968832671284, -66.8434140086174)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3472,7 +3452,7 @@ new google.maps.LatLng(10.491013667995265, -66.84370368719101)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3490,7 +3470,7 @@ new google.maps.LatLng(10.491034766969008, -66.84387534856796)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3508,7 +3488,7 @@ new google.maps.LatLng(10.491067772048153, -66.84404834356366)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3526,7 +3506,7 @@ new google.maps.LatLng(10.491086697181203, -66.84421453617517)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3544,7 +3524,7 @@ new google.maps.LatLng(10.491116837082625, -66.84439720430834)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3562,7 +3542,7 @@ new google.maps.LatLng(10.491166635522292, -66.84467196464539)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3580,7 +3560,7 @@ new google.maps.LatLng(10.491185097115274, -66.84483826160431)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3598,7 +3578,7 @@ new google.maps.LatLng(10.49120092133693, -66.84496968984604)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3616,7 +3596,7 @@ new google.maps.LatLng(10.491239514235259, -66.84523919986162)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3634,7 +3614,7 @@ new google.maps.LatLng(10.490917392735575, -66.84549539163868)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3652,7 +3632,7 @@ new google.maps.LatLng(10.490967485604536, -66.84573130629138)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3670,7 +3650,7 @@ new google.maps.LatLng(10.491301141388735, -66.84587895870209)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3688,7 +3668,7 @@ new google.maps.LatLng(10.491003118507853, -66.84609889984131)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3706,7 +3686,7 @@ new google.maps.LatLng(10.491322240342871, -66.84641271829605)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3724,7 +3704,7 @@ new google.maps.LatLng(10.491314328235243, -66.84662193059921)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3742,7 +3722,7 @@ new google.maps.LatLng(10.491310561473849, -66.84677707972799)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3760,7 +3740,7 @@ new google.maps.LatLng(10.491298504019372, -66.8470162153244)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3777,7 +3757,7 @@ new google.maps.LatLng(10.491150811298853, -66.84701085090637)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3794,7 +3774,7 @@ new google.maps.LatLng(10.490918722595625, -66.84696793556213)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3812,7 +3792,7 @@ new google.maps.LatLng(10.49062333672155, -66.84729248285294)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3832,7 +3812,7 @@ new google.maps.LatLng(10.490681358969072, -66.84694647789001)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3850,7 +3830,7 @@ new google.maps.LatLng(10.491017470180607, -66.84658149089944)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3868,7 +3848,7 @@ new google.maps.LatLng(10.490726194334695, -66.84606939554214)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3887,7 +3867,7 @@ new google.maps.LatLng(10.490829051913655, -66.84487044811249)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3905,7 +3885,7 @@ new google.maps.LatLng(10.49055617726317, -66.8446120456374)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3923,7 +3903,7 @@ new google.maps.LatLng(10.490508530087025, -66.84432955161225)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3941,7 +3921,7 @@ new google.maps.LatLng(10.490459819419996, -66.84399604797363)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3959,7 +3939,7 @@ new google.maps.LatLng(10.490449269913706, -66.84382170438766)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3977,7 +3957,7 @@ new google.maps.LatLng(10.490562677087501, -66.84728980064392)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -3995,7 +3975,7 @@ new google.maps.LatLng(10.490317282493676, -66.84700410109048)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4012,7 +3992,7 @@ new google.maps.LatLng(10.490317401054691, -66.84700280427933)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4030,7 +4010,7 @@ new google.maps.LatLng(10.49031212629916, -66.84700012207031)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4048,7 +4028,7 @@ new google.maps.LatLng(10.490392366140055, -66.84673696270875)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4066,7 +4046,7 @@ new google.maps.LatLng(10.490122235040227, -66.84667557477951)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4084,7 +4064,7 @@ new google.maps.LatLng(10.490412346638843, -66.84644222259521)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4102,7 +4082,7 @@ new google.maps.LatLng(10.490412346638843, -66.84623837471008)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4120,7 +4100,7 @@ new google.maps.LatLng(10.49065762259639, -66.84622496366501)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4139,7 +4119,7 @@ new google.maps.LatLng(10.490109320108397, -66.84616991097636)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4158,7 +4138,7 @@ new google.maps.LatLng(10.490641798346934, -66.84605598449707)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4177,7 +4157,7 @@ new google.maps.LatLng(10.490093223865411, -66.84595674276352)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4195,7 +4175,7 @@ new google.maps.LatLng(10.490024651986829, -66.84553027153015)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4213,7 +4193,7 @@ new google.maps.LatLng(10.489991073631748, -66.8452229296289)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4233,7 +4213,7 @@ new google.maps.LatLng(10.490237018114588, -66.84502885243472)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4252,7 +4232,7 @@ new google.maps.LatLng(10.490382016802634, -66.8449991941452)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4270,7 +4250,7 @@ new google.maps.LatLng(10.489933459747945, -66.84488906737556)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4288,7 +4268,7 @@ new google.maps.LatLng(10.490211282745042, -66.84482327073096)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4306,7 +4286,7 @@ new google.maps.LatLng(10.48989805770955, -66.84466928243637)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4324,7 +4304,7 @@ new google.maps.LatLng(10.490095861245052, -66.84431791305542)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4341,7 +4321,7 @@ new google.maps.LatLng(10.490099489913897, -66.84431728807715)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4359,7 +4339,7 @@ new google.maps.LatLng(10.489851824334565, -66.84432307212091)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4377,7 +4357,7 @@ new google.maps.LatLng(10.489824211023874, -66.84403628110886)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4395,7 +4375,7 @@ new google.maps.LatLng(10.490135421936971, -66.84401750564575)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4412,7 +4392,7 @@ new google.maps.LatLng(10.490070513307984, -66.84382496469254)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4430,7 +4410,7 @@ new google.maps.LatLng(10.489784650292172, -66.84385657310486)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4448,7 +4428,7 @@ new google.maps.LatLng(10.490016739846022, -66.84724420309067)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4466,7 +4446,7 @@ new google.maps.LatLng(10.489865194785217, -66.84723606498312)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4484,7 +4464,7 @@ new google.maps.LatLng(10.489840035315149, -66.846943795681)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4501,7 +4481,7 @@ new google.maps.LatLng(10.489834916699714, -66.84694526460197)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4519,7 +4499,7 @@ new google.maps.LatLng(10.490056300548055, -66.84667825698853)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4537,7 +4517,7 @@ new google.maps.LatLng(10.489842672696941, -66.84669971466064)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4555,7 +4535,7 @@ new google.maps.LatLng(10.490048388408061, -66.84646368026733)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4573,7 +4553,7 @@ new google.maps.LatLng(10.489813661495917, -66.84630274772644)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4591,7 +4571,7 @@ new google.maps.LatLng(10.490045751028012, -66.84625446796417)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4609,7 +4589,7 @@ new google.maps.LatLng(10.489528824104987, -66.84632420539856)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4627,7 +4607,7 @@ new google.maps.LatLng(10.490024651986829, -66.84606939554214)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4645,7 +4625,7 @@ new google.maps.LatLng(10.489774100762853, -66.8459701538086)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4662,7 +4642,7 @@ new google.maps.LatLng(10.490000915563792, -66.84591382741928)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4680,7 +4660,7 @@ new google.maps.LatLng(10.489721353110905, -66.84579312801361)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4698,7 +4678,7 @@ new google.maps.LatLng(10.48997717913891, -66.8457368016243)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4716,7 +4696,7 @@ new google.maps.LatLng(10.489699040851429, -66.84561551213267)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4734,7 +4714,7 @@ new google.maps.LatLng(10.4896448689996, -66.8454122543335)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4753,7 +4733,7 @@ new google.maps.LatLng(10.489682837942345, -66.84560676263163)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4772,7 +4752,7 @@ new google.maps.LatLng(10.489924431521578, -66.84529691934586)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4791,7 +4771,7 @@ new google.maps.LatLng(10.489890145565496, -66.84506088495255)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4810,7 +4790,7 @@ new google.maps.LatLng(10.489855859605608, -66.84491872787476)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4828,7 +4808,7 @@ new google.maps.LatLng(10.489563110101095, -66.84473633766174)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4846,7 +4826,7 @@ new google.maps.LatLng(10.489547285795675, -66.84446543455124)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4864,7 +4844,7 @@ new google.maps.LatLng(10.489760913850713, -66.84416770935059)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4882,7 +4862,7 @@ new google.maps.LatLng(10.489737177407434, -66.84400677680969)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4900,7 +4880,7 @@ new google.maps.LatLng(10.489702891430587, -66.84382170438766)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4919,7 +4899,7 @@ new google.maps.LatLng(10.489424787008343, -66.84364986140855)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4938,7 +4918,7 @@ new google.maps.LatLng(10.489180689160017, -66.84392362833023)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4957,7 +4937,7 @@ new google.maps.LatLng(10.489214975194711, -66.84411942958832)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4975,7 +4955,7 @@ new google.maps.LatLng(10.489251898612444, -66.84430450201035)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -4994,7 +4974,7 @@ new google.maps.LatLng(10.489278272479549, -66.8445485830307)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5012,7 +4992,7 @@ new google.maps.LatLng(10.489315195889723, -66.84481412172318)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5030,7 +5010,7 @@ new google.maps.LatLng(10.48935475668145, -66.84501260519028)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5048,7 +5028,7 @@ new google.maps.LatLng(10.489384886005862, -66.84520020476464)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5066,7 +5046,7 @@ new google.maps.LatLng(10.490483555807845, -66.84335231781006)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5085,7 +5065,7 @@ new google.maps.LatLng(10.490375423359579, -66.84337109327316)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5103,7 +5083,7 @@ new google.maps.LatLng(10.490209268548373, -66.84315651655197)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5121,7 +5101,7 @@ new google.maps.LatLng(10.489974541758263, -66.84308677911758)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5139,7 +5119,7 @@ new google.maps.LatLng(10.489853222223918, -66.84345155954361)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5161,7 +5141,7 @@ new google.maps.LatLng(10.489439153020243, -66.84316188097)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5179,7 +5159,7 @@ new google.maps.LatLng(10.489338932365369, -66.84349983930588)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5197,7 +5177,7 @@ new google.maps.LatLng(10.489230799517129, -66.84353739023209)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5219,7 +5199,7 @@ new google.maps.LatLng(10.489437711490487, -66.84316203528886)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5237,7 +5217,7 @@ new google.maps.LatLng(10.48903152375981, -66.8430169159451)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5255,7 +5235,7 @@ new google.maps.LatLng(10.489030358039981, -66.84284001588821)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5273,7 +5253,7 @@ new google.maps.LatLng(10.489367943610906, -66.84283196926117)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5291,7 +5271,7 @@ new google.maps.LatLng(10.489665968066683, -66.84312969446182)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5308,7 +5288,7 @@ new google.maps.LatLng(10.489779375527558, -66.84296071529388)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5325,7 +5305,7 @@ new google.maps.LatLng(10.49222949400965, -66.84315651655197)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5343,7 +5323,7 @@ new google.maps.LatLng(10.492551251938423, -66.8432343006134)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5361,7 +5341,7 @@ new google.maps.LatLng(10.492640922121238, -66.84304386377335)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5378,7 +5358,7 @@ new google.maps.LatLng(10.492733229635222, -66.84328526258469)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5396,7 +5376,7 @@ new google.maps.LatLng(10.492864612761311, -66.84323538074625)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5414,7 +5394,7 @@ new google.maps.LatLng(10.493007514657135, -66.84321016073227)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5433,7 +5413,7 @@ new google.maps.LatLng(10.4931219371693, -66.84323023022682)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5451,7 +5431,7 @@ new google.maps.LatLng(10.493269113915913, -66.84329387529118)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5469,7 +5449,7 @@ new google.maps.LatLng(10.493384656165166, -66.8433228135109)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5487,7 +5467,7 @@ new google.maps.LatLng(10.493543170137041, -66.84337312406893)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5505,7 +5485,7 @@ new google.maps.LatLng(10.493674764704611, -66.8434327840805)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5523,7 +5503,7 @@ new google.maps.LatLng(10.493810093852442, -66.84349555321205)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5541,7 +5521,7 @@ new google.maps.LatLng(10.493933224810574, -66.84356689453125)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5565,7 +5545,7 @@ new google.maps.LatLng(10.494277644841965, -66.84371860309369)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5583,7 +5563,7 @@ new google.maps.LatLng(10.494410584234426, -66.84382975101471)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5603,7 +5583,7 @@ new google.maps.LatLng(10.494584648813428, -66.84398531913757)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3E'
     });
 
@@ -5630,7 +5610,7 @@ new google.maps.LatLng(10.49095820614753, -66.84574801032005)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'P'
     });
     polyArray.push(P);
@@ -5663,7 +5643,7 @@ new google.maps.LatLng(10.49048897056465, -66.8433227942698)];
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'P'
     });
     polyArray.push(P);
@@ -5681,7 +5661,7 @@ new google.maps.LatLng(13.004557745339769, -67.093505859375)
       strokeOpacity: 0.8,
       strokeWeight: 1,
       fillColor: '#FF0000',
-      fillOpacity: 0.1,
+      fillOpacity: 0.7,
       zonetype: 'R3'
     });
     polyArray.push(Clinica);
