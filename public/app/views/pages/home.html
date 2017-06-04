@@ -108,6 +108,14 @@
             <option>Terreno</option>
             <option>Townhouse</option>
           </select>
+          <select class="form-control text-center" ng-model="home.priorityInputE"
+            ng-show="home.prioritySelected == 'Municipio'">
+            <option>Baruta</option>
+            <option>Chacao</option>
+            <option>Hatillo</option>
+            <option>Libertador</option>
+            <option>Sucre</option>
+          </select>
           <button style="margin: 10px 0px;" ng-hide="(!markerGoal && home.prioritySelected == 'Distancia') || home.prioritySelected == '--Seleccione--' " type="submit" class="btn btn-primary" ng-show="auxPlusGoal<10">
             Agregar criterio
           </button>
@@ -178,7 +186,7 @@
       <div class="modal-body">
         <div class="panel panel-info">
           <div class="panel-heading" style="text-align: center;">
-            <strong>Caracteristicas del Hogar</strong></strong>
+            <strong>Características del Hogar</strong></strong>
           </div>
           <table class="table">
             <tr>
@@ -323,7 +331,7 @@
             <option>Libertador</option>
             <option>Sucre</option>
           </select>
-        </div> 
+        </div>
         <div class="form-group col-sm-7">
           <label>Dirección</label>
           <input class="form-control text-center" type="text" name="name" placeholder="Ej: El Cafetal, Calle Limón, Quinta Wachu" ng-model="home.regData.address" required>

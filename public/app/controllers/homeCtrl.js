@@ -43,7 +43,8 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
     {nombre: 'Calle Cerrada', name: 'streetclose'},
     {nombre: 'Vigilante', name: 'guard'},
     {nombre: 'Distancia', name: 'latlng'},
-    {nombre: 'Tipo de Inmueble', name: 'type'}
+    {nombre: 'Tipo de Inmueble', name: 'type'},
+    {nombre: 'Municipio', name: 'township'}
   ];
   app.availableOptions.sort(compare);
   app.prioritySelected = '--Seleccione--';
@@ -52,6 +53,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   app.priorityInputB = "0";
   app.priorityInputC = 'Si';
   app.priorityInputD = 'Casa';
+  app.priorityInputE = 'Baruta';
   app.leftPercentaje = 0;
   $scope.myDataSource = {
       chart: {
@@ -226,11 +228,11 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
 
       for (var j = 0; j < auxPriority.length; j++) {
 
-        if (auxPriority[j].name == 'price') {
+        if (auxPriority[j].name == 'price' || auxPriority[j].name == 'age') {
           aux = house[j] - auxPriority[j].value;
         } else if (auxPriority[j].position) {
           aux = house[j] - auxPriority[j].min;
-        } else if (auxPriority[j].name == 'type') {
+        } else if (auxPriority[j].name == 'type' || auxPriority[j].name == 'township') {
           if (auxPriority[j].value == house[j]) {
             aux = 0;
           } else {
@@ -426,6 +428,8 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
 
       } else if (app.prioritySelected == 'Tipo de Inmueble') {
         goal.value = app.priorityInputD;
+      } else if (app.prioritySelected == 'Municipio') {
+        goal.value = app.priorityInputE;
       } else {
         goal.value = app.priorityInputA;
       }
