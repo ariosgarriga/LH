@@ -33,9 +33,6 @@
       <div class="row" style="margin: 5px 0px;">
           <button class="btn btn-success col-xs-12 col-md-6 col-md-offset-3 text-center" type="button" ng-click="home.addHouse()" >Publicar un hogar</button>
       </div>
-      <div class="row" style="margin: 5px 0px;">
-          <button class="btn btn-primary col-xs-12 col-md-6 col-md-offset-3 text-center" type="button" ng-click="home.compareHouses()" ng-show="disabled">Comparar</button>
-      </div>
     </div>
   </div>
 
@@ -570,13 +567,36 @@
 
 <!-- =========================================================== -->
 <div class="container">
+  <div class="row" style="margin: 5px 0px;">
+    <p class="col-md-8 col-md-offset-2 text-center">
+      Como una de las funciones de la plataforma, puede seleccionar 2 inmuebles y compararlos pisando el botón
+    </p>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-sm-2">
+      <select class="form-control" ng-model="orderByArgument">
+        <option value="created_at">Fecha</option>
+        <option value="price">Precio</option>
+      </select>
+    </div>
+    <div class="col-sm-2 form-inline">
+      <div class="form-group">
+        <i class="fa fa-sort-amount-asc fa-lg" aria-hidden="true" ></i>
+        <label><md-switch class="md-primary" style="margin: 0px;"ng-model="orderByToggle" aria-label="Switch 7"></md-switch></label>
+        <i class="fa fa-sort-amount-desc fa-lg" aria-hidden="true" ></i>
+      </div>
+
+    </div>
+    <button class="btn btn-primary col-sm-4 text-center" type="button" ng-click="home.compareHouses()" ng-disabled="!disabled">Comparar</button>
+  </div>
 
   <div class="row houses-home">
     <div ng-repeat="item in home.houses | filter: searchParams | customSearch:searchHouse.price.max:searchHouse.price.min | orderBy: orderByArgument : orderByToggle "
          ng-click="setSelected(item._id)">
 
       <div class="col-lg-4 col-sm-6 col-xs-12 col-sm-offset-0">
-        <div class="thumbnail" ng-class="setClassSelected(item._id)">
+        <div class="thumbnail" ng-class="setClassSelected(item._id, item.classZ, $index)">
 
           <div class="image-div">
             <img ng-src="{{item.picture.url | fpConvert: {filter:'sharpen', w:300, h:150} }}" />

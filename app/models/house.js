@@ -38,7 +38,6 @@ var HouseSchema = new Schema({
   near_places: {type: String},
   shared_users: {type: Schema.Types.Mixed, default: []},
   shared_fields: {type: Schema.Types.Mixed, default: []}
-
-});
+}, { timestamps: { createdAt: 'created_at' } });
 
 module.exports = mongoose.model('House', HouseSchema);

@@ -269,6 +269,12 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
 
       }
       app.houses[i].z = z;
+      if(z==0){
+        app.houses[i].classZ = true;
+        console.log('en 0 Z');
+      } else {
+        app.houses[i].classZ = false;
+      }
 
     }
     $scope.orderByToggle = false;
@@ -502,14 +508,19 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
     }
   }
 
-  $scope.setClassSelected = function(id){
+  $scope.setClassSelected = function(id, aux, index){
+    var classes = [];
     if($scope.idSelected.length){
       for (var i = 0; i < $scope.idSelected.length; i++) {
         if($scope.idSelected[i] === id)
-        return "selected";
+          classes.push("selected");
       }
     }
+    if (aux) {
+      classes.push("topZ");
+    }
 
+    return classes;
   }
 
   app.compareHouses = function(){
