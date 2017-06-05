@@ -286,10 +286,14 @@ module.exports = function(router){
     house.pro_notes = req.body.pro_notes;
     house.near_places = req.body.near_places;
 
-    if(req.body.address == null || req.body.address == ''
-      || req.body.id_user == null || req.body.id_user == ''){
-        res.json({ success: false, message: 'Hace falta algunos datos' });
-      } else {
+    if( req.body.address == null || req.body.address == '' || req.body.id_user == null || req.body.id_user == ''
+      || req.body.price == null || req.body.price == ''){
+      res.json({ success: false, message: 'No te olvides de colocar la dirección y el precio' });
+    } else if (req.body.meters == null || req.body.meters == '' || req.body.consmeters == null || req.body.consmeters == '') {
+      res.json({ success: false, message: 'No te olvides de colocar los metros cuadrados de terreno y construcción' });
+    } else if (req.body.picture == null ) {
+      res.json({ success: false, message: 'No te olvides de colocar la imagen principal' });
+    } else {
         house.save(function(err){
           if (err) {
             res.json({ success: false, message: 'No se pudo crear el hogar'});
