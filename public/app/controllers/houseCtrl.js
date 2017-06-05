@@ -151,10 +151,11 @@ angular.module('houseControllers', ['userServices', 'houseServices', 'locationSe
   House.getHouse($routeParams.id).then(function(data){
     if (data.data.success) {
       app.data = data.data.house;
-      app.data.bathrooms = data.data.house.bathrooms.toString();
-      app.data.rooms = data.data.house.rooms.toString();
-      app.data.parking = data.data.house.parking.toString();
-      app.data.floors = data.data.house.floors.toString();
+      // app.data.bathrooms = data.data.house.bathrooms.toString();
+      // app.data.medBathrooms = data.data.house.medBathrooms.toString();
+      // app.data.rooms = data.data.house.rooms.toString();
+      // app.data.parking = data.data.house.parking.toString();
+      // app.data.floors = data.data.house.floors.toString();
       $scope.addSlide(app.data.picture.url);
       if (app.data.morePictures) {
         for (var i = 0; i < app.data.morePictures.length; i++) {
@@ -285,7 +286,7 @@ angular.module('houseControllers', ['userServices', 'houseServices', 'locationSe
       } else if (Areas[i].zonetype == 'C2') {
         Areas[i].fillColor = '#552700';
       }
-      
+
       app.map.polyArray.push(Areas[i]);
       app.map.polyArray[i].setMap(app.map);
     }
@@ -312,6 +313,7 @@ angular.module('houseControllers', ['userServices', 'houseServices', 'locationSe
       app.data = data.data.house;
       console.log(data.data.house);
       app.data.bathrooms = data.data.house.bathrooms.toString();
+      app.data.medBathrooms = data.data.house.medBathrooms.toString();
       app.data.rooms = data.data.house.rooms.toString();
       app.data.parking = data.data.house.parking.toString();
       app.data.floors = data.data.house.floors.toString();
@@ -360,7 +362,7 @@ angular.module('houseControllers', ['userServices', 'houseServices', 'locationSe
         $timeout(function(){
           app.editForm.$setPristine();
           app.editForm.$setUntouched();
-          $window.location.reload();
+          $location.path('/house/'+houseObject._id);
           app.successMsg = false;
         }, 5000);
       } else {

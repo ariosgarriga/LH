@@ -2,7 +2,9 @@ angular.module('mainController',['authServices', 'userServices'])
 
 .controller('mainCtrl', function($location, $scope, $timeout, Auth, $rootScope, $interval, $window, $route, User, AuthToken) {
   var app = this;
-
+  $('.navbar-collapse a').click(function(){
+    $(".navbar-collapse").collapse('hide');
+  }); 
   app.loadme = false;
   app.disabled = true;
 

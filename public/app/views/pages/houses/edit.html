@@ -93,7 +93,7 @@
       </div>
       <br>
       <div class="row">
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-3">
           <label>Tipo de Inmueble</label>
           <select class="form-control text-center" ng-model="editHouse.data.type">
             <option>Casa</option>
@@ -102,7 +102,7 @@
             <option>Townhouse</option>
           </select>
         </div>
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-3">
           <label>Habitaciones</label>
           <select class="form-control text-center" ng-model="editHouse.data.rooms">
             <option>0</option>
@@ -117,9 +117,22 @@
         </div>
 
         <!-- Bathrooms -->
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-3">
           <label>Baños</label>
           <select class="form-control" ng-model="editHouse.data.bathrooms">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-3">
+          <label>Medios Baños</label>
+          <select class="form-control" ng-model="editHouse.data.medBathrooms">
             <option>0</option>
             <option>1</option>
             <option>2</option>
@@ -228,53 +241,6 @@
         <h1>{{ editHouse.data.price | currency:"Bsf "}}</h1>
       </div>
 
-      <!-- <div class="row">
-        <div class="col-sm-12">
-          <h2>Datos del Cliente</h2>
-        </div>
-        <div class="col-sm-4">
-          <label>Nombre y Apellido</label>
-          <input type="text" class="form-control" placeholder="Jane Doe"ng-model="editHouse.data.pro_name">
-        </div>
-        <div class="col-sm-4">
-          <label>Telefono</label>
-          <input type="text" class="form-control" placeholder="04149999999" ng-model="editHouse.data.pro_phone">
-        </div>
-        <div class="col-sm-4">
-          <label>Cédula</label>
-          <input type="text" class="form-control" placeholder="V-xxxxxxxx" ng-model="editHouse.data.pro_CI">
-        </div>
-        <div class="col-sm-8">
-          <label>Domicilio</label>
-          <input type="text" class="form-control" placeholder="Urb, Municipio, Ciudad" ng-model="editHouse.data.pro_direction">
-        </div>
-        <div class="col-sm-4">
-          <label>Correo</label>
-          <input type="email" class="form-control" placeholder="Jogn@ode.com" ng-model="editHouse.data.pro_email">
-        </div>
-        <div class="col-sm-4">
-          <label>Precio Mínimo de venta</label>
-          <input class="form-control text-center" type="text" placeholder="1,000,000.00Bsf" ng-model="editHouse.data.pro_minPrice" ui-number-mask="0">
-        </div>
-        <div class="col-sm-4">
-          <label>Porcentaje por venta</label>
-          <input class="form-control text-center" type="text" placeholder="5.5%" ng-model="editHouse.data.pro_porcentaje" ui-percentage-mask>
-        </div>
-        <div class="col-sm-4">
-          <label>Porcentaje Colaboradores</label>
-          <input class="form-control text-center" type="text" placeholder="5.3" ng-model="editHouse.data.pro_porcentajeColab" ui-percentage-mask>
-        </div>
-        <div class="col-sm-4 col-sm-offset-4">
-          <label>{{editHouse.exclusive}} Exclusividad</label>
-          <md-switch ng-click="editHouse.exclusiveText()" style="width:50px; margin: 0px auto;" class="md-primary" ng-model="editHouse.data.pro_exclusive" aria-label="Switch 4"></md-switch>
-        </div>
-        <div class="col-sm-12">
-          <h3>Notas Personales</h3>
-          <textarea class="form-control" rows="3" ng-model="editHouse.data.pro_notes"></textarea>
-        </div>
-
-      </div> -->
-
       <div class="panel panel-info">
         <div class="panel-heading" style="text-align: center;">
           <strong>
@@ -287,53 +253,53 @@
           <tr>
           <tr>
             <td><strong>Nombre</strong></td>
-            <td><input type="text" class="form-control" placeholder="Jane Doe"ng-model="editHouse.data.pro_name"></td>
-            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[0]"></td>
+            <td><input type="text" class="form-control" placeholder="Jane Doe" ng-model="editHouse.data.pro_name"></td>
+            <td><input type="checkbox" ng-show="editHouse.data.pro_name" ng-model="editHouse.data.shared_fields[0]"></td>
           </tr>
           <tr>
             <td><strong>Correo</strong></td>
             <td><input type="email" class="form-control" placeholder="cliente@correo.com" ng-model="editHouse.data.pro_email"></td>
-            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[1]"></td>
+            <td><input type="checkbox" ng-show="editHouse.data.pro_email" ng-model="editHouse.data.shared_fields[1]"></td>
           </tr>
           <tr>
             <td><strong>Telefono</strong></td>
             <td><input type="text" class="form-control" placeholder="04149999999" ng-model="editHouse.data.pro_phone"></td>
-            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[2]"></td>
+            <td><input type="checkbox" ng-show="editHouse.data.pro_phone" ng-model="editHouse.data.shared_fields[2]"></td>
           </tr>
           <tr>
             <td><strong>Domicilio</strong></td>
             <td><input type="text" class="form-control" placeholder="Urb, Municipio, Ciudad" ng-model="editHouse.data.pro_direction"></td>
-            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[3]"></td>
+            <td><input type="checkbox" ng-show="editHouse.data.pro_direction" ng-model="editHouse.data.shared_fields[3]"></td>
           </tr>
           <tr>
             <td><strong>Cedula</strong></td>
             <td><input type="text" class="form-control" placeholder="V-xxxxxxxx" ng-model="editHouse.data.pro_CI"></td>
-            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[4]"></td>
+            <td><input type="checkbox" ng-show="editHouse.data.pro_CI" ng-model="editHouse.data.shared_fields[4]"></td>
           </tr>
           <tr>
             <td><strong>Precio minimo de venta</strong></td>
             <td><input class="form-control text-center" type="text" placeholder="1,000,000.00Bsf" ng-model="editHouse.data.pro_minPrice" ui-number-mask="0"></td>
-            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[5]"></td>
+            <td><input type="checkbox" ng-show="editHouse.data.pro_minPrice" ng-model="editHouse.data.shared_fields[5]"></td>
           </tr>
           <tr>
             <td><strong>Porcentaje por venta</strong></td>
             <td><input class="form-control text-center" type="text" placeholder="5.5%" ng-model="editHouse.data.pro_porcentaje" ui-percentage-mask></td>
-            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[6]"></td>
+            <td><input type="checkbox" ng-show="editHouse.data.pro_porcentaje" ng-model="editHouse.data.shared_fields[6]"></td>
           </tr>
           <tr>
             <td><strong>Porcentaje colaboradores</strong></td>
             <td><input class="form-control text-center" type="text" placeholder="5.3" ng-model="editHouse.data.pro_porcentajeColab" ui-percentage-mask></td>
-            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[7]"></td>
+            <td><input type="checkbox" ng-show="editHouse.data.pro_porcentajeColab" ng-model="editHouse.data.shared_fields[7]"></td>
           </tr>
           <tr>
             <td><strong>{{editHouse.exclusive}} Exclusividad</strong></td>
             <td><md-switch ng-click="editHouse.exclusiveText()" style="width:50px; margin: 0px auto;" class="md-primary" ng-model="editHouse.data.pro_exclusive" aria-label="Switch 4"></md-switch></td>
-            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[8]"></td>
+            <td><input type="checkbox" ng-show="editHouse.data.pro_exclusive" ng-model="editHouse.data.shared_fields[8]"></td>
           </tr>
           <tr>
             <td><strong>Notas personales</strong></td>
             <td><textarea class="form-control" rows="3" ng-model="editHouse.data.pro_notes"></textarea></td>
-            <td><input type="checkbox" ng-model="editHouse.data.shared_fields[9]"></td>
+            <td><input type="checkbox" ng-show="editHouse.data.pro_notes" ng-model="editHouse.data.shared_fields[9]"></td>
           </tr>
         </table>
       </div>

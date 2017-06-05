@@ -6,6 +6,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   $scope.superhero = {};
   app.regData.rooms = "0";
   app.regData.bathrooms ="0";
+  app.regData.medBathrooms ="0";
   app.regData.parking = "0";
   app.regData.floors = "0";
   app.regData.streetclose = false;
@@ -32,6 +33,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   }
   app.availableOptions= [
     {nombre: 'Baños', name: 'bathrooms'},
+    {nombre: 'Medios Baños', name: 'medBathrooms'},
     {nombre: 'Cuartos', name: 'rooms'},
     {nombre: 'Dimensiones (Ancho)', name: 'dimensionsX'},
     {nombre: 'Dimensiones (Largo)', name: 'dimensionsY'},
@@ -44,13 +46,14 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
     {nombre: 'Vigilante', name: 'guard'},
     {nombre: 'Distancia', name: 'latlng'},
     {nombre: 'Tipo de Inmueble', name: 'type'},
-    {nombre: 'Municipio', name: 'township'}
+    {nombre: 'Municipio', name: 'township'},
+    {nombre: 'Edad', name: 'age'}
   ];
   app.availableOptions.sort(compare);
   app.prioritySelected = '--Seleccione--';
   app.priorityGoal = [];
   app.priorityInputA = '';
-  app.priorityInputB = "0";
+  app.priorityInputB = "1";
   app.priorityInputC = 'Si';
   app.priorityInputD = 'Casa';
   app.priorityInputE = 'Baruta';
@@ -84,12 +87,16 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
 
 
   $scope.availableSearchParams = [
-    { key: "rooms",
-      name: "Cuartos",
-      placeholder: "0",
-      allowMultiple: true,
-      restrictToSuggestedValues: true,
-      suggestedValues: ['1', '2', '3']},
+    { key: "township", name: "Municipio", placeholder: "Baruta", allowMultiple: true,
+      restrictToSuggestedValues: true,suggestedValues: ['Baruta', 'Chacao', 'Hatillo', 'Libertador', 'Sucre',] },
+    { key: "rooms", name: "Cuartos", placeholder: "1", allowMultiple: true,
+      restrictToSuggestedValues: true,suggestedValues: ['1', '2', '3', '4', '5', '6', '7'] },
+    { key: "bathrooms", name: "Baños", placeholder: "1", allowMultiple: true,
+      restrictToSuggestedValues: true,suggestedValues: ['1', '2', '3', '4', '5', '6', '7'] },
+    { key: "medBathrooms", name: "Medios Baños", placeholder: "1", allowMultiple: true,
+      restrictToSuggestedValues: true,suggestedValues: ['1', '2', '3', '4', '5', '6', '7'] },
+    { key: "type", name: "Tipo de Inmueble", placeholder: "Casa", allowMultiple: true,
+      restrictToSuggestedValues: true,suggestedValues: ['Casa', 'Apartamento', 'Terreno', 'Townhouse'] }
   ];
 
 
@@ -153,7 +160,6 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
 
   app.sortPriorities = function(){
     var auxPriority = JSON.parse(angular.toJson(app.priorityGoal));
-    console.log($scope.time);
 
     function compare(a,b) {
       if (a.name < b.name)
@@ -361,7 +367,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
 
 
     if (app.prioritySelected !== '--Seleccione--') {
-      if (app.prioritySelected == 'Baños'|| app.prioritySelected == 'Cuartos' || app.prioritySelected == 'Estacionamiento' || app.prioritySelected == 'Pisos') {
+      if (app.prioritySelected == 'Medios Baños'||app.prioritySelected == 'Baños'|| app.prioritySelected == 'Cuartos' || app.prioritySelected == 'Estacionamiento' || app.prioritySelected == 'Pisos') {
         goal.value = app.priorityInputB;
       } else if (app.prioritySelected == 'Calle Cerrada'|| app.prioritySelected == 'Vigilante') {
         goal.value = app.priorityInputC;

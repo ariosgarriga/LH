@@ -7,6 +7,7 @@ var HouseSchema = new Schema({
   township: {type: String},
   rooms: {type: Number},
   bathrooms: {type: Number},
+  medBathrooms: {type: Number},
   dimensionsY: {type: Number},
   dimensionsX: {type: Number},
   floors: {type: Number},

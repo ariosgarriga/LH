@@ -3,6 +3,7 @@ var House = require('../models/house.js');
 var Law = require('../models/laws.js');
 var jwt = require('jsonwebtoken');
 var secret = 'andresandcesco';
+var _ = require('lodash');
 
 module.exports = function(router){
   // USER REGISTRATION ROUTE
@@ -255,6 +256,7 @@ module.exports = function(router){
     house.township = req.body.township;
     house.rooms = req.body.rooms;
     house.bathrooms = req.body.bathrooms;
+    house.medBathrooms = req.body.medBathrooms;
     house.dimensionsX = req.body.dimensionsX;
     house.dimensionsY = req.body.dimensionsY;
     house.floors = req.body.floors;
@@ -313,88 +315,21 @@ module.exports = function(router){
           } else {
             if (mainUser.permission === 'admin' || mainUser.permission === 'moderator' || mainUser._id == house.id_user) {
 
-              if(editHouse.dimensionsX){
-                House.update({_id: editHouse}, {
-                  address : req.body.address,
-                  township : req.body.township,
-                  rooms : req.body.rooms,
-                  bathrooms : req.body.bathrooms,
-                  dimensionsX : req.body.dimensionsX,
-                  dimensionsY : req.body.dimensionsY,
-                  floors : req.body.floors,
-                  meters : req.body.meters,
-                  consmeters : req.body.consmeters,
-                  parking : req.body.parking,
-                  streetclose : req.body.streetclose,
-                  guard : req.body.guard,
-                  age : req.body.age,
-                  price : req.body.price,
-                  lat : req.body.lat,
-                  lng : req.body.lng,
-                  picture : req.body.picture,
-                  morePictures : req.body.morePictures,
-                  zonetype : req.body.zonetype,
-                  type : req.body.type,
-                  pro_name : req.body.pro_name,
-                  pro_phone : req.body.pro_phone,
-                  pro_direction : req.body.pro_direction,
-                  pro_CI : req.body.pro_CI,
-                  pro_email : req.body.pro_email,
-                  pro_minPrice : req.body.pro_minPrice,
-                  pro_porcentaje : req.body.pro_porcentaje,
-                  pro_porcentajeColab : req.body.pro_porcentajeColab,
-                  pro_exclusive : req.body.pro_exclusive,
-                  pro_notes : req.body.pro_notes,
-                  near_places : req.body.near_places,
-                  shared_fields : req.body.shared_fields
-                }, function(err){
-                  if (err) {
-                    console.log(err);
-                  } else {
-                    res.json({ success: true, message: 'El hogar ha sido actualizado' });
+              const out = {};
+              _(req.body).forEach((value,key) => {
+                  if (!_.isEmpty(value)){
+                      out[key] = value;
                   }
-                });
-              }else {
-                House.update({_id: editHouse}, {
-                  address : req.body.address,
-                  township : req.body.township,
-                  rooms : req.body.rooms,
-                  bathrooms : req.body.bathrooms,
-                  floors : req.body.floors,
-                  meters : req.body.meters,
-                  consmeters : req.body.consmeters,
-                  parking : req.body.parking,
-                  streetclose : req.body.streetclose,
-                  guard : req.body.guard,
-                  age : req.body.age,
-                  price : req.body.price,
-                  lat : req.body.lat,
-                  lng : req.body.lng,
-                  picture : req.body.picture,
-                  morePictures : req.body.morePictures,
-                  zonetype : req.body.zonetype,
-                  type : req.body.type,
-                  pro_name : req.body.pro_name,
-                  pro_phone : req.body.pro_phone,
-                  pro_direction : req.body.pro_direction,
-                  pro_CI : req.body.pro_CI,
-                  pro_email : req.body.pro_email,
-                  pro_minPrice : req.body.pro_minPrice,
-                  pro_porcentaje : req.body.pro_porcentaje,
-                  pro_porcentajeColab : req.body.pro_porcentajeColab,
-                  pro_exclusive : req.body.pro_exclusive,
-                  pro_notes : req.body.pro_notes,
-                  near_places : req.body.near_places,
-                  shared_fields : req.body.shared_fields
-                }, function(err){
-                  if (err) {
-                    console.log(err);
-                  } else {
-                    res.json({ success: true, message: 'El hogar ha sido actualizado' });
-                  }
-                });
-              }
+              });
 
+              console.log(out);
+              House.update({_id: editHouse}, out, function(err){
+                if (err) {
+                  console.log(err);
+                } else {
+                  res.json({ success: true, message: 'El hogar ha sido actualizado' });
+                }
+              });
             } else {
               res.json({success: false, message: 'No posee permiso para realizar esta accion'});
             }

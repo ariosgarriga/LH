@@ -46,23 +46,30 @@
   <div class="row">
     <h2 class="text-center">Busqueda avanzada por metas</h2>
   </div>
-  <div class="row" ng-show="home.priorityGoal.length>0">
+  <div class="row">
     <div class="panel panel-info col-md-12">
-      <div class="panel-heading" style="text-align: center; font-size: 16px">
-        <strong>Metas</strong>
+      <div class="panel-heading text-center" >
+        <strong style="font-size: 16px">Metas</strong>
+        <p style="font-size: 14px">
+          A continuación se le presenta el sistema de Busqueda Avanzada, seleccionando las caracteristicas
+          de su hogar ideal y distribuyendo el peso (mientras mayor sea el peso asignado, mayor prioridad le dara el sistema)
+          entre cada una de las caracteristicas, el sistema le mostrara de forma ordenada aquellos que mejor se
+          adapten a su meta.
+        </p>
       </div>
-      <table class="table">
+      <table class="table" ng-show="home.priorityGoal.length>0">
         <tr>
           <td><strong>Criterio</strong></td>
           <td><strong>Valor</strong></td>
           <td><strong>Peso</strong></td>
           <td></td>
         </tr>
-        <tr ng-repeat="item in home.priorityGoal">
+        <tr ng-repeat="item in home.priorityGoal" >
           <td class="col-sm-4">{{ item.nombre }}</td>
-          <td class="col-sm-4">{{ item.value }}</td>
+          <td class="col-sm-4" ng-show="item.nombre != 'Precio'">{{ item.value }}</td>
+          <td class="col-sm-4" ng-show="item.nombre == 'Precio'">{{ item.value | currency:"BsF." }}</td>
           <td class="col-sm-3">
-            <i class="fa fa-arrow-left" aria-hidden="true" ng-click="minusPercentaje($index)" ng-show="item.percentaje>0"></i>
+            <i class="fa fa-arrow-left" aria-hidden="true" ng-click="minusPercentaje($index)" ng-show="item.percentaje>0 && item.percentaje>1"></i>
             <label>{{ item.percentaje }}</label>
             <i class="fa fa-arrow-right" aria-hidden="true" ng-click="plusPercentaje($index)" ng-show="home.leftPercentaje>0"></i>
           </td>
@@ -75,7 +82,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-4  col-md-offset-2">
+    <div class="col-md-4 " ng-class="{ 'col-md-offset-4': home.priorityGoal.length==0, 'col-md-offset-2': home.priorityGoal.length>0 }">
       <form class="form-inline" ng-submit="home.addGoal()">
         <div class="form-group text-center">
           <label>Agregar nuevo criterio de busqueda</label>
@@ -84,10 +91,9 @@
             <option ng-repeat="option in home.availableOptions" >{{option.nombre}}</option>
           </select>
           <input type="text" ui-number-mask="0" style="margin-top: 10px;" class="form-control" ng-model="home.priorityInputA" placeholder="Ej: 1000.00"
-            ng-show="home.prioritySelected == 'Dimensiones (Ancho)'|| home.prioritySelected == 'Dimensiones (Largo)' || home.prioritySelected == 'Metros de Construción' || home.prioritySelected == 'Metro Cuadrados'|| home.prioritySelected == 'Precio'">
+            ng-show="home.prioritySelected == 'Edad' || home.prioritySelected == 'Dimensiones (Ancho)'|| home.prioritySelected == 'Dimensiones (Largo)' || home.prioritySelected == 'Metros de Construción' || home.prioritySelected == 'Metro Cuadrados'|| home.prioritySelected == 'Precio'">
           <select class="form-control text-center" ng-model="home.priorityInputB"
-            ng-show="home.prioritySelected == 'Pisos'|| home.prioritySelected == 'Baños'|| home.prioritySelected == 'Cuartos' || home.prioritySelected == 'Estacionamiento'">
-            <option>0</option>
+            ng-show="home.prioritySelected == 'Pisos'|| home.prioritySelected == 'Baños' || home.prioritySelected == 'Medios Baños'|| home.prioritySelected == 'Cuartos' || home.prioritySelected == 'Estacionamiento'">
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -208,6 +214,11 @@
               <td><strong>Baños</strong></td>
               <td ng-class="{'success': home.compare[0].bathrooms > home.compare[1].bathrooms}">{{ home.compare[0].bathrooms }}</td>
               <td ng-class="{'success': home.compare[0].bathrooms < home.compare[1].bathrooms}">{{ home.compare[1].bathrooms }}</td>
+            </tr>
+            <tr>
+              <td><strong>Medios Baños</strong></td>
+              <td ng-class="{'success': home.compare[0].medBathrooms > home.compare[1].medBathrooms}">{{ home.compare[0].medBathrooms }}</td>
+              <td ng-class="{'success': home.compare[0].medBathrooms < home.compare[1].medBathrooms}">{{ home.compare[1].medBathrooms }}</td>
             </tr>
             <tr>
               <td><strong>Pisos</strong></td>
@@ -343,7 +354,7 @@
       </div>
       <br>
       <div class="row">
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-3">
           <label>Tipo de Inmueble</label>
           <select class="form-control text-center" ng-model="home.regData.type">
             <option>Casa</option>
@@ -352,7 +363,7 @@
             <option>Townhouse</option>
           </select>
         </div>
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-3">
           <label>Habitaciones</label>
           <select class="form-control text-center" ng-model="home.regData.rooms">
             <option>0</option>
@@ -367,9 +378,22 @@
         </div>
 
         <!-- Bathrooms -->
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-3">
           <label>Baños</label>
           <select class="form-control" ng-model="home.regData.bathrooms">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-3">
+          <label>Medios Baños</label>
+          <select class="form-control" ng-model="home.regData.medBathrooms">
             <option>0</option>
             <option>1</option>
             <option>2</option>
@@ -569,6 +593,9 @@
             <p>
               <i class="fa fa-home" aria-hidden="true"></i> {{ item.consmeters }}m<sup>2</sup> <span style="padding: 0px 5px;"></span>
               <i class="fa fa-map" aria-hidden="true"></i> {{ item.meters }}m<sup>2</sup>
+            </p>
+            <p ng-show="item.z">
+              Valor de z: {{ item.z}}
             </p>
             <p><label>Ubicación: </label> {{item.address}}</p>
             <a href="/house/{{ item._id }}" ng-show="sheckLogIng()">
