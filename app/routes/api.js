@@ -307,6 +307,7 @@ module.exports = function(router){
   router.put('/house/edit', function(req, res){
     var editHouse = req.body._id;
     var newHouse =req.body;
+    console.log(req.body);
     User.findOne({ email: req.decoded.email }, function(err, mainUser){
       if (err) throw err;
       if (!mainUser) {
@@ -321,9 +322,10 @@ module.exports = function(router){
 
               const out = {};
               _(req.body).forEach((value,key) => {
-                  if (!_.isEmpty(value)){
-                      out[key] = value;
-                  }
+                  console.log(_.isEmpty(value) );
+                  if (!_.isEmpty(value) || _.map(value, _.identity)){
+                    out[key] = value;
+                  } 
               });
 
               console.log(out);

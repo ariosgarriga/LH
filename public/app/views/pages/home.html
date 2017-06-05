@@ -312,11 +312,12 @@
                 Subir <span class="caret"></span>
               </button>
               <!-- Show the thumbanil of more pictures -->
-                  <div style="margin-top:10px;" ng-repeat="picture in superhero.morePictures">     <div class="col-md-{{12 / superhero.morePictures.length}}">
-                      <a href="{{picture.url}}" class="thumbnail">
-                        <img ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
-                      </a>
-                  </div>
+              <div style="margin-top:10px;" ng-repeat="picture in superhero.morePictures">
+                <div class="col-md-{{12 / superhero.morePictures.length}}">
+                  <a href="{{picture.url}}" class="thumbnail">
+                    <img ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
+                  </a>
+                </div>
               </div>
             </div>
         </div>
@@ -340,7 +341,7 @@
             <option>Sucre</option>
           </select>
         </div>
-        <div class="form-group col-sm-7" ng-class="{ 'has-error' : regHomeForm.address.$invalid && !regHomeForm.address.$pristine }">
+        <div class="form-group col-sm-7">
           <label>Dirección</label>
           <input class="form-control text-center" type="text" name="address" placeholder="Ej: El Cafetal, Calle Limón, Quinta Wachu" ng-model="home.regData.address" required>
         </div>
