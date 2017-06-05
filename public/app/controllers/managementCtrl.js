@@ -89,17 +89,17 @@ angular.module('managementController',[])
 
 })
 
-.controller('editCtrl', function($scope, $routeParams, User, $timeout, $window){
+.controller('editCtrl', function($scope, $routeParams, $anchorScroll, User, $timeout, $window, Auth, $location){
 
   var app = this;
   $scope.nameTab = "active";
   app.phase1 = true;
   app.roleEdit = true;
 
-
   User.getUser($routeParams.id).then(function(data){
     if (data.data.success) {
       $scope.editData = data.data.user;
+      $scope.email = data.data.user.email;
       $scope.editData.birth = new Date(data.data.user.birth);
       if (data.data.user.permission === 'admin') {
         app.roleEdit = false;
@@ -116,14 +116,26 @@ angular.module('managementController',[])
     userObject = $scope.editData;
     User.editUser(userObject).then(function(data){
       if (data.data.success) {
+        $anchorScroll();
         app.successMsg = data.data.message;
         $timeout(function(){
-          app.editForm.$setPristine();
-          app.editForm.$setUntouched();
-          $window.location.reload();
-          app.successMsg = false;
+          console.log($scope.editData.email+' = '+$scope.email);
+          if ($scope.editData.email == $scope.email) {
+            app.successMsg = false;
+            app.editForm.$setPristine();
+            app.editForm.$setUntouched();
+            $location.path('/profile');
+          } else {
+            app.editForm.$setPristine();
+            app.editForm.$setUntouched();
+            app.successMsg = false;
+            $location.path('/');
+            Auth.logout();
+          }
+
         }, 2000);
       } else {
+        $anchorScroll();
         app.errorMsg = data.data.message;
       }
     })

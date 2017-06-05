@@ -4,9 +4,13 @@ angular.module('mainController',['authServices', 'userServices'])
   var app = this;
   $('.navbar-collapse a').click(function(){
     $(".navbar-collapse").collapse('hide');
-  }); 
+  });
   app.loadme = false;
   app.disabled = true;
+  app.loginData= {
+    email: '',
+    password: ''
+  };
 
   $scope.isActive = function (viewLocation) {
     return viewLocation === $location.path();
@@ -157,7 +161,7 @@ angular.module('mainController',['authServices', 'userServices'])
         //Redirect to home page
         $timeout(function () {
           $location.path('/');
-          app.loginData = '';
+          // app.loginData = '';
           app.successMsg = false;
           app.checkSession();
         }, 2000);

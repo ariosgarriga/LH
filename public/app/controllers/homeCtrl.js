@@ -75,7 +75,7 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   }
   $scope.auxPlusGoal = 0;
   $scope.orderByToggle = false;
-  $scope.orderByArgument = 'Fecha';
+  $scope.orderByArgument = 'created_at';
   app.calcM = false;
   $scope.labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   $scope.labelIndex = 0;
