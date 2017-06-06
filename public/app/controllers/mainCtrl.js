@@ -1,6 +1,6 @@
 angular.module('mainController',['authServices', 'userServices'])
 
-.controller('mainCtrl', function($location, $scope, $timeout, Auth, $rootScope, $interval, $window, $route, User, AuthToken) {
+.controller('mainCtrl', function($location, $scope, $timeout, House, Auth, $rootScope, $interval, $window, $route, User, AuthToken) {
   var app = this;
   $('.navbar-collapse a').click(function(){
     $(".navbar-collapse").collapse('hide');
@@ -11,6 +11,7 @@ angular.module('mainController',['authServices', 'userServices'])
     email: '',
     password: ''
   };
+  app.sharedHouses = [];
 
   $scope.isActive = function (viewLocation) {
     return viewLocation === $location.path();
@@ -136,8 +137,21 @@ angular.module('mainController',['authServices', 'userServices'])
           }else {
             app.user.houses.notHouses = false;
           }
+          House.getHouses().then(function(data){
+            if (data.data.success) {
+              var houses = data.data.houses;
+              for (var i = 0; i < houses.length; i++) {
+                for (var j = 0; j < houses[i].shared_users.length; j++) {
+                  if (houses[i].shared_users[j].id == app.user._id) {
+                    app.sharedHouses.push(houses[i]);
+                  }
+                }
+              }
+            }
+          });
         });
       });
+
     } else {
       app.isLoggedIn = false;
       app.name = '';

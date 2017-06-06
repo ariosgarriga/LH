@@ -44,9 +44,34 @@
     <h1>Mis Publicaciones</h1>
     <h3 ng-show="main.user.houses.notHouses">No ha realizado ninguna publicación</h3>
   </div>
+  <div class="row houses-home">
+    <div ng-repeat="item in main.user.houses | orderBy: 'created_at':true ">
+      <div class="col-lg-4 col-sm-6 col-xs-12 col-sm-offset-0">
+        <div class="thumbnail">
+          <div class="image-div">
+            <img ng-src="{{item.picture.url | fpConvert: {filter:'sharpen', w:300, h:150} }}" />
+          </div>
 
-
-  <div class="row houses-home"><div ng-repeat="item in main.user.houses | orderBy: 'created_at':true ">
+          <div class="caption text-center">
+            <h3>{{item.price | currency:"Bsf "}}</h3>
+            <p><label>Ubicación: </label> {{item.address}}</p>
+            <a href="/house/{{ item._id }}">
+              <button type="button" class="btn btn-info ">Ver</button>
+            </a>
+            <a href="/house/edit/{{ item._id }}">
+              <button type="button" class="btn btn-primary ">Editar</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 text-center">
+    <h1>Publicaciones Compartidas</h1>
+    <h3 ng-hide="main.sharedHouses.length>0">No te han compartido ninguna publicación</h3>
+  </div>
+  <div class="row houses-home">
+    <div ng-repeat="item in main.sharedHouses | orderBy: 'created_at':true ">
       <div class="col-lg-4 col-sm-6 col-xs-12 col-sm-offset-0">
         <div class="thumbnail">
           <div class="image-div">

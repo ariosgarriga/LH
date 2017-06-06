@@ -13,12 +13,12 @@
         </div>
           <label class="col-sm-1">Deste</label>
           <div class="col-sm-3">
-            <input type="text" ui-number-mask="0" class="form-control col-sm-3" placeholder="0" ng-model="searchHouse.price.min" value="0" ng-change="newPagination()">
+            <input type="text" ui-number-mask="0" class="form-control col-sm-3" placeholder="0 Bsf" ng-model="searchHouse.price.min" value="0" ng-change="newPagination()">
           </div>
 
           <label class="col-sm-1">Hasta</label>
           <div class="col-sm-3">
-            <input type="text" ui-number-mask="0" class="form-control col-sm-3" placeholder="999,999,999" ng-model="searchHouse.price.max" value="10000000000"ng-change="newPagination()">
+            <input type="text" ui-number-mask="0" class="form-control col-sm-3" placeholder="999,999,999 Bsf" ng-model="searchHouse.price.max" value="10000000000"ng-change="newPagination()">
           </div>
       </div>
 
@@ -579,6 +579,7 @@
       <select class="form-control" ng-model="orderByArgument">
         <option value="created_at">Fecha</option>
         <option value="price">Precio</option>
+        <option value="z">Avanzada</option>
       </select>
     </div>
     <div class="col-sm-2 form-inline">
