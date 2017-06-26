@@ -140,10 +140,12 @@ angular.module('mainController',['authServices', 'userServices'])
           House.getHouses().then(function(data){
             if (data.data.success) {
               var houses = data.data.houses;
-              for (var i = 0; i < houses.length; i++) {
-                for (var j = 0; j < houses[i].shared_users.length; j++) {
-                  if (houses[i].shared_users[j].id == app.user._id) {
-                    app.sharedHouses.push(houses[i]);
+              if (app.sharedHouses.length == 0) {
+                for (var i = 0; i < houses.length; i++) {
+                  for (var j = 0; j < houses[i].shared_users.length; j++) {
+                    if (houses[i].shared_users[j].id == app.user._id) {
+                      app.sharedHouses.push(houses[i]);
+                    }
                   }
                 }
               }

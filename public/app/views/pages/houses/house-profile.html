@@ -28,7 +28,7 @@
     </div>
     <table class="table">
       <tr>
-        <td class="col-xs-6"><strong>Direccion</strong></td>
+        <td class="col-xs-6"><strong>Dirección</strong></td>
         <td class="col-xs-6">{{ house.data.address }}</td>
       </tr>
       <tr>
@@ -125,7 +125,7 @@
         <td>{{ house.data.pro_email }}</td>
       </tr>
       <tr ng-show="house.sharedFields[2] || (house.currentUserID == house.data.user._id )" ng-class="{'success': house.sharedFields[2] && (house.currentUserID == house.data.user._id )}">
-        <td><strong>Telefono</strong></td>
+        <td><strong>Teléfono</strong></td>
         <td>{{ house.data.pro_phone }}</td>
       </tr>
       <tr ng-show="house.sharedFields[3] || (house.currentUserID == house.data.user._id )" ng-class="{'success': house.sharedFields[3] && (house.currentUserID == house.data.user._id )}">
@@ -133,7 +133,7 @@
         <td>{{ house.data.pro_direction }}</td>
       </tr>
       <tr ng-show="house.sharedFields[4] || (house.currentUserID == house.data.user._id )" ng-class="{'success': house.sharedFields[4] && (house.currentUserID == house.data.user._id )}">
-        <td><strong>Cedula</strong></td>
+        <td><strong>Cédula</strong></td>
         <td>{{ house.data.pro_CI }}</td>
       </tr>
       <tr ng-show="house.sharedFields[5] || (house.currentUserID == house.data.user._id )" ng-class="{'success': house.sharedFields[5] && (house.currentUserID == house.data.user._id )}">
@@ -173,7 +173,7 @@
         <td>{{ house.data.user.email }}</td>
       </tr>
       <tr>
-        <td><strong>Telefono</strong></td>
+        <td><strong>Teléfono</strong></td>
         <td>{{ house.data.user.phone }}</td>
       </tr>
     </table>

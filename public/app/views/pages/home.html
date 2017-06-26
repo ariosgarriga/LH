@@ -8,10 +8,10 @@
           <nit-advanced-searchbox
             ng-model="searchParams"
             parameters="availableSearchParams"
-            placeholder="Avenida, Urbanizacion" >
+            placeholder="Avenida, Urbanización" >
           </nit-advanced-searchbox>
         </div>
-          <label class="col-sm-1">Deste</label>
+          <label class="col-sm-1">Desde</label>
           <div class="col-sm-3">
             <input type="text" ui-number-mask="0" class="form-control col-sm-3" placeholder="0 Bsf" ng-model="searchHouse.price.min" value="0" ng-change="newPagination()">
           </div>
@@ -23,7 +23,7 @@
       </div>
 
       <div class="row" style="margin: 10px 0px 5px 0px;">
-          <button class="btn btn-warning col-xs-12 col-md-6 col-md-offset-3 text-center" type="button" ng-click="home.addPriority()">Busqueda Avanzada</button>
+          <button class="btn btn-warning col-xs-12 col-md-6 col-md-offset-3 text-center" type="button" ng-click="home.addPriority()">Búsqueda Avanzada</button>
       </div>
       <div class="row">
         <div class="col-xs-12 text-center">
@@ -41,16 +41,16 @@
 
 <div class="container" ng-show="priorities">
   <div class="row">
-    <h2 class="text-center">Busqueda avanzada por metas</h2>
+    <h2 class="text-center">Búsqueda avanzada por metas</h2>
   </div>
   <div class="row">
     <div class="panel panel-info col-md-12">
       <div class="panel-heading text-center" >
         <strong style="font-size: 16px">Metas</strong>
         <p style="font-size: 14px">
-          A continuación se le presenta el sistema de Busqueda Avanzada, seleccionando las caracteristicas
+          A continuación se le presenta el sistema de Búsqueda Avanzada, seleccionando las características
           de su hogar ideal y distribuyendo el peso (mientras mayor sea el peso asignado, mayor prioridad le dara el sistema)
-          entre cada una de las caracteristicas, el sistema le mostrara de forma ordenada aquellos que mejor se
+          entre cada una de las características, el sistema le mostrara de forma ordenada aquellos que mejor se
           adapten a su meta.
         </p>
       </div>
@@ -82,7 +82,7 @@
     <div class="col-md-4 " ng-class="{ 'col-md-offset-4': home.priorityGoal.length==0, 'col-md-offset-2': home.priorityGoal.length>0 }">
       <form class="form-inline" ng-submit="home.addGoal()">
         <div class="form-group text-center">
-          <label>Agregar nuevo criterio de busqueda</label>
+          <label>Agregar nuevo criterio de búsqueda</label>
           <select class="form-control" ng-model="home.prioritySelected">
             <option>--Seleccione--</option>
             <option ng-repeat="option in home.availableOptions" >{{option.nombre}}</option>
@@ -140,7 +140,7 @@
   </div>
   <div class="row" style="margin-bottom: 10px">
     <button type="button" class="btn btn-success col-md-2 col-md-offset-3" ng-click="home.sortPriorities()" ng-show="home.leftPercentaje == 0 && home.priorityGoal.length != 0">
-      Iniciar busqueda avanzada
+      Iniciar búsqueda avanzada
     </button>
     <button type="button" class="btn btn-danger col-md-2 col-md-offset-2" ng-click="home.resetOrder()" ng-show="home.priorityGoal.length != 0">Borrar todo</button>
     <span ng-hide="home.leftPercentaje == 0" >Todavia tienes porcentajes por repartir</span>
@@ -184,7 +184,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" ng-click="hideModal2()" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Comparacion de inmuebles</h4>
+        <h4 class="modal-title">Comparación de inmuebles</h4>
       </div>
       <div class="modal-body">
         <div class="panel panel-info">
@@ -198,7 +198,7 @@
               <td><strong>B</strong></td>
             </tr>
             <tr>
-              <td><strong>Direccion</strong></td>
+              <td><strong>Dirección</strong></td>
               <td>{{ home.compare[0].address }}</td>
               <td>{{ home.compare[1].address }}</td>
             </tr>
@@ -233,7 +233,7 @@
               <td ng-class="{'success': home.compare[0].meters < home.compare[1].meters}">{{ home.compare[1].meters }}</td>
             </tr>
             <tr>
-              <td><strong>Metros Cuadrados de Construccion</strong></td>
+              <td><strong>Metros Cuadrados de Construcción</strong></td>
               <td ng-class="{'success': home.compare[0].consmeters > home.compare[1].consmeters}">{{ home.compare[0].consmeters }}</td>
               <td ng-class="{'success': home.compare[0].consmeters < home.compare[1].consmeters}">{{ home.compare[1].consmeters }}</td>
             </tr>
@@ -306,7 +306,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="picture">Mas imagenes? (Max 10, <label style="color: #B4B4B4;">opcional</label>)</label>
+            <label for="picture">Mas imágenes? (Max 10, <label style="color: #B4B4B4;">opcional</label>)</label>
             <div class="text-center">
               <button type="button" class="btn btn-default" ng-click="uploadMultiple()" ng-show="max>0">
                 Subir <span class="caret"></span>
@@ -514,7 +514,7 @@
           <input type="text" class="form-control" placeholder="Jane Doe"ng-model="home.regData.pro_name">
         </div>
         <div class="col-sm-4">
-          <label>Telefono</label>
+          <label>Teléfono</label>
           <input type="text" class="form-control" placeholder="04149999999" ng-model="home.regData.pro_phone">
         </div>
         <div class="col-sm-4">
@@ -538,7 +538,7 @@
           <input class="form-control text-center" type="text" placeholder="5.5%" ng-model="home.regData.pro_porcentaje" ui-percentage-mask>
         </div>
         <div class="col-sm-4">
-          <label>Porcentaje de comision para colaborador</label>
+          <label>Porcentaje de comisión para colaborador</label>
           <input class="form-control text-center" type="text" placeholder="5.3%" ng-model="home.regData.pro_porcentajeColab" ui-percentage-mask>
         </div>
         <div class="col-sm-4 col-sm-offset-4">
