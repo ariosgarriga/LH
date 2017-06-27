@@ -309,12 +309,17 @@ var app = angular.module('homeController', ['houseServices', 'authServices', 'us
   }
 
   app.addPriority = function(){
-    if($scope.priorities){
-      $scope.priorities = false;
+    if(Auth.isLoggedIn()){
+      if($scope.priorities){
+        $scope.priorities = false;
+      } else {
+        $scope.priorities = true;
+        $scope.regHouseForm = false;
+      }
     } else {
-      $scope.priorities = true;
-      $scope.regHouseForm = false;
+      $("#userHouseAuth").modal({backdrop: "static"});
     }
+
   }
 
   $scope.ereasePriority = function(index){

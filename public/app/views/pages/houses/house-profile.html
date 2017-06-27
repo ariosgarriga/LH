@@ -17,7 +17,7 @@
   </div>
   <div class="row" style="margin-bottom: 10px;">
     <a class="col-sm-2 col-sm-offset-5" href="/house/edit/{{ house.data._id }}"
-      ng-show="house.data.id_user == main.user._id || main.user.role == 'admin'">
+      ng-show="house.data.id_user == main.user._id || main.user.permission == 'admin'">
       <button type="button" class="btn btn-primary col-xs-12">Editar</button>
     </a>
   </div>

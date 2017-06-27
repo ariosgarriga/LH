@@ -3,7 +3,7 @@ angular.module('houseControllers', ['userServices', 'houseServices', 'locationSe
 .controller('houseCtrl', function($http, $scope, $routeParams, $window, $location, $timeout, User, House, Auth) {
 
   var app = this;
-  console.log(app);
+  // console.log(app);
   $scope.myInterval = 0;
   $scope.noWrapSlides = false;
   $scope.active = 0;
@@ -18,7 +18,16 @@ angular.module('houseControllers', ['userServices', 'houseServices', 'locationSe
     Auth.getUser().then(function(data){
       app.currentUserID = data.data._id;
     });
+    User.getPermission().then(function(data){
+      if (data.data.permission === 'admin') {
+        app.houseEdit = true;
+      } else {
+        app.houseEdit = false;
+      }
+    });
   }
+
+
 
   $scope.addUserToHouse = function(){
     app.sharedUser.push($scope.newUser);
@@ -311,7 +320,7 @@ angular.module('houseControllers', ['userServices', 'houseServices', 'locationSe
   House.getHouse($routeParams.id).then(function(data){
     if (data.data.success) {
       app.data = data.data.house;
-      console.log(data.data.house);
+      // console.log(data.data.house);
       app.data.bathrooms = data.data.house.bathrooms.toString();
       app.data.medBathrooms = data.data.house.medBathrooms.toString();
       app.data.rooms = data.data.house.rooms.toString();
@@ -354,7 +363,6 @@ angular.module('houseControllers', ['userServices', 'houseServices', 'locationSe
     houseObject = editData;
     houseObject.lat = app.map.getCenter().lat();
     houseObject.lng = app.map.getCenter().lng();
-    console.log(houseObject);
     House.editHouse(houseObject).then(function(data){
       if (data.data.success) {
         app.successMsg = data.data.message;

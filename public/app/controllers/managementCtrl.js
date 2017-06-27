@@ -96,6 +96,14 @@ angular.module('managementController',[])
   app.phase1 = true;
   app.roleEdit = true;
 
+  User.getPermission().then(function(data){
+    if (data.data.permission === 'admin') {
+      app.roleEdit = false;
+    } else {
+      app.roleEdit = true;
+    }
+  });
+
   User.getUser($routeParams.id).then(function(data){
     if (data.data.success) {
       $scope.editData = data.data.user;
